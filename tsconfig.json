@@ -1,0 +1,11 @@
+{
+  "include": ["src", "arguments.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "noEmit": true,
+    "module": "CommonJS",
+    "strict": true,
+    "target": "es2020",
+    "esModuleInterop": true
+  }
+}
