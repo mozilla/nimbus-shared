@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm-run-all -s build:*",
     "build:json-schema": "./bin/build-schemas.ts",
-    "test": "npm-run-all -s build test:*",
+    "test": "npm-run-all -s test:*",
     "test:normandy-arguments": "./test/normandy-arguments.ts"
   },
   "dependencies": {

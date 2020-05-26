@@ -7,22 +7,20 @@ import Ajv from "ajv";
 const NORMANDY_API_BASE = "https://normandy.cdn.mozilla.net/api";
 
 async function main() {
-  const schema = await fs.readFile("./dist/normandy.json");
-  const ajv = new Ajv({
-    schemas: [schema],
-  });
+  const ajv = new Ajv();
 
   for await (const recipe of fetchEnabledRecipes()) {
     const revision = recipe.approved_revision ?? recipe.latest_revision;
-    const schemaName = convertActionNameToTypeName(revision.action.name);
+    const typeName = convertActionNameToTypeName(revision.action.name);
+    const schema = await fs.readFile(`./dist/normandy/${typeName}.json`);
 
-    if (!ajv.validate(schemaName, revision.arguments)) {
+    if (!ajv.validate(schema, revision.arguments)) {
       throw new Error(
         `Recipe ${recipe.id} does not have valid arguments: ${ajv.errors}`
       );
+    } else {
+      console.log(`Recipe ${recipe.id} arguments are valid ${typeName}`);
     }
-
-    break;
   }
 }
 
