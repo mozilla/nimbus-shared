@@ -10,8 +10,8 @@ async function main() {
     encodeRefs: true,
   };
 
-  await fs.rmdir("./dist", { recursive: true });
-  await fs.mkdir("./dist", { recursive: true });
+  await fs.rmdir("./schemas", { recursive: true });
+  await fs.mkdir("./schemas", { recursive: true });
 
   const program = tjs.programFromConfig("./tsconfig.json");
 
@@ -24,7 +24,7 @@ async function main() {
     // });
 
     // const { name: fileNameWithoutExtension } = path.parse(srcFilePath);
-    // const outPath = `dist/${fileNameWithoutExtension}.json`;
+    // const outPath = `schemas/${fileNameWithoutExtension}.json`;
     // await fs.writeFile(outPath, JSON.stringify(schema, null, 2));
 
     const generator = tsj.createGenerator({ ...config, path: srcFilePath });
@@ -35,8 +35,9 @@ async function main() {
     }
     for (const type of Object.keys(schema.definitions)) {
       const typeSchema = generator.createSchema(type);
-      await fs.mkdir(`./dist/${fileNameWithoutExtension}`, { recursive: true });
-      const outPath = `dist/${fileNameWithoutExtension}/${type}.json`;
+      const dirPath = `./schemas/${fileNameWithoutExtension}`;
+      await fs.mkdir(dirPath, { recursive: true });
+      const outPath = `${dirPath}/${type}.json`;
       console.log(`${srcFilePath}::${type} -> ${outPath}`);
       await fs.writeFile(outPath, JSON.stringify(typeSchema, null, 2));
     }
