@@ -1,4 +1,4 @@
-# Rapid Experiments Schemas
+# Rapid Experiments Schemas ![CircleCI](https://img.shields.io/circleci/build/github/mozilla/rapid-experiments-schemas)
 
 This is a place to define schemas used across the rapid experiments program.
 
