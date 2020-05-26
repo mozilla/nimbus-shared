@@ -15,7 +15,7 @@ async function main() {
 
   const program = tjs.programFromConfig("./tsconfig.json");
 
-  for await (const srcFilePath of walk("./src/")) {
+  for await (const srcFilePath of walk("./types/")) {
     // const schema = tjs.generateSchema(program, "*", {
     //   excludePrivate: true,
     //   include: [srcFilePath],
