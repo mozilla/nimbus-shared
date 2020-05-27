@@ -1,10 +1,14 @@
 {
   "name": "rapid-experiments-shared",
-  "description": "This is a place to define data and schemas used across the rapid experiments program.",
   "version": "0.0.1",
-  "author": "Mozilla",
-  "bugs": {
-    "url": "https://github.com/mozilla/rapid-experiments-shared/issues"
+  "license": "MPL-2.0",
+  "scripts": {
+    "build": "npm-run-all -s build:*",
+    "build:json-schema": "./bin/build-schemas.ts",
+    "artifact": "./bin/pack-artifact.sh",
+    "lint": "eslint .",
+    "test": "npm-run-all -s test:*",
+    "test:normandy-arguments": "./test/normandy-arguments.ts"
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,20 +25,5 @@
     "typescript": "^3.9.3",
     "typescript-json-schema": "^0.42.0"
   },
-  "homepage": "https://github.com/mozilla/rapid-experiments-shared#readme",
-  "keywords": [],
-  "license": "MPL-2.0",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mozilla/rapid-experiments-shared.git"
-  },
-  "scripts": {
-    "artifact": "./bin/pack-artifact.sh",
-    "build": "npm-run-all -s build:*",
-    "build:json-schema": "./bin/build-schemas.ts",
-    "lint": "eslint .",
-    "test": "npm-run-all -s test:*",
-    "test:normandy-arguments": "./test/normandy-arguments.ts"
-  }
+  "private": true
 }
