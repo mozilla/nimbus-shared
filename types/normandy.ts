@@ -1,3 +1,5 @@
+import { CfrMessage } from "./messaging";
+
 /** A Normandy recipe */
 export interface NormandyRecipe {
   /** The primary key of the recipe */
@@ -13,11 +15,21 @@ export interface NormandyRecipe {
   arguments: Arguments;
 }
 
-type Arguments = ConsoleLogArguments;
+type Arguments =
+  | ShowHeartbeatArguments
+  | PreferenceRolloutArguments
+  | PreferenceRollbackArguments
+  | PreferenceExperimentArguments
+  | OptOutStudyArguments
+  | MultiPreferenceExperimentArguments
+  | MessagingExperimentArguments
+  | BranchedAddonStudyArguments
+  | AddonRolloutArguments
+  | AddonRollbackArguments;
 
-/** Print a simple message to the browser console */
+/** Log a message to the console */
 export interface ConsoleLogArguments {
-  /** The message to print to the console */
+  /** Message to log to the console */
   message: string;
 }
 
@@ -25,112 +37,353 @@ type PreferenceValue = number | string | boolean;
 
 type PreferenceBranchType = "user" | "default";
 
+/** This action shows a single survey */
 export interface ShowHeartbeatArguments {
-  engagementButtonLabel?: string;
-  includeTelemetryUUID?: boolean;
-  learnMoreMessage?: string;
-  learnMoreUrl?: string;
-  message: string;
-  postAnswerUrl?: string;
-  repeatOption?: string;
+  /** Slug unique identifying this survey in telemetry */
   surveyId: string;
+
+  /** Message to show to the user */
+  message: string;
+
+  /** Text to display in the "learn more" link */
+  learnMoreMessage: string;
+
+  /** URL to show to the user when the click the "learn more" link */
+  learnMoreUrl: string;
+
+  /** URL to redirect the user to after rating Firefox or clicking the engagement button */
+  postAnswerUrl: string;
+
+  /** Thanks message to show to the user after they've rated Firefox */
   thanksMessage: string;
+
+  /**
+   * Text for the engagement button.
+   *
+   * If specified, this button will be shown instead of rating stars.
+   */
+  engagementButtonLabel?: string;
+
+  /** Include unique user ID in post-answer-url and Telemetry */
+  includeTelemetryUUID?: boolean;
+
+  /** Determines how often a prompt is shown executes */
+  repeatOption?: "once" | "xdays" | "nag";
+
+  /** For repeatOption=xdays, how often (in days) the prompt is displayed */
   repeatEvery?: number;
 }
 
+/** Change preferences permanently */
 export interface PreferenceRolloutArguments {
-  preferences: Array<{ preferenceName: string; value: PreferenceValue }>;
+  /**
+   * Unique identifier for the rollout, used in telemetry and rollbacks
+   *
+   * @pattern ^[a-z0-9\-_]+$
+   */
   slug: string;
+
+  /** The preferences to change, and their values */
+  preferences: Array<{
+    /** Full dotted path of the preference being changed*/
+    preferenceName: string;
+
+    /** Value to set the preference to */
+    value: PreferenceValue;
+  }>;
 }
 
+/** Undo a preference rollout */
 export interface PreferenceRollbackArguments {
+  /** Unique identifier for the rollout to undo */
   rolloutSlug: string;
 }
 
+/** Run a feature experiment activated by a preference */
 export interface PreferenceExperimentArguments {
+  /**
+   * List of experimental branches
+   * @minItems 1
+   */
   branches: Array<PreferenceExperimentBranch>;
-  experimentDocumentUrl: string;
-  isEnrollmentPaused?: boolean;
-  isHighVolume?: boolean;
-  preferenceBranchType: PreferenceBranchType;
+
+  /** Full dotted path of the preference that controls this experiment */
   preferenceName: string;
-  preferenceType: string;
-  slug: string;
-}
 
-interface PreferenceExperimentBranch {
-  ratio: number;
-  slug: string;
-  value: PreferenceValue;
-}
+  /** Data type of the preference that controls this experiment */
+  preferenceType: "string" | "integer" | "boolean";
 
-export interface OptOutStudyArguments {
-  addonUrl: string;
-  description: string;
-  extensionApiId: number;
+  /** Controls whether the default or user value of the preference is modified. */
+  preferenceBranchType: PreferenceBranchType;
+
+  /**
+   * Unique identifier for this experiment
+   *
+   * @pattern ^[A-Za-z0-9\-_]+$
+   */
+  slug: string;
+
+  /**
+   * URL of a document describing the experiment
+   *
+   * @default ""
+   * @format uri
+   */
+  experimentDocumentUrl: string;
+
+  /**
+   * If true, new users will not be enrolled in the study.
+   * @default false
+   */
   isEnrollmentPaused?: boolean;
-  name: string;
-}
 
-export interface MultiPreferenceExperimentArguments {
-  branches: Array<MultiPreferenceExperimentBranch>;
-  experimentDocumentUrl?: string;
-  slug: string;
-  userFacingDescription: string;
-  userFacingName: string;
-  isEnrollmentPaused?: boolean;
-  isHighPopulation?: boolean;
+  /**
+   * If true, marks the preference as a high population experiment that should
+   * be excluded from certain types of telemetry.
+   * @default false
+   */
   isHighVolume?: boolean;
-  preferenceBranchType?: PreferenceBranchType;
 }
 
+/** A branch in a preference experiment */
+interface PreferenceExperimentBranch {
+  /**
+   * Unique identifier for this branch of the experiment.
+   * @pattern ^[A-Za-z0-9\-_]+$
+   */
+  slug: string;
+
+  /** Value to set the preference to for this branch */
+  value: PreferenceValue;
+
+  /**
+   * Ratio of users who should be grouped into this branch.
+   * @minimum 1
+   */
+
+  ratio: number;
+}
+
+/** Enroll a user in an opt-out add-on study */
+export interface OptOutStudyArguments {
+  /**
+   * URL of the add-on XPI file to install
+   * @minLength 1
+   */
+  addonUrl: string;
+
+  /**
+   * User-facing name of the study
+   * @minLength 1
+   */
+  name: string;
+
+  /**
+   * User-facing description of the study
+   * @minLength 1
+   */
+  description: string;
+
+  /** The record ID of the extension used for Normandy API calls. */
+  extensionApiId: number;
+
+  /** If true, new users will not be enrolled in the study */
+  isEnrollmentPaused?: boolean;
+}
+
+/** Run a feature experiment activated by a set of preferences */
+export interface MultiPreferenceExperimentArguments {
+  /**
+   * Unique identifier for this experiment
+   * @pattern ^[A-Za-z0-9\-_]+$
+   */
+  slug: string;
+
+  /**
+   * User-facing name of the experiment
+   * @minLength 1
+   */
+  userFacingDescription: string;
+
+  /**
+   * User-facing description of the experiment
+   * @minLength 1
+   */
+  userFacingName: string;
+
+  /**
+   * List of experimental branches
+   * @minItems 1
+   */
+  branches: Array<MultiPreferenceExperimentBranch>;
+
+  /**
+   * URL of a document describing the experiment
+   * @format uri
+   * @default ""
+   */
+  experimentDocumentUrl?: string;
+
+  /**
+   * Marks the preference experiment as a high population experiment, that
+   * should be excluded from certain types of telemetry.
+   * @default false
+   */
+  isHighPopulation?: boolean;
+
+  /**
+   * If true, new users will not be enrolled in the study.
+   * @default false
+   */
+  isEnrollmentPaused?: boolean;
+}
+
+/** A branch in a multi-preference experiment */
 interface MultiPreferenceExperimentBranch {
+  /**
+   * Unique identifier for this branch of the experiment
+   * @pattern ^[A-Za-z0-9\-_]+$
+   */
+  slug: string;
+
+  /** Ratio of users that should be grouped into this branch */
+  ratio: number;
+
+  /** The set of preferences to be set if this branch is chosen */
   preferences: {
     [prefName: string]: {
-      preferenceBranchType: PreferenceBranchType;
-      preferenceType: string;
+      /** Value for this preference when this branch is chosen */
       preferenceValue: PreferenceValue;
+
+      /** Data type of the preference that controls this experiment */
+      preferenceBranchType: PreferenceBranchType;
+
+      /** Data type of the preference that controls this experiment */
+      preferenceType: "string" | "integer" | "boolean";
     };
   };
-  ratio: number;
-  slug: string;
 }
 
+/** Messaging experiment */
 export interface MessagingExperimentArguments {
+  /**
+   * Unique identifier for this experiment
+   * @pattern ^[A-Za-z0-9\-_]+$
+   */
+  slug: string;
+
+  /**
+   * User-facing name of the experiment
+   * @minLength 1
+   */
+  userFacingName: string;
+
+  /**
+   * User-facing description of the experiment
+   * @minLength 1
+   */
+  userFacingDescription: string;
+
+  /** List of experimental branches */
   branches: Array<MessagingExperimentBranch>;
+
+  /**
+   * URL of a document describing the experiment
+   * @format uri
+   * @default ""
+   */
   experimentDocumentUrl: string;
+
+  /**
+   * If true, new users will not be enrolled in the study.
+   * @default false
+   */
   isEnrollmentPaused?: boolean;
-  slug: string;
-  userFacingDescription: string;
-  userFacingName: string;
 }
 
+/** Messaging experiment branch */
 interface MessagingExperimentBranch {
+  /** Unique identifier for this branch of the experiment */
+  slug: string;
+
+  /**
+   * Ratio of users who should be grouped into this branch
+   * @minimum 1
+   */
+  ratio: number;
+
+  /**
+   * A list of experiment groups that can be used to exclude or select related
+   * experiments. May be empty.
+   */
   groups: Array<string>;
-  ratio: number;
-  slug: string;
-  value: { [key: string]: any };
+
+  /** Message content  */
+  value: CfrMessage | AddonRollbackArguments;
 }
 
+/** Enroll a user in an add-on experiment, with managed branches */
 export interface BranchedAddonStudyArguments {
-  branches: Array<BranchedAddonStudyBranch>;
-  isEnrollmentPaused: boolean;
+  /**
+   * Machine-readable identifier
+   * @minLength 1
+   */
   slug: string;
-  userFacingDescription: string;
+
+  /**
+   * User-facing name of the experiment
+   * @minLength 1
+   */
   userFacingName: string;
+
+  /**
+   * User-facing description of the experiment
+   * @minLength 1
+   */
+  userFacingDescription: string;
+
+  /**
+   * List of experimental branches
+   * @minItems 1
+   */
+  branches: Array<BranchedAddonStudyBranch>;
+
+  /**
+   * If true, new users will not be enrolled in the study.
+   * @default false
+   */
+  isEnrollmentPaused?: boolean;
 }
 
+/** A branched add-on study branch */
 interface BranchedAddonStudyBranch {
-  extensionApiId: number;
+  /** Unique identifier for this this branch of the experiment */
+  slug: string;
+
+  /** Ratio of users who should be grouped into this branch */
   ratio: number;
-  slug: string;
-}
 
-export interface AddonRolloutArguments {
-  slug: string;
+  /** The record ID of the add-on uploaded to the Normandy server */
   extensionApiId: number;
 }
 
+/** Install an add-on permanently */
+export interface AddonRolloutArguments {
+  /**
+   * Unique identifier for the rollout, used in telemetry and rollbacks
+   * @pattern ^[a-z0-9\-_]+$
+   */
+  slug: string;
+
+  /** The record ID of the extension used for Normandy API calls */
+  extensionApiId: number;
+}
+
+/** Undo an add-on rollout */
 export interface AddonRollbackArguments {
+  /**
+   * Unique identifier of the rollout to undo
+   * @pattern ^[a-z0-9\-_]+$
+   */
   rolloutSlug: string;
 }

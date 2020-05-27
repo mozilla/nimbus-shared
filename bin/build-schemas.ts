@@ -15,10 +15,8 @@ async function main() {
   // Delete the contents of schemas, without deleting the directory itself
   for await (const entry of walk("./schemas", { includeDirs: "include" })) {
     if (entry.isDirectory()) {
-      console.log("deleting directory", entry);
       await fs.rmdir(entry.path, { recursive: false });
     } else {
-      console.log("deleting file", entry);
       await fs.unlink(entry.path);
     }
   }
@@ -48,7 +46,7 @@ async function main() {
       const dirPath = `./schemas/${fileNameWithoutExtension}`;
       await fs.mkdir(dirPath, { recursive: true });
       const outPath = `${dirPath}/${type}.json`;
-      console.log(`${srcFilePath}::${type} -> ${outPath}`);
+      console.info(`${srcFilePath}::${type} -> ${outPath}`);
       await fs.writeFile(outPath, JSON.stringify(typeSchema, null, 2));
     }
   }
@@ -96,7 +94,7 @@ async function* walk(
 }
 
 process.on("unhandledRejection", (reason, promise) => {
-  console.log("Unhandled Reject at:", promise, "reason:", reason);
+  console.error("Unhandled Reject at:", promise, "reason:", reason);
   process.exit(1);
 });
 
