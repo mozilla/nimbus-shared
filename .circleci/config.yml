@@ -12,7 +12,12 @@ jobs:
             - run: yarn install
             - run: yarn build
             - run: yarn test
+      - run:
+          name: Preparing artifacts
+          command: yarn artifact
+      - store_artifacts:
+          path: ./artifacts
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  build-and-test:
+    jobs:
+      - build-and-test
