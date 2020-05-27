@@ -48,4 +48,9 @@ function convertActionNameToTypeName(actionName: string): string {
   return typeName + "Arguments";
 }
 
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled promise rejection:", reason);
+  process.exit(1);
+});
+
 main();
