@@ -1,5 +1,5 @@
 #!/usr/bin/env ts-node-script
-import { promises as fs } from "fs";
+import { promises as fs, Dirent } from "fs";
 import * as path from "path";
 import * as tsj from "ts-json-schema-generator";
 import * as tjs from "typescript-json-schema";
@@ -10,12 +10,22 @@ async function main() {
     encodeRefs: true,
   };
 
-  await fs.rmdir("./schemas", { recursive: true });
   await fs.mkdir("./schemas", { recursive: true });
+
+  // Delete the contents of schemas, without deleting the directory itself
+  for await (const entry of walk("./schemas", { includeDirs: "include" })) {
+    if (entry.isDirectory()) {
+      console.log("deleting directory", entry);
+      await fs.rmdir(entry.path, { recursive: false });
+    } else {
+      console.log("deleting file", entry);
+      await fs.unlink(entry.path);
+    }
+  }
 
   const program = tjs.programFromConfig("./tsconfig.json");
 
-  for await (const srcFilePath of walk("./types/")) {
+  for await (const { path: srcFilePath } of walk("./types/")) {
     // const schema = tjs.generateSchema(program, "*", {
     //   excludePrivate: true,
     //   include: [srcFilePath],
@@ -44,13 +54,43 @@ async function main() {
   }
 }
 
-async function* walk(dir: string): AsyncGenerator<string, void> {
-  for await (const subdir of await fs.opendir(dir)) {
-    const entry = path.join(dir, subdir.name);
-    if (subdir.isDirectory()) {
-      yield* walk(entry);
-    } else if (subdir.isFile()) {
-      yield entry;
+interface WalkOptions {
+  includeDirs?: "only" | "include" | "exclude";
+}
+
+interface WalkDirEntry extends Dirent {
+  path: string;
+}
+
+/**
+ * Iterate through a directory and all its descendants.
+ *
+ * Contents are iterated in a depth-first order, i.e. all contents of a
+ * directory will be recursively yielded before the directory.
+ *
+ * The top level directory will not be yielded.
+ *
+ * @param dir
+ *   The path of the directory to walk
+ * @param opts.includeDirs
+ *   Controls how directory entries are included in the output.
+ */
+async function* walk(
+  dir: string,
+  opts: WalkOptions = { includeDirs: "exclude" }
+): AsyncGenerator<WalkDirEntry, void> {
+  for await (const entry of await fs.opendir(dir)) {
+    let rv = entry as WalkDirEntry;
+    rv.path = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      yield* walk(rv.path, opts);
+      if (opts.includeDirs != "exclude") {
+        yield rv;
+      }
+    } else if (entry.isFile()) {
+      if (opts.includeDirs != "only") {
+        yield rv;
+      }
     }
   }
 }
