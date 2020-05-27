@@ -80,7 +80,7 @@ async function* walk(
   opts: WalkOptions = { includeDirs: "exclude" }
 ): AsyncGenerator<WalkDirEntry, void> {
   for await (const entry of await fs.opendir(dir)) {
-    let rv = entry as WalkDirEntry;
+    const rv = entry as WalkDirEntry;
     rv.path = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       yield* walk(rv.path, opts);
