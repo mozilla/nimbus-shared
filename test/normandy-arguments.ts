@@ -12,7 +12,7 @@ async function main() {
   for await (const recipe of fetchEnabledRecipes()) {
     const revision = recipe.approved_revision ?? recipe.latest_revision;
     const typeName = convertActionNameToTypeName(revision.action.name);
-    const schema = await fs.readFile(`./dist/normandy/${typeName}.json`);
+    const schema = await fs.readFile(`./schemas/normandy/${typeName}.json`);
 
     if (!ajv.validate(schema, revision.arguments)) {
       throw new Error(
@@ -47,5 +47,10 @@ function convertActionNameToTypeName(actionName: string): string {
   // Finally mention it is just the arguments
   return typeName + "Arguments";
 }
+
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled promise rejection:", reason);
+  process.exit(1);
+});
 
 main();

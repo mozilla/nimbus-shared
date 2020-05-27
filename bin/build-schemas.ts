@@ -95,4 +95,9 @@ async function* walk(
   }
 }
 
+process.on("unhandledRejection", (reason, promise) => {
+  console.log("Unhandled Reject at:", promise, "reason:", reason);
+  process.exit(1);
+});
+
 main();
