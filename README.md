@@ -18,6 +18,9 @@ yarn build
 yarn test
 ```
 
+Node 14 is required to work on this repository, though will not be required for
+the eventual bundled outputs prepared for other systems.
+
 ## Using the schemas
 
 TBD
