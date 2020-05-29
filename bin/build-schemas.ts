@@ -34,6 +34,7 @@ async function main() {
     if (!schema.definitions) {
       continue;
     }
+
     for (const type of Object.keys(schema.definitions)) {
       const typeSchema = generator.createSchema(type);
       const dirPath = `./schemas/${fileNameWithoutExtension}`;

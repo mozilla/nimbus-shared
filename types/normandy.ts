@@ -1,5 +1,3 @@
-import { CfrMessage } from "./messaging";
-
 /** A Normandy recipe */
 export interface NormandyRecipe {
   /** The primary key of the recipe */
@@ -319,7 +317,7 @@ interface MessagingExperimentBranch {
   groups: Array<string>;
 
   /** Message content  */
-  value: CfrMessage | AddonRollbackArguments;
+  value: Record<string, unknown>;
 }
 
 /** Enroll a user in an add-on experiment, with managed branches */

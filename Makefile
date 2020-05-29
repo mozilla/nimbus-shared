@@ -35,7 +35,7 @@ $(TSC_STAMP): src/typeGuardHelpers.ts $(TS_SRC) $(TYPES) $(YARN_STAMP)
 	tsc
 	@touch $(TSC_STAMP)
 
-$(SCHEMAS): $(shell find ./types -name '*.ts') $(YARN_STAMP)
+$(SCHEMAS): $(shell find ./types -name '*.ts') $(YARN_STAMP) bin/build-schemas.ts
 	./bin/build-schemas.ts
 
 src/typeGuardHelpers.ts: $(YARN_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
