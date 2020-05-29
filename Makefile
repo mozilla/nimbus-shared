@@ -28,8 +28,8 @@ test: build
 artifact: build
 	./bin/pack-artifact.sh
 
-lint: $(YARN_STAMP)
-	eslint --ignore dist .
+lint: $(YARN_STAMP) build
+	eslint .
 
 $(TSC_STAMP): src/typeGuardHelpers.ts $(TS_SRC) $(TYPES) $(YARN_STAMP)
 	tsc
