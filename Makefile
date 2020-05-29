@@ -7,7 +7,9 @@ YARN_STAMP := ./.yarn-last-run
 
 export PATH := node_modules/.bin:$(PATH)
 
-.PHONY: install  build clean test lint
+.PHONY: install build clean test lint default
+
+default: build
 
 install: $(YARN_STAMP)
 
@@ -18,7 +20,7 @@ $(YARN_STAMP): package.json yarn.lock
 	@touch $(YARN_STAMP)
 
 clean:
-	rm -rf dist schemas $(TSC_STAMP) node_modules
+	rm -rf dist $(SCHEMAS) $(TSC_STAMP) $(YARN_STAMP) node_modules
 
 test: build
 	./test/normandy-arguments.ts
@@ -36,5 +38,5 @@ $(TSC_STAMP): src/typeGuardHelpers.ts $(TS_SRC) $(TYPES) $(YARN_STAMP)
 $(SCHEMAS): $(shell find ./types -name '*.ts') $(YARN_STAMP)
 	./bin/build-schemas.ts
 
-src/typeGuardHelpers.ts: $(SCHEMAS) bin/generate-type-guards.ts
+src/typeGuardHelpers.ts: $(YARN_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
 	./bin/generate-type-guards.ts
