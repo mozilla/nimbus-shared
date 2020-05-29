@@ -3,6 +3,8 @@ TYPES ::= $(shell find ./types -name '*.ts')
 TS_SRC ::= $(shell find ./src -name '*.ts')
 TSC_STAMP := ./.tsc-last-run
 
+export PATH := node_modules/.bin:$(PATH)
+
 .PHONY: build clean test lint
 
 build: $(TSC_STAMP) $(SCHEMAS) src/typeGuardHelpers.ts
