@@ -1,11 +1,13 @@
 {
-  "include": ["src", "arguments.ts"],
+  "include": ["types", "src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "noEmit": true,
+    "outDir": "dist",
+    "declaration": true,
+    "lib": ["ES2018"],
     "module": "CommonJS",
     "strict": true,
-    "target": "es2020",
+    "target": "ES2018",
     "esModuleInterop": true
   }
 }

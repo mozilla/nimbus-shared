@@ -9,13 +9,13 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: yarn install
-            - run: yarn build
-            - run: yarn test
-            - run: yarn lint
+            - run: make install
+            - run: make build
+            - run: make test
+            - run: make lint
       - run:
           name: Preparing artifacts
-          command: yarn artifact
+          command: make artifact
       - store_artifacts:
           path: ./artifacts
 workflows:
