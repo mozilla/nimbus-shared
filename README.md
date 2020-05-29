@@ -10,12 +10,18 @@ shared.
 
 ## Working on this repo
 
-Common tasks are defined as Yarn scripts.
+Use Yarn to install dependencies:
 
 ```shell
 yarn install
-yarn build
-yarn test
+```
+
+Common tasks are defined as Make targets:
+
+```shell
+make lint
+make build
+make test
 ```
 
 Node 14 is required to work on this repository, though will not be required for

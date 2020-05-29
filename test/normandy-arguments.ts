@@ -18,8 +18,6 @@ async function main() {
       throw new Error(
         `Recipe ${recipe.id} does not have valid arguments: ${ajv.errors}`
       );
-    } else {
-      console.log(`Recipe ${recipe.id} arguments are valid ${typeName}`);
     }
   }
 }
@@ -48,7 +46,7 @@ function convertActionNameToTypeName(actionName: string): string {
   return typeName + "Arguments";
 }
 
-process.on("unhandledRejection", (reason, promise) => {
+process.on("unhandledRejection", (reason) => {
   console.log("Unhandled promise rejection:", reason);
   process.exit(1);
 });
