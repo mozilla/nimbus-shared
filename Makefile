@@ -2,8 +2,10 @@
 SCHEMAS := schemas $(shell test -d schemas && find schemas -name '*.json')
 TYPES := $(shell find ./types -name '*.ts')
 TS_SRC := $(shell find ./src -name '*.ts')
-TSC_STAMP := ./.tsc-last-run
-YARN_STAMP := ./.yarn-last-run
+
+TIMESTAMP_DIR := ./.timestamps
+TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
+NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/npm-install
 
 export PATH := node_modules/.bin:$(PATH)
 
@@ -11,16 +13,16 @@ export PATH := node_modules/.bin:$(PATH)
 
 default: build
 
-install: $(YARN_STAMP)
+install: $(NPM_INSTALL_STAMP)
 
-build: $(TSC_STAMP) $(SCHEMAS) src/typeGuardHelpers.ts $(YARN_STAMP)
+build: $(TSC_STAMP) $(SCHEMAS) src/typeGuardHelpers.ts $(NPM_INSTALL_STAMP)
 
-$(YARN_STAMP): package.json yarn.lock
-	yarn install
-	@touch $(YARN_STAMP)
+$(NPM_INSTALL_STAMP): package.json package-lock.json $(TIMESTAMP_DIR)
+	npm install
+	@touch $(NPM_INSTALL_STAMP)
 
 clean:
-	rm -rf dist $(SCHEMAS) $(TSC_STAMP) $(YARN_STAMP) node_modules
+	rm -rf dist $(SCHEMAS) $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules
 
 test: build
 	./test/normandy-arguments.ts
@@ -28,15 +30,18 @@ test: build
 artifact: build
 	./bin/pack-artifact.sh
 
-lint: $(YARN_STAMP) build
+lint: $(NPM_INSTALL_STAMP) build
 	eslint .
 
-$(TSC_STAMP): src/typeGuardHelpers.ts $(TS_SRC) $(TYPES) $(YARN_STAMP)
+$(TSC_STAMP): src/typeGuardHelpers.ts $(TS_SRC) $(TYPES) $(NPM_INSTALL_STAMP) $(TIMESTAMP_DIR)
 	tsc
 	@touch $(TSC_STAMP)
 
-$(SCHEMAS): $(shell find ./types -name '*.ts') $(YARN_STAMP) bin/build-schemas.ts
+$(SCHEMAS): $(shell find ./types -name '*.ts') $(NPM_INSTALL_STAMP) bin/build-schemas.ts
 	./bin/build-schemas.ts
 
-src/typeGuardHelpers.ts: $(YARN_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
+src/typeGuardHelpers.ts: $(NPM_INSTALL_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
 	./bin/generate-type-guards.ts
+
+$(TIMESTAMP_DIR):
+	mkdir $(TIMESTAMP_DIR)

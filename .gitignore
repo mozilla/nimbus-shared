@@ -3,5 +3,4 @@ node_modules/
 schemas/
 artifacts/
 src/typeGuardHelpers.ts
-.tsc-last-run
-.yarn-last-run
+.timestamps
