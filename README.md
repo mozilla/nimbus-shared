@@ -10,6 +10,9 @@ shared.
 
 ## Working on this repo
 
+Node 14 is required to work on this repository, though will not be required for
+the eventual bundled outputs prepared for other systems.
+
 Common tasks are defined as Make targets:
 
 ```shell
@@ -19,8 +22,8 @@ make build    # Build output files
 make test     # Test
 ```
 
-Node 14 is required to work on this repository, though will not be required for
-the eventual bundled outputs prepared for other systems.
+Dependencies are managed with npm. Use `npm install --save` and
+`npm install --save-dev` to add new dependencies.
 
 ## Using the schemas
 
