@@ -18,7 +18,7 @@ install: $(NPM_INSTALL_STAMP)
 build: $(TSC_STAMP) $(SCHEMAS) src/typeGuardHelpers.ts $(NPM_INSTALL_STAMP)
 
 $(NPM_INSTALL_STAMP): package.json package-lock.json $(TIMESTAMP_DIR)
-	npm install
+	npm ci
 	@touch $(NPM_INSTALL_STAMP)
 
 clean:
