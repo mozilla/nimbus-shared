@@ -1,23 +1,36 @@
 version: 2.1
+
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@3.0.0
+
 jobs:
   build-and-test:
     executor:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: make install
-            - run: make build
-            - run: make test
-            - run: make lint
+      - node/install-packages:
+          override-ci-command: make install
+
+      - run:
+          name: Build
+          command: make build
+
+      - run:
+          name: Run Tests
+          command: make test
+
+      - run:
+          name: Run Lints
+          command: make lint
+
       - run:
           name: Preparing artifacts
           command: make artifact
+
       - store_artifacts:
           path: ./artifacts
+
 workflows:
   build-and-test:
     jobs:
