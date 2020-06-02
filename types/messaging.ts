@@ -4,7 +4,7 @@ import { MessagingAction } from "./specialMessageAction";
 type FluentId = { string_id: string };
 type FluentOrString = FluentId | string;
 
-/** Action dispatched by the button */
+/** Button label and action */
 interface CFRButton {
   label: {
     value: string;
