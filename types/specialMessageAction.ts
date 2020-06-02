@@ -63,7 +63,7 @@ export interface OpenApplicationsMenu {
 /** Focuses and expands the awesome bar */
 export interface OpenAwesomeBar {
   type: "OPEN_AWESOME_BAR";
-};
+}
 
 /** Opens a preference page */
 export interface OpenPreferencesPage {
@@ -116,7 +116,7 @@ export interface ShowFirefoxAccounts {
   };
 }
 
-// Shows the Migration Wizard to import data from another Browser. See https://support.mozilla.org/en-US/kb/import-data-another-browser" */
+/** Shows the Migration Wizard to import data from another Browser. See https://support.mozilla.org/en-US/kb/import-data-another-browser" */
 export interface ShowMigrationWizard {
   type: "SHOW_MIGRATION_WIZARD";
 }
