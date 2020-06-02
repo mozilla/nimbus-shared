@@ -1,5 +1,5 @@
 {
-  "include": ["types", "src"],
+  "include": ["index.ts", "types", "src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "outDir": "dist",

@@ -2,5 +2,6 @@ dist/
 node_modules/
 schemas/
 artifacts/
-src/typeGuardHelpers.ts
+src/_generated
 .timestamps
+rapid-experiments-shared-*.tgz
