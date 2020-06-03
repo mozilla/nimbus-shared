@@ -13,7 +13,7 @@ type UrlParams = Array<string>;
 type UrlPatterns = Array<string>;
 
 interface BaseTrigger {
-    id?: string;
+    id: string;
     params?: UrlParams;
     patterns?: UrlPatterns;
 }

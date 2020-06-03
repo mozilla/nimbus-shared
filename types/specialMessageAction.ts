@@ -1,4 +1,4 @@
-export type MessagingAction =
+export type SpecialMessagingAction =
 | DisableSTPDoorhangers
 | HighlightFeature
 | InstallAddonFromURL
@@ -13,7 +13,7 @@ export type MessagingAction =
 | PinCurrentTab
 | ShowFirefoxAccounts
 | ShowMigrationWizard
-| Cancel;
+| Minimize;
 
 /** Disables all STP doorhangers. */
 export interface DisableSTPDoorhangers {
@@ -43,7 +43,11 @@ export interface OpenAboutPage {
   data: {
     /** The about page. E.g. "welcome" for about:welcome' */
     args: string;
-    /** "Where the URL is opened, defaults to `tab` */
+    /**
+     * Where the URL is opened
+     *
+     * @default "tab"
+     */
     where: "current" | "save" | "tab" | "tabshifted" | "window";
     /** Any optional entrypoint value that will be added to the search. E.g. "foo=bar" would result in about:welcome?foo=bar' */
     entrypoint: string;
@@ -70,7 +74,7 @@ export interface OpenPreferencesPage {
   data: {
     /** Section of about:preferences, e.g. "privacy-reports" */
     category: string;
-    /** Add a queryparam for metrics" */
+    /** Add a queryparam for metrics */
     entrypoint: string;
   };
   type: "OPEN_PREFERENCES_PAGE";
@@ -96,7 +100,11 @@ export interface OpenUrlAction {
   data: {
     /** URL to open */
     args: string;
-    /** Where the URL is opened, defaults to current tab */
+    /**
+     * Where the URL is opened
+     *
+     * @default "tab"
+     */
     where: "current" | "save" | "tab" | "tabshifted" | "window";
   };
   type: "OPEN_URL";
@@ -121,7 +129,7 @@ export interface ShowMigrationWizard {
   type: "SHOW_MIGRATION_WIZARD";
 }
 
-/** Cancel (dismiss) the CFR doorhanger */
-export interface Cancel {
+/** Minimize the CFR doorhanger back into the URLbar */
+export interface Minimize {
   type: "CANCEL";
 }

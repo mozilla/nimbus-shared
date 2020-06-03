@@ -1,5 +1,5 @@
 import { TriggerAction } from "./triggerAction";
-import { MessagingAction } from "./specialMessageAction";
+import { SpecialMessagingAction } from "./specialMessageAction";
 
 type FluentId = { string_id: string };
 type FluentOrString = FluentId | string;
@@ -9,18 +9,32 @@ interface CFRButton {
   label: {
     value: string;
     attributes: {
-      /** A single character to be used as a shortcut key for the secondary button. This should be one of the characters that appears in the button label */
+      /**
+       * A single character to be used as a shortcut key for the secondary button.
+       * This should be one of the characters that appears in the button label
+       *
+       * @maxLength 1
+       * @minLength 1
+       */
       accesskey: string;
     }
   } | FluentId,
-  action: MessagingAction;
+  action: SpecialMessagingAction;
 }
 
 interface SimpleCFRContent {
-  /** The text that shows up in the chiclet. 20 characters max. */
+  /**
+   * The text that shows up in the chiclet.
+   *
+   * @maxLength 20
+   */
   notification_text: FluentOrString;
-  /** The background color of the chiclet as a HEX code. */
-  chiclet_color?: string;
+  /**
+   * The background color of the chiclet as a HEX code.
+   *
+   * @default #0060df
+   */
+  active_color?: string;
   heading_text: FluentOrString;
   text: FluentOrString;
   /** The icon displayed in the pop-over. Should be 32x32px or 64x64px and png/svg */
@@ -30,7 +44,7 @@ interface SimpleCFRContent {
   /** The label and functionality for the buttons in the pop-over */
   buttons: {
     primary: CFRButton;
-    secondary: Array<CFRButton>;
+    secondary: [CFRButton, CFRButton];
   }
 }
 
@@ -58,9 +72,9 @@ export interface StandardMessageRecipe {
    */
   weight?: number;
 
-  /* Definition of maximum impressions in a particular period, or groups of periods */
+  /** Definition of maximum impressions in a particular period, or groups of periods */
   frequency?: {
-    /* The maximum lifetime impressions for a message. */
+    /** The maximum lifetime impressions for a message. */
     lifetime?: number;
     custom?: Array<{
       /* Period of time in milliseconds (e.g. 86400000 for one day) or 'daily' */
@@ -69,7 +83,7 @@ export interface StandardMessageRecipe {
     }>
   }
 
-  /* Message-specific properties; each type of message template defines its own schema for content */
+  /** Message-specific properties; each type of message template defines its own schema for content */
   content: SimpleCFRContent;
 }
 
