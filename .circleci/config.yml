@@ -26,7 +26,10 @@ jobs:
 
       - run:
           name: Preparing artifacts
-          command: make artifact
+          command: |
+            make artifact
+            make pack
+            mv mozilla-rapid-experiments-shared-*.tgz artifacts
 
       - store_artifacts:
           path: ./artifacts

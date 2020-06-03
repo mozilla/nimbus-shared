@@ -1,5 +1,5 @@
 {
-  "name": "rapid-experiments-shared",
+  "name": "@mozilla/rapid-experiments-shared",
   "version": "0.0.1",
   "license": "MPL-2.0",
   "engines": {
@@ -9,8 +9,10 @@
     "build": "make build",
     "artifact": "make artifact",
     "lint": "make lint",
-    "test": "make test"
+    "test": "make test",
+    "prepublishOnly": "make clean-build"
   },
+  "main": "dist/index.js",
   "types": "index.d.ts",
   "dependencies": {
     "ajv": "^6.12.2"
@@ -28,5 +30,11 @@
     "typescript": "^3.9.3",
     "typescript-json-schema": "^0.42.0"
   },
-  "private": true
+  "files": [
+    "package.json",
+    "src",
+    "dist",
+    "schemas",
+    "index.ts"
+  ]
 }
