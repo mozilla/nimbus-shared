@@ -2,9 +2,9 @@
 
 This is a place to define data and schemas used across the rapid experiments program.
 
-Any data that moves between systems should have a schema defined here. Schemas are defined using
-Typescript, and automatically converted to JSON Schema. Any data that needs to be re-used by
-multiple systems should be stored here to be shared.
+Any data that moves between systems should have Typescript types defined here, which will be
+automatically converted to JSON Schema. Any data that needs to be re-used by multiple systems should
+be stored here to be shared.
 
 ## Using the schemas
 
@@ -22,8 +22,14 @@ Import it.
 import mers from "@mozilla/rapid-experiments-shared";
 ```
 
-JSON Schemas can be accessed in `mers.schemas` from JS, or in
-`node_modules/@mozilla/rapid-experiments-shared/schemas` if file system access is more convenient.
+JSON Schemas can be accessed in `mers.schemas`:
+
+```js
+import { schemas } from "@mozilla.rapid-experiments-shared";
+schemas.normandy.ConsoleLogArguments;
+// {"$schema": "http://json-schema.org/draft-07/schema#", ...}
+```
+
 Helper functions to validate objects against those schemas can be found in `mers.typeGuards`.
 
 ```js
@@ -61,7 +67,8 @@ assertions.
 ### Python
 
 Native support coming soon. For now, consider using the NPM package and loading the schemas directly
-from `node_modules`.
+from the filesystem. After installing this package via `npm`, the schemas will be available aty
+`node_modules/@mozilla/rapid-experiments-shared/schemas/<group>/<type>.json`.
 
 ---
 
