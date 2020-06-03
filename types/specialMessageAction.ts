@@ -16,12 +16,12 @@ export type SpecialMessagingAction =
 | Minimize;
 
 /** Disables all STP doorhangers. */
-export interface DisableSTPDoorhangers {
+interface DisableSTPDoorhangers {
   type: "DISABLE_STP_DOORHANGERS";
 }
 
 /** Highlights an element, such as a menu item */
-export interface HighlightFeature {
+interface HighlightFeature {
   data: {
     /** The element to highlight */
     args: string;
@@ -30,7 +30,7 @@ export interface HighlightFeature {
 }
 
 /** Install an add-on from AMO */
-export interface InstallAddonFromURL {
+interface InstallAddonFromURL {
   data: {
     telemetrySource: string;
     url: string;
@@ -39,7 +39,7 @@ export interface InstallAddonFromURL {
 }
 
 /** Opens an about: page in Firefox */
-export interface OpenAboutPage {
+interface OpenAboutPage {
   data: {
     /** The about page. E.g. "welcome" for about:welcome' */
     args: string;
@@ -56,7 +56,7 @@ export interface OpenAboutPage {
 }
 
 /** Opens an application menu */
-export interface OpenApplicationsMenu {
+interface OpenApplicationsMenu {
   data: {
     /** The menu name, e.g. "appMenu" */
     args: string;
@@ -65,12 +65,12 @@ export interface OpenApplicationsMenu {
 }
 
 /** Focuses and expands the awesome bar */
-export interface OpenAwesomeBar {
+interface OpenAwesomeBar {
   type: "OPEN_AWESOME_BAR";
 }
 
 /** Opens a preference page */
-export interface OpenPreferencesPage {
+interface OpenPreferencesPage {
   data: {
     /** Section of about:preferences, e.g. "privacy-reports" */
     category: string;
@@ -81,22 +81,22 @@ export interface OpenPreferencesPage {
 }
 
 /** Opens a private browsing window. */
-export interface OpenPrivateBrowserWindow {
+interface OpenPrivateBrowserWindow {
   type: "OPEN_PRIVATE_BROWSER_WINDOW";
 }
 
 /** Opens the protections panel */
-export interface OpenProtectionPanel {
+interface OpenProtectionPanel {
   type: "OPEN_PROTECTION_PANEL";
 }
 
 /** Opens the protections panel report */
-export interface OpenProtectionReport {
+interface OpenProtectionReport {
   type: "OPEN_PROTECTION_REPORT";
 }
 
 /** Opens given URL */
-export interface OpenUrlAction {
+interface OpenUrlAction {
   data: {
     /** URL to open */
     args: string;
@@ -111,12 +111,12 @@ export interface OpenUrlAction {
 }
 
 /** Pin the current tab */
-export interface PinCurrentTab {
+interface PinCurrentTab {
   type: "PIN_CURRENT_TAB",
 }
 
 /** Show Firefox Accounts */
-export interface ShowFirefoxAccounts {
+interface ShowFirefoxAccounts {
   type: "SHOW_FIREFOX_ACCOUNTS";
   data: {
     /** Adds entrypoint={your value} to the FXA URL */
@@ -125,11 +125,11 @@ export interface ShowFirefoxAccounts {
 }
 
 /** Shows the Migration Wizard to import data from another Browser. See https://support.mozilla.org/en-US/kb/import-data-another-browser" */
-export interface ShowMigrationWizard {
+interface ShowMigrationWizard {
   type: "SHOW_MIGRATION_WIZARD";
 }
 
 /** Minimize the CFR doorhanger back into the URLbar */
-export interface Minimize {
+interface Minimize {
   type: "CANCEL";
 }

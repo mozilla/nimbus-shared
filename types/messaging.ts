@@ -48,7 +48,7 @@ interface SimpleCFRContent {
   }
 }
 
-export interface StandardMessageRecipe {
+interface StandardMessageRecipe {
   /** Unique identifier for the message */
   id: string;
 
