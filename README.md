@@ -19,10 +19,10 @@ $ npm install --save @mozilla/rapid-experiments-shared
 Import it.
 
 ```js
-import mers from "@mozilla/rapid-experiments-shared";
+import mres from "@mozilla/rapid-experiments-shared";
 ```
 
-JSON Schemas can be accessed in `mers.schemas`:
+JSON Schemas can be accessed in `mres.schemas`:
 
 ```js
 import { schemas } from "@mozilla.rapid-experiments-shared";
@@ -30,7 +30,7 @@ schemas.normandy.ConsoleLogArguments;
 // {"$schema": "http://json-schema.org/draft-07/schema#", ...}
 ```
 
-Helper functions to validate objects against those schemas can be found in `mers.typeGuards`.
+Helper functions to validate objects against those schemas can be found in `mres.typeGuards`.
 
 ```js
 import { typeGuards } from "@mozilla/rapid-experiments-shared";
