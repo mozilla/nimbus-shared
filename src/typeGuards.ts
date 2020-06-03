@@ -27,8 +27,8 @@ export function checkSchema(schemaKey: string, obj: object): SchemaResult {
     throw new Error("Schema validation cannot be async, but AJV returned an async result");
   }
   if (validationResult) {
-    if (!_cachedAjv.errors?.length) {
-      throw new Error("Object matches schema, but errors are listed");
+    if (_cachedAjv.errors?.length) {
+      throw new Error("Object matches schema, but errors are listed: ${");
     }
     return { ok: true, errors: null };
   } else {
