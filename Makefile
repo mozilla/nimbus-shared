@@ -7,6 +7,7 @@ TYPES := $(shell find ./types -name '*.ts')
 TS_SRC := index.ts $(shell find ./src -name '*.ts')
 PACK_FILE := $(PKGNAME)-$(VERSION).tgz
 GENERATED_TS := ./src/_generated/typeGuardHelpers.ts ./src/_generated/schemas.ts
+TEST_FILES := $(shell find ./test -name 'test-*')
 
 TIMESTAMP_DIR := ./.timestamps
 TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
@@ -27,8 +28,8 @@ clean:
 	rm -rf dist $(SCHEMAS) $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules
 	rm -rf $(TIMESTAMP_DIR) $(GENERATED_TS)
 
-test: build
-	./test/normandy-arguments.ts
+test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
+	mocha -r ts-node/register $(TEST_FILES)
 
 artifact: build
 	./bin/pack-artifact.sh
