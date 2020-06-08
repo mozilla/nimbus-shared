@@ -52,7 +52,7 @@ $(TSC_STAMP): $(GENERATED_TS) $(TS_SRC) $(TYPES) $(NPM_INSTALL_STAMP) tsconfig.j
 	@mkdir -p $(@D)
 	@touch $@
 
-$(SCHEMAS): $(shell find ./types -name '*.ts') $(NPM_INSTALL_STAMP) bin/build-schemas.ts
+$(SCHEMAS): $(TYPES) $(NPM_INSTALL_STAMP) bin/build-schemas.ts
 	./bin/build-schemas.ts
 
 src/_generated/typeGuardHelpers.ts: $(NPM_INSTALL_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
