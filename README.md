@@ -61,8 +61,29 @@ typeGuards.normandy_checkConsoleLogArguments({ message: "It works!" });
 
 ### Typescript
 
-Everything from JS. Soon the original types will also be published, as will type guards and type
-assertions.
+As well as everything available from JS, the original types the schemas are generated from are
+available in the `types` export of the library. Additionally, well-typed guards and assertions are
+available in `typeGuards`.
+
+```typescript
+import { types, typeGuards } from "@mozilla/rapid-experiments-shared";
+
+let incomingJson: object = { message: "json from the server" };
+// incoming JSON is a generic object with no type information
+if (typeGuards.normandy_isConsoleLogArguments(incomingJson)) {
+  // incomingJson has been narrowed to `types.normandy.ConsoleLogArguments
+} else {
+  // Something is wrong, and the types don't match what we expected.
+}
+
+const message: types.messaging.SimpleCFRMessage = { id: "incomplete-message" };
+// Error: missing the following properties from type 'SimpleCFRMessage': template, trigger, content
+
+const userInput = { arbitrary: "json" };
+typeGuards.normandy_assertAddonRollbackArguments(userInput);
+// userInput has now been asserted to be of type `normandy.AddonRollbackArguments`.
+// If it wasn't the previous line would have thrown an error.
+```
 
 ### Python
 

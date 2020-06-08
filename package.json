@@ -35,6 +35,7 @@
     "src",
     "dist",
     "schemas",
-    "index.ts"
+    "index.ts",
+    "types"
   ]
 }
