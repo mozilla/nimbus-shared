@@ -67,7 +67,7 @@ assertions.
 ### Python
 
 Native support coming soon. For now, consider using the NPM package and loading the schemas directly
-from the filesystem. After installing this package via `npm`, the schemas will be available aty
+from the filesystem. After installing this package via `npm`, the schemas will be available at
 `node_modules/@mozilla/rapid-experiments-shared/schemas/<group>/<type>.json`.
 
 ---
