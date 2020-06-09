@@ -75,3 +75,15 @@ interface Branch {
   value: {[key: string]: any} | null;
 }
 
+/**
+ * Preset types
+ * */
+export type ExperimentTypes = AAExperiment | Experiment;
+
+export interface AAExperiment extends Experiment {
+  branches: Array<AABranch>;
+}
+
+interface AABranch extends Branch {
+  value: {}
+}
