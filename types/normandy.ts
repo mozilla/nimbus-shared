@@ -124,7 +124,7 @@ export interface PreferenceExperimentArguments {
   /**
    * URL of a document describing the experiment
    *
-   * @default ""
+   * @default [{}]
    * @format uri
    */
   experimentDocumentUrl: string;

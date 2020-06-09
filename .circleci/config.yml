@@ -5,8 +5,9 @@ orbs:
 
 jobs:
   build-and-test:
-    executor:
-      name: node/default
+    docker:
+      - image: circleci/python:3.8-node
+
     steps:
       - checkout
       - node/install-packages:
@@ -26,10 +27,7 @@ jobs:
 
       - run:
           name: Preparing artifacts
-          command: |
-            make artifact
-            make pack
-            mv mozilla-nimbus-shared-*.tgz artifacts
+          command: make artifact
 
       - store_artifacts:
           path: ./artifacts

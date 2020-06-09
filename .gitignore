@@ -4,4 +4,7 @@ schemas/
 artifacts/
 src/_generated
 .timestamps
-nimbus-shared-*.tgz
+*.tgz
+python/poetry.lock
+python/pyproject.toml
+*.egg-info
