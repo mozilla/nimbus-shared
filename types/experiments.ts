@@ -1,4 +1,8 @@
-/** All fields are publically accessible via the API and available to clients */
+/**
+ * The experiment definition accessible via the API and available to clients.fail
+ * This is what Firefox reads from Remote Settings, or Pensieve gets via the public
+ * Experimenter API.
+ */
 export interface Experiment {
   /** Unique identifier for the experiment */
   slug: string;
@@ -33,6 +37,16 @@ export interface Experiment {
   /** Actual end date of the experiment */
   end_date: Date | null;
 }
+
+/**
+ * This is the Internal Experiment type used by the front-end.
+ * It has some additional fields not included in the public api.
+ */
+export interface ExperimentInternal extends Experiment {
+  /** Hypothesis for the experiment */
+  objectives: string;
+}
+
 
 // TODO - Needs to be generated based on Features to be added to the /data directory
 // probably like keyof typeof Features
