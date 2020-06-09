@@ -38,16 +38,6 @@ export interface Experiment {
   end_date: Date | null;
 }
 
-/**
- * This is the Internal Experiment type used by the front-end.
- * It has some additional fields not included in the public api.
- */
-export interface ExperimentInternal extends Experiment {
-  /** Hypothesis for the experiment */
-  objectives: string;
-}
-
-
 // TODO - Needs to be generated based on Features to be added to the /data directory
 // probably like keyof typeof Features
 type Feature = string;
@@ -76,7 +66,7 @@ interface Branch {
   /** Display name for variant, e.g. "control"  */
   slug: string;
   /** Is this a reference/"control" branch? */
-  is_reference_branch: string;
+  is_control?: boolean;
   /**
    * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
    * branch A would get 25% of the population)
