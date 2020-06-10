@@ -2,7 +2,7 @@
 set -eu
 
 # Prepare a directory for artifacts
-BUNDLE_NAME="rapid-experiments-shared-$(git describe --always)"
+BUNDLE_NAME="nimbus-shared-$(git describe --always)"
 OUTDIR="artifacts/$BUNDLE_NAME"
 mkdir -p $OUTDIR
 

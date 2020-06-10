@@ -1,6 +1,6 @@
-# Rapid Experiments Shared ![CircleCI](https://img.shields.io/circleci/build/github/mozilla/rapid-experiments-shared)
+# Nimbus Shared ![CircleCI](https://img.shields.io/circleci/build/github/mozilla/nimbus-shared)
 
-This is a place to define data and schemas used across the rapid experiments program.
+This is a place to define data and schemas used across Project Nimbus.
 
 Any data that moves between systems should have Typescript types defined here, which will be
 automatically converted to JSON Schema. Any data that needs to be re-used by multiple systems should
@@ -13,27 +13,27 @@ be stored here to be shared.
 Install this package
 
 ```shell
-$ npm install --save @mozilla/rapid-experiments-shared
+$ npm install --save @mozilla/nimbus-shared
 ```
 
 Import it.
 
 ```js
-import mres from "@mozilla/rapid-experiments-shared";
+import nimbus from "@mozilla/nimbus-shared";
 ```
 
-JSON Schemas can be accessed in `mres.schemas`:
+JSON Schemas can be accessed in `nimbus.schemas`:
 
 ```js
-import { schemas } from "@mozilla.rapid-experiments-shared";
+import { schemas } from "@mozilla.nimbus-shared";
 schemas.normandy.ConsoleLogArguments;
 // {"$schema": "http://json-schema.org/draft-07/schema#", ...}
 ```
 
-Helper functions to validate objects against those schemas can be found in `mres.typeGuards`.
+Helper functions to validate objects against those schemas can be found in `nimbus.typeGuards`.
 
 ```js
-import { typeGuards } from "@mozilla/rapid-experiments-shared";
+import { typeGuards } from "@mozilla/nimbus-shared";
 typeGuards.normandy_checkConsoleLogArguments({});
 /*
  * {
@@ -66,7 +66,7 @@ available in the `types` export of the library. Additionally, well-typed guards 
 available in `typeGuards`.
 
 ```typescript
-import { types, typeGuards } from "@mozilla/rapid-experiments-shared";
+import { types, typeGuards } from "@mozilla/nimbus-shared";
 
 let incomingJson: object = { message: "json from the server" };
 // incoming JSON is a generic object with no type information
@@ -89,7 +89,7 @@ typeGuards.normandy_assertAddonRollbackArguments(userInput);
 
 Native support coming soon. For now, consider using the NPM package and loading the schemas directly
 from the filesystem. After installing this package via `npm`, the schemas will be available at
-`node_modules/@mozilla/rapid-experiments-shared/schemas/<group>/<type>.json`.
+`node_modules/@mozilla/nimbus-shared/schemas/<group>/<type>.json`.
 
 ---
 
