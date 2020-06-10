@@ -26,7 +26,14 @@ export function checkSchema(schemaKey: string, obj: object): SchemaResult {
   }
   if (validationResult) {
     if (_cachedAjv.errors?.length) {
-      throw new Error("Object matches schema, but errors are listed: ${");
+      if (_cachedAjv.errors?.length) {
+        throw new Error(
+          "Object matches schema, but errors are listed. " +
+            "This is very likely a bug in nimbus-shared or AJV. " +
+            "Errors reported: " +
+            JSON.stringify(_cachedAjv.errors),
+        );
+      }
     }
     return { ok: true, errors: [] };
   } else {
