@@ -2,11 +2,9 @@ import Ajv from "ajv";
 
 import * as schemas from "./_generated/schemas";
 
-const _cachedAjv = new Ajv();
+const _cachedAjv = new Ajv({ allErrors: true });
 
-export type SchemaResult =
-  | { ok: false; errors: Array<Ajv.ErrorObject> }
-  | { ok: true; errors: null };
+export type SchemaResult = { ok: false; errors: Array<Ajv.ErrorObject> } | { ok: true; errors: [] };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function checkSchema(schemaKey: string, obj: object): SchemaResult {
@@ -28,9 +26,16 @@ export function checkSchema(schemaKey: string, obj: object): SchemaResult {
   }
   if (validationResult) {
     if (_cachedAjv.errors?.length) {
-      throw new Error("Object matches schema, but errors are listed: ${");
+      if (_cachedAjv.errors?.length) {
+        throw new Error(
+          "Object matches schema, but errors are listed. " +
+            "This is very likely a bug in nimbus-shared or AJV. " +
+            "Errors reported: " +
+            JSON.stringify(_cachedAjv.errors),
+        );
+      }
     }
-    return { ok: true, errors: null };
+    return { ok: true, errors: [] };
   } else {
     if (!_cachedAjv.errors) {
       throw new Error("Object did not match schema, but no errors listed");

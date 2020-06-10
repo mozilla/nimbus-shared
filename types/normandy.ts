@@ -230,6 +230,12 @@ export interface MultiPreferenceExperimentArguments {
   isHighPopulation?: boolean;
 
   /**
+   * Incorrect version of `isHighPopulation`. Included here for compatibility, but should not be used.
+   * @deprecated
+   */
+  isHighVolume?: boolean;
+
+  /**
    * If true, new users will not be enrolled in the study.
    * @default false
    */
