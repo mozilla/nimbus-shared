@@ -7,7 +7,8 @@ import { typeGuards } from "..";
 const NORMANDY_API_BASE = "https://normandy.cdn.mozilla.net/api";
 
 describe("normandy schemas", () => {
-  it("all enabled Normandy recipes should match their schemas", async () => {
+  it("all enabled Normandy recipes should match their schemas", async function () {
+    this.timeout(10_000);
     for await (const recipe of fetchEnabledRecipes()) {
       const revision = recipe.approved_revision ?? recipe.latest_revision;
       const typeName = convertActionNameToTypeName(revision.action.name);
