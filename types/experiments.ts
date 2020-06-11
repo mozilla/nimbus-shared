@@ -85,5 +85,5 @@ export interface AAExperiment extends Experiment {
 }
 
 interface AABranch extends Branch {
-  value: {}
+  value: null
 }
