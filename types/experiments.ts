@@ -1,8 +1,16 @@
 /**
- * The experiment definition accessible via the API and available to clients.fail
- * This is what Firefox reads from Remote Settings, or Pensieve gets via the public
- * Experimenter API.
+ * The experiment definition accessible to Firefox via Remote Settings.
+ * It is compatible with ExperimentManager.
  */
+export interface ExperimentRecipe {
+  /** A unique identifier for the Recipe */
+  id: string;
+  /** JEXL expression defined in an Audience */
+  filter_expression: string;
+  /** Experiment definition */
+  arguments: Experiment;
+}
+
 export interface Experiment {
   /** Unique identifier for the experiment */
   slug: string;
@@ -12,30 +20,22 @@ export interface Experiment {
   public_description: string;
   /** Experimenter URL */
   experiment_url: string;
-
   /** Is the experiment currently live in production? i.e., published to remote settings? */
   is_published: boolean;
   /** Are we continuing to enroll new users into the experiment? */
-  is_enrollment_paused: boolean;
-
-  /** Reference to an Audience, which contains targeting information */
-  audience: Audience;
+  isEnrollmentPaused: boolean;
   /** Bucketing configuration */
   bucket_config: BucketConfig;
-
   /** A list of features relevant to the experiment analysis */
   features: Array<Feature>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
-
   /** Actual publish date of the experiment */
   start_date: Date;
-
-  /** Duration of enrollment from the start date */
-  proposed_enrollment: number;
-
   /** Actual end date of the experiment */
   end_date: Date | null;
+  /** Duration of enrollment from the start date in days */
+  proposed_enrollment: number;
 }
 
 // TODO - Needs to be generated based on Features to be added to the /data directory
@@ -43,23 +43,21 @@ export interface Experiment {
 type Feature = string;
 
 interface BucketConfig {
+  /**
+   * The randomization unit. Note that client_id is not yet implemented.
+   * @default "normandy_id"
+   */
   randomization_unit: "client_id" | "normandy_id";
+  /** Additional inputs to the hashing function */
   namespace: string;
+  /**  Index of start of the range of buckets */
   start: number;
+  /**  Number of buckets to check */
   count: number;
   /**
    * Total number of buckets
    * @default 10000  */
   total: number;
-}
-
-export interface Audience {
-  /** Human-readable name of the audience */
-  name: string;
-  /** Human-readable description */
-  description: string;
-  /** A targeting expression written in jexl */
-  filter_expression: string;
 }
 
 interface Branch {
@@ -74,6 +72,6 @@ interface Branch {
    */
   ratio: number;
   /** The variant payload. TODO: This will be more strictly validated. */
-  value: {[key: string]: any};
+  value: {[key: string]: any} | null;
 }
 
