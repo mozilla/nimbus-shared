@@ -1,6 +1,6 @@
 {
   "name": "@mozilla/nimbus-shared",
-  "version": "0.0.2",
+  "version": "0.0.3-dev",
   "license": "MPL-2.0",
   "engines": {
     "node": "^14.0.0"

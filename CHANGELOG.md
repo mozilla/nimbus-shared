@@ -1,5 +1,7 @@
 # Changelog
 
+## Version 0.0.3 (In development)
+
 ## Version 0.0.2
 
 ### Breaking changes
