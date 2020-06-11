@@ -29,7 +29,7 @@ jobs:
           command: |
             make artifact
             make pack
-            mv mozilla-rapid-experiments-shared-*.tgz artifacts
+            mv mozilla-nimbus-shared-*.tgz artifacts
 
       - store_artifacts:
           path: ./artifacts

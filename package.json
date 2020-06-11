@@ -1,5 +1,5 @@
 {
-  "name": "@mozilla/rapid-experiments-shared",
+  "name": "@mozilla/nimbus-shared",
   "version": "0.0.2-dev",
   "license": "MPL-2.0",
   "engines": {

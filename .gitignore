@@ -4,4 +4,4 @@ schemas/
 artifacts/
 src/_generated
 .timestamps
-rapid-experiments-shared-*.tgz
+nimbus-shared-*.tgz

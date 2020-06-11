@@ -5,6 +5,7 @@
 ### Breaking changes
 
 - Schema checks now includes an empty list of errors when schemas match, instead of null
+- Rename to nimbus-shared
 
 ### Changes
 
