@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.0.2 (in development)
+## Version 0.0.2
 
 ### Breaking changes
 
