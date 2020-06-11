@@ -36,6 +36,8 @@ export interface Experiment {
   end_date: Date | null;
   /** Duration of enrollment from the start date in days */
   proposed_enrollment: number;
+  /** The slug of the reference branch */
+  reference_branch: string | null;
 }
 
 // TODO - Needs to be generated based on Features to be added to the /data directory
@@ -61,10 +63,9 @@ interface BucketConfig {
 }
 
 interface Branch {
-  /** Display name for variant, e.g. "control"  */
+  /** Identifier for the branch */
   slug: string;
-  /** Is this a reference/"control" branch? */
-  is_control?: boolean;
+  /** Display name for variant, e.g. "control"  */
   /**
    * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
    * branch A would get 25% of the population)
