@@ -87,9 +87,25 @@ typeGuards.normandy_assertAddonRollbackArguments(userInput);
 
 ### Python
 
-Native support coming soon. For now, consider using the NPM package and loading the schemas directly
-from the filesystem. After installing this package via `npm`, the schemas will be available at
-`node_modules/@mozilla/nimbus-shared/schemas/<group>/<type>.json`.
+Basic native support is available via the PyPI package `mozilla-nimbus-shared`. The only function is
+exposed is one to validate an object against a named schema.
+
+```python
+from mozilla_nimbus_shared import check_schema
+
+# Throws an error with details of the problems
+check_schema("normandy/ConsoleLogArguments", {})
+
+# Returns True
+check_schema("normandy/ConsoleLogArguments", {"message": "hello, world!"})
+```
+
+### Other
+
+For other applications, consider using the NPM package and loading the schemas directly from the
+filesystem. After installing this package via `npm`, the schemas will be available at
+`node_modules/@mozilla/nimbus-shared/schemas/<group>/<type>.json`. Please leave an issue on this
+repository if you have a use case not covered by the above.
 
 ---
 

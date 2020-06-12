@@ -2,7 +2,7 @@
 set -eu
 
 # Prepare a directory for artifacts
-BUNDLE_NAME="nimbus-shared-$(git describe --always)"
+BUNDLE_NAME="nimbus-shared-$(cat package.json | jq -r '.version')"
 OUTDIR="artifacts/$BUNDLE_NAME"
 mkdir -p $OUTDIR
 
