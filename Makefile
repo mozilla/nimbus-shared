@@ -1,6 +1,7 @@
 NPM_PKGNAME := $(shell cat package.json | jq -r .name)
 PYTHON_PKGNAME := mozilla_nimbus_shared
 VERSION := $(shell cat package.json | jq -r .version)
+PY_VERSION := $(shell cat package.json | jq -r .version | sed -e 's/-dev/.dev0/')
 
 # Schemas are anything we can find in the schema directory, plus the directory itself
 SCHEMAS := schemas $(shell test -d schemas && find schemas -name '*.json')
@@ -8,7 +9,11 @@ TYPES := $(shell find ./types -name '*.ts')
 TS_SRC := index.ts $(shell find ./src -name '*.ts')
 PY_SRC := $(shell find ./python/mozilla_nimbus_shared -name '*.py')
 NPM_PACK_FILE := $(shell echo $(NPM_PKGNAME) | sed -e 's/@//' -e 's_/_-_')-$(VERSION).tgz
-PYTHON_PACK_FILE := python/dist/$(PYTHON_PKGNAME)-$(VERSION).tar.gz python/dist/$(PYTHON_PKGNAME)-$(VERSION)-py3-none-any.whl
+
+PYTHON_SDIST := python/dist/$(PYTHON_PKGNAME)-$(PY_VERSION).tar.gz
+PYTHON_WHEEL := python/dist/$(PYTHON_PKGNAME)-$(PY_VERSION)-py3-none-any.whl
+PYTHON_PACK_FILE := $(PYTHON_SDIST) $(PYTHON_WHEEL)
+
 GENERATED_TS := ./src/_generated/typeGuardHelpers.ts ./src/_generated/schemas.ts
 GENERATED_PYTHON := ./python/pyproject.toml
 GENERATED := $(GENERATED_TS) $(GENERATED_PYTHON)
@@ -40,8 +45,7 @@ test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
 artifact: build pack
 	./bin/pack-artifact.sh
 	mkdir -p artifacts/python
-	mv python/dist/mozilla_nimbus_shared-$(VERSION)-py3-none-any.whl artifacts/python/
-	mv python/dist/mozilla_nimbus_shared-$(VERSION).tar.gz artifacts/python/
+	mv $(PYTHON_SDIST) $(PYTHON_WHEEL) artifacts/python/
 	mkdir -p artifacts/npm
 	mv mozilla-nimbus-shared-$(VERSION).tgz artifacts/npm/
 
