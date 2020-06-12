@@ -1,6 +1,6 @@
 {
   "name": "@mozilla/nimbus-shared",
-  "version": "0.0.3-dev",
+  "version": "0.0.3",
   "license": "MPL-2.0",
   "engines": {
     "node": "^14.0.0"
@@ -9,8 +9,7 @@
     "build": "make build",
     "artifact": "make artifact",
     "lint": "make lint",
-    "test": "make test",
-    "prepublishOnly": "make clean-build"
+    "test": "make test"
   },
   "main": "dist/index.js",
   "types": "index.d.ts",
