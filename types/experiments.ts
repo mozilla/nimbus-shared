@@ -15,27 +15,29 @@ export interface Experiment {
   /** Unique identifier for the experiment */
   slug: string;
   /** Publically-accesible name of the experiment */
-  public_name: string;
+  publicName: string;
   /** Short public description of the experiment */
-  public_description: string;
+  publicDescription: string;
   /** Experimenter URL */
-  experiment_url: string;
+  experimentUrl: string;
   /** Is the experiment currently live in production? i.e., published to remote settings? */
-  is_published: boolean;
+  isPublished: boolean;
   /** Are we continuing to enroll new users into the experiment? */
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
-  bucket_config: BucketConfig;
+  bucketConfig: BucketConfig;
   /** A list of features relevant to the experiment analysis */
   features: Array<Feature>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
   /** Actual publish date of the experiment */
-  start_date: Date;
+  startDate: Date;
   /** Actual end date of the experiment */
-  end_date: Date | null;
+  endDate: Date | null;
   /** Duration of enrollment from the start date in days */
-  proposed_enrollment: number;
+  proposedEnrollment: number;
+  /** The slug of the reference branch */
+  referenceBranch: string | null;
 }
 
 // TODO - Needs to be generated based on Features to be added to the /data directory
@@ -47,7 +49,7 @@ interface BucketConfig {
    * The randomization unit. Note that client_id is not yet implemented.
    * @default "normandy_id"
    */
-  randomization_unit: "client_id" | "normandy_id";
+  randomizationUnit: "client_id" | "normandy_id";
   /** Additional inputs to the hashing function */
   namespace: string;
   /**  Index of start of the range of buckets */
@@ -61,10 +63,9 @@ interface BucketConfig {
 }
 
 interface Branch {
-  /** Display name for variant, e.g. "control"  */
+  /** Identifier for the branch */
   slug: string;
-  /** Is this a reference/"control" branch? */
-  is_control?: boolean;
+  /** Display name for variant, e.g. "control"  */
   /**
    * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
    * branch A would get 25% of the population)
@@ -74,4 +75,3 @@ interface Branch {
   /** The variant payload. TODO: This will be more strictly validated. */
   value: {[key: string]: any} | null;
 }
-
