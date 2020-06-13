@@ -7,6 +7,8 @@ export interface ExperimentRecipe {
   id: string;
   /** JEXL expression defined in an Audience */
   filter_expression: string;
+  /** Is the experiment enabled? */
+  enabled: boolean;
   /** Experiment definition */
   arguments: Experiment;
 }
@@ -15,13 +17,13 @@ export interface Experiment {
   /** Unique identifier for the experiment */
   slug: string;
   /** Publically-accesible name of the experiment */
-  publicName: string;
+  userFacingName: string;
   /** Short public description of the experiment */
-  publicDescription: string;
+  userFacingDescription: string;
   /** Experimenter URL */
-  experimentUrl: string;
+  experimentDocumentUrl: string;
   /** Is the experiment currently live in production? i.e., published to remote settings? */
-  isPublished: boolean;
+  active: boolean;
   /** Are we continuing to enroll new users into the experiment? */
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
@@ -72,6 +74,9 @@ interface Branch {
    * @default 1
    */
   ratio: number;
+  /** Deprecated - used to indicate a type of value */
+  group?: Array<"cfr"|"aboutwelcome">;
   /** The variant payload. TODO: This will be more strictly validated. */
   value: {[key: string]: any} | null;
 }
+

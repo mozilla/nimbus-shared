@@ -1,5 +1,4 @@
 import {typeGuards} from "..";
-import {assert} from "chai";
 
 const TEST_EXPERIMENT = {
   "id": "ABOUTWELCOME-PULL-FACTOR-REINFORCEMENT-76-RELEASE",
@@ -11,21 +10,28 @@ const TEST_EXPERIMENT = {
     "experimentDocumentUrl": "https://experimenter.services.mozilla.com/experiments/aboutwelcome-pull-factor-reinforcement-76-release/",
     "userFacingDescription": "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
     "isEnrollmentPaused": true,
+    "active": true,
+    "bucketConfig": {
+      "randomizationUnit": "normandy_id",
+      "namespace": "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
+      "start": 0,
+      "count": 2000,
+      "total": 10000
+    },
+    "startDate": new Date(),
+    "endDate": null,
+    "proposedEnrollment": 7,
+    "referenceBranch": "control",
+    "features": [],
     "branches": [
       {
         "slug": "control",
         "ratio": 1,
-        "groups": [
-          "aboutwelcome"
-        ],
         "value": {}
       },
       {
         "slug": "treatment-variation-b",
         "ratio": 1,
-        "groups": [
-          "aboutwelcome"
-        ],
         "value": {}
       }
     ],
@@ -37,7 +43,7 @@ describe("experiment schemas", () => {
   it("should validate an existing onboarding experiment", async () => {
     const result = typeGuards.experiments_checkExperimentRecipe(TEST_EXPERIMENT);
     if (!result.ok) {
-      throw new Error(JSON.stringify(result.errors));
+      throw new Error(JSON.stringify(result.errors, null, 2));
     }
   });
 });
