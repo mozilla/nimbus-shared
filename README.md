@@ -126,6 +126,10 @@ make test     # Test
 Dependencies are managed with npm. Use `npm install --save` and `npm install --save-dev` to add new
 dependencies.
 
+Note that the default branch for this repo is named `main`. If you have an existing clone of the
+repository that uses another name, you can update it using
+[the commands found here](https://twitter.com/xunit/status/1269881005877256192).
+
 ## Adding a new schema
 
 TBD
