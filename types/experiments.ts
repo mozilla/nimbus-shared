@@ -85,3 +85,26 @@ interface Branch {
   /** The variant payload. TODO: This will be more strictly validated. */
   value: {[key: string]: any} | null;
 }
+
+/**
+ * Preset types
+ * */
+
+// A union of all available experiment designs; right now there is only one.
+export type ExperimentDesign = EmptyAAExperiment;
+
+/**
+ * An empty experiment that can target a maximum of 1% of the population
+ */
+export interface EmptyAAExperiment extends Experiment {
+  branches: Array<EmptyBranch>;
+  bucketConfig: AABucketConfig;
+}
+
+interface AABucketConfig extends BucketConfig {
+  total: 10000
+}
+
+interface EmptyBranch extends Branch {
+  value: null
+}
