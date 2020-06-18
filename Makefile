@@ -3,8 +3,12 @@ PYTHON_PKGNAME := mozilla_nimbus_shared
 VERSION := $(shell cat package.json | jq -r .version)
 PY_VERSION := $(shell cat package.json | jq -r .version | sed -e 's/-dev/.dev0/')
 
+MOCHA := ./node_modules/.bin/mocha
+ESLINT := ./node_modules/.bin/eslint
+TSC := ./node_modules/.bin/tsc
+TS_NODE := ./node_modules/.bin/ts-node-script
+
 # Schemas are anything we can find in the schema directory, plus the directory itself
-SCHEMAS := schemas $(shell test -d schemas && find schemas -name '*.json')
 TYPES := $(shell find ./types -name '*.ts')
 TS_SRC := index.ts $(shell find ./src -name '*.ts')
 PY_SRC := $(shell find ./python/mozilla_nimbus_shared -name '*.py')
@@ -23,8 +27,7 @@ TIMESTAMP_DIR := ./.timestamps
 TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
 NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/npm-install
 PYTHON_INSTALL_STAMP := $(TIMESTAMP_DIR)/poetry-install
-
-export PATH := node_modules/.bin:$(PATH)
+SCHEMA_STAMP := $(TIMESTAMP_DIR)/schemas
 
 # Phony targets - commands that don't make files
 .PHONY: install build clean test lint default pack
@@ -33,14 +36,13 @@ default: build
 
 install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP)
 
-build: $(TSC_STAMP) $(SCHEMAS) $(GENERATED)
+build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED)
 
 clean:
-	rm -rf dist $(SCHEMAS) $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules
-	rm -rf $(TIMESTAMP_DIR) $(GENERATED)
+	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED)
 
 test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
-	mocha -r ts-node/register $(TEST_FILES)
+	$(MOCHA) -r ts-node/register $(TEST_FILES)
 
 artifact: build pack
 	./bin/pack-artifact.sh
@@ -50,7 +52,7 @@ artifact: build pack
 	mv mozilla-nimbus-shared-$(VERSION).tgz artifacts/npm/
 
 lint: $(NPM_INSTALL_STAMP) build
-	eslint .
+	$(ESLINT) .
 
 pack: $(NPM_PACK_FILE) $(PYTHON_PACK_FILE)
 
@@ -68,23 +70,27 @@ $(PYTHON_INSTALL_STAMP): python/pyproject.toml
 
 $(TSC_STAMP): $(GENERATED_TS) $(TS_SRC) $(TYPES) $(NPM_INSTALL_STAMP) tsconfig.json
 	@mkdir -p $(@D)
-	tsc
+	$(TSC)
 	@touch $@
 
-$(SCHEMAS) &: $(TYPES) $(NPM_INSTALL_STAMP) bin/build-schemas.ts
-	./bin/build-schemas.ts
+$(SCHEMA_STAMP): $(TYPES) $(NPM_INSTALL_STAMP) bin/build-schemas.ts
+	$(TS_NODE) ./bin/build-schemas.ts
+	@touch $@
 
-src/_generated/typeGuardHelpers.ts: $(NPM_INSTALL_STAMP) $(SCHEMAS) bin/generate-type-guards.ts
-	./bin/generate-type-guards.ts
+src/_generated/typeGuardHelpers.ts: $(NPM_INSTALL_STAMP) $(SCHEMA_STAMP) bin/generate-type-guards.ts
+	$(TS_NODE) ./bin/generate-type-guards.ts
 
-src/_generated/schemas.ts: $(NPM_INSTALL_STAMP) $(SCHEMAS) bin/generate-schema-code.ts
-	./bin/generate-schema-code.ts
+src/_generated/schemas.ts: $(NPM_INSTALL_STAMP) $(SCHEMA_STAMP) bin/generate-schema-code.ts
+	$(TS_NODE) ./bin/generate-schema-code.ts
 
-$(NPM_PACK_FILE): package.json $(TSC_STAMP) $(SCHEMAS) $(GENERATED)
+$(NPM_PACK_FILE): package.json $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED)
 	npm pack
 
 python/pyproject.toml: python/pyproject.toml.template bin/generate-pyproject-toml.ts $(NPM_INSTALL_STAMP)
-	./bin/generate-pyproject-toml.ts
+	$(TS_NODE) ./bin/generate-pyproject-toml.ts
 
-$(PYTHON_PACK_FILE) &: python/pyproject.toml $(PY_SRC) $(SCHEMAS) $(PYTHON_INSTALL_STAMP)
-	cd python; poetry build
+$(PYTHON_SDIST): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(PYTHON_INSTALL_STAMP)
+	cd python; poetry build --format sdist
+
+$(PYTHON_WHEEL): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(PYTHON_INSTALL_STAMP)
+	cd python; poetry build --format wheel
