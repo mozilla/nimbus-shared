@@ -1,0 +1,9 @@
+[__nimbus_meta]
+_type = "test/FoodColors" # This doesn't exist yet
+
+[food]
+apple = "green"
+banana = "yellow"
+cherry = "red"
+daikon = "white"
+eggplant = "purple"
