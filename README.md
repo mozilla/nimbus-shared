@@ -2,13 +2,13 @@
 
 This is a place to define data and schemas used across Project Nimbus.
 
-Any data that moves between systems should have Typescript types defined here, which will be
+Any data that moves between systems should have TypeScript types defined here, which will be
 automatically converted to JSON Schema. Any data that needs to be re-used by multiple systems should
 be stored here to be shared.
 
 ## Using the schemas
 
-### Javascript
+### JavaScript
 
 Install this package
 
@@ -22,15 +22,15 @@ Import it.
 import nimbus from "@mozilla/nimbus-shared";
 ```
 
-JSON Schemas can be accessed in `nimbus.schemas`:
+JSON Schemas can be accessed in `schemas`:
 
 ```js
-import { schemas } from "@mozilla.nimbus-shared";
+import { schemas } from "@mozilla/nimbus-shared";
 schemas.normandy.ConsoleLogArguments;
 // {"$schema": "http://json-schema.org/draft-07/schema#", ...}
 ```
 
-Helper functions to validate objects against those schemas can be found in `nimbus.typeGuards`.
+Helper functions to validate objects against those schemas can be found in `typeGuards`.
 
 ```js
 import { typeGuards } from "@mozilla/nimbus-shared";
@@ -59,9 +59,9 @@ typeGuards.normandy_checkConsoleLogArguments({ message: "It works!" });
  */
 ```
 
-### Typescript
+### TypeScript
 
-As well as everything available from JS, the original types the schemas are generated from are
+As well as everything available from JavaScript, the original types the schemas are generated from are
 available in the `types` export of the library. Additionally, well-typed guards and assertions are
 available in `typeGuards`.
 
@@ -87,7 +87,7 @@ typeGuards.normandy_assertAddonRollbackArguments(userInput);
 
 ### Python
 
-Basic native support is available via the PyPI package `mozilla-nimbus-shared`. The only function is
+Basic native support is available via the PyPI package [`mozilla-nimbus-shared`](https://pypi.org/project/mozilla-nimbus-shared/). The only function is
 exposed is one to validate an object against a named schema.
 
 ```python
@@ -102,7 +102,7 @@ check_schema("normandy/ConsoleLogArguments", {"message": "hello, world!"})
 
 ### Other
 
-For other applications, consider using the NPM package and loading the schemas directly from the
+For other applications, consider using the npm package and loading the schemas directly from the
 filesystem. After installing this package via `npm`, the schemas will be available at
 `node_modules/@mozilla/nimbus-shared/schemas/<group>/<type>.json`. Please leave an issue on this
 repository if you have a use case not covered by the above.
