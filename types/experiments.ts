@@ -34,10 +34,16 @@ export interface Experiment {
   features: Array<Feature>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
-  /** Actual publish date of the experiment */
-  startDate: Date;
-  /** Actual end date of the experiment */
-  endDate: Date | null;
+  /**
+   * Actual publish date of the experiment
+   * @format date-time
+   */
+  startDate: string;
+  /**
+   * Actual end date of the experiment
+   * @format date-time
+   */
+  endDate: string | null;
   /** Duration of enrollment from the start date in days */
   proposedEnrollment: number;
   /** The slug of the reference branch */
