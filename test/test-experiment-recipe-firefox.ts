@@ -1,4 +1,5 @@
 import {typeGuards} from "..";
+import { assert } from "chai";
 
 const TEST_EXPERIMENT = {
   "id": "ABOUTWELCOME-PULL-FACTOR-REINFORCEMENT-76-RELEASE",
@@ -17,7 +18,7 @@ const TEST_EXPERIMENT = {
       "count": 2000,
       "total": 10000
     },
-    "startDate": new Date(),
+    "startDate": "2020-07-01T11:04:42z",
     "endDate": null,
     "proposedEnrollment": 7,
     "referenceBranch": "control",
@@ -41,5 +42,10 @@ const TEST_EXPERIMENT = {
 describe("experiment schemas", () => {
   it("should validate an existing onboarding experiment", async () => {
     typeGuards.experiments_assertExperimentRecipe(TEST_EXPERIMENT);
+  });
+  it("should fail on a non-ISO date", async () => {
+    const result = typeGuards.experiments_checkExperiment({...TEST_EXPERIMENT.arguments, startDate: "foo"});
+    assert.equal(result.ok, false, "validation should fail");
+    assert.propertyVal(result.errors[0], "message", 'should match format "date-time"');
   });
 });
