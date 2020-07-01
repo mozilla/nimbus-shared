@@ -1,0 +1,12 @@
+name = "Picture-in-Picture"
+description = """
+Counts the fraction of users and the number of times that users open Picture-in-Picture
+windows from videos. PiP can be opened by clicking on the PiP overlay or the video's context
+menu.
+"""
+
+[[telemetry]]
+kind = "event"
+event_category = "pictureinpicture"
+event_method = "create"
+event_object = "player"
