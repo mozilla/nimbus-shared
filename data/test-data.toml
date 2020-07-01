@@ -1,5 +1,6 @@
-[__nimbus_meta]
-_type = "test/FoodColors" # This doesn't exist yet
+[__nimbusMeta]
+type = "test/FoodColors"
+useFilenameForSlug = true
 
 [food]
 apple = "green"

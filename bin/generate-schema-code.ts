@@ -52,7 +52,7 @@ async function makeTypeScriptSource(): Promise<string> {
   await Promise.all(tasks);
 
   const resultFile = ts.createSourceFile(
-    "src/typeGuardHelpers.ts",
+    "src/_generated/typeGuardHelpers.ts",
     /* sourceText */ "",
     ts.ScriptTarget.Latest,
     /* setParentNodes */ false,

@@ -4,7 +4,10 @@ description = "Shared data and schemas for Project Nimbus"
 authors = ["Michael Cooper <mcooper@mozilla.com>"]
 version = "{{ version }}"
 license = "{{ license }}"
-include = ["mozilla_nimbus_shared/schemas/**/*.json"]
+include = [
+  "mozilla_nimbus_shared/schemas/**/*.json",
+  "mozilla_nimbus_shared/data.json",
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"

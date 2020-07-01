@@ -1,4 +1,10 @@
 #!/usr/bin/env ts-node-script
+
+/**
+ * For every file in the `../types` directory, create a corresponding JSON Schema
+ * in the `../schemas` directory.
+ */
+
 import { promises as fs } from "fs";
 import * as path from "path";
 import * as tsj from "ts-json-schema-generator";
@@ -45,8 +51,9 @@ async function main() {
   }
 }
 
-process.on("unhandledRejection", (reason, promise) => {
+process.on("unhandledRejection", (reason: Error, promise) => {
   console.error("Unhandled Reject at:", promise, "reason:", reason);
+  console.error(reason.stack);
   process.exit(1);
 });
 
