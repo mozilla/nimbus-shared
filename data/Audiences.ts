@@ -4,7 +4,7 @@ interface Audience {
   targeting?: string;
   filter_expression?: string;
   /**
-   * A boolean SQL expression expressing whether a single row in telemetry.main would have
+   * A boolean BigQuery SQL expression expressing whether a single row in telemetry.main would have
    * matched the audience definition. These are used for sizing experiment populations,
    * not for targeting.
    */
