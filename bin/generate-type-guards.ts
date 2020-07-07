@@ -26,8 +26,8 @@ async function makeTypeScriptSource() {
 
   /* Make 3 type checks for every JSON Schema
    *  - checkType: returns an object with details
-   *  - isType: returns a boolean only (helpful with Typescript as a type guard)
-   *  - assertType: throws if the value is not the correct type (helpful with Typescript as a type assertion)
+   *  - isType: returns a boolean only (helpful with TypeScript as a type guard)
+   *  - assertType: throws if the value is not the correct type (helpful with TypeScript as a type assertion)
    */
   for await (const { path: srcFilePath } of walk("./schemas/")) {
     const { name: fileNameWithoutExtension, dir } = path.parse(srcFilePath);

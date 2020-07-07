@@ -81,7 +81,7 @@ interface Branch {
    * Used to indicate a type of branch value
    * @deprecated
    */
-  group?: Array<"cfr"|"aboutwelcome">;
+  group?: Array<"cfr" | "aboutwelcome">;
   /** The variant payload. TODO: This will be more strictly validated. */
-  value: {[key: string]: any} | null;
+  value: { [key: string]: unknown } | null;
 }

@@ -68,7 +68,7 @@ async function makeTypeScriptSource(): Promise<string> {
 
 function makeSchemaExport(groupName: string, schemaGroup: Record<string, Schema>): ts.Node {
   // A recursive object literal generator would be a pain, so this cheats. It
-  // stringifies the object to JSON, then treats that string as Typescript
+  // stringifies the object to JSON, then treats that string as TypeScript
   // source which it pulls the expression out of.
 
   const text = JSON.stringify(schemaGroup, null, 2);

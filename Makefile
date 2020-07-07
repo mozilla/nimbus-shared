@@ -26,36 +26,44 @@ TEST_FILES := $(shell find ./test -name 'test-*')
 TIMESTAMP_DIR := ./.timestamps
 TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
 NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/npm-install
-PYTHON_INSTALL_STAMP := $(TIMESTAMP_DIR)/poetry-install
 SCHEMA_STAMP := $(TIMESTAMP_DIR)/schemas
+PYTHON_INSTALL_STAMP := $(TIMESTAMP_DIR)/poetry-install
+DOCS_NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/docs-npm-install
+DOCS_BUILT_STAMP := $(TIMESTAMP_DIR)/docs-built
+
+DOC_SOURCES := $(shell find docs/pages -type f) $(shell find docs/public -type f) docs/global_style.scss
 
 # Phony targets - commands that don't make files
-.PHONY: install build clean test lint default pack
+.PHONY: default install build clean test artifact lint pack docs
 
 default: build
 
-install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP)
+install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(DOCS_NPM_INSTALL_STAMP)
 
 build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED)
 
 clean:
 	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED) \
-		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated
+		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated \
+		docs/out docs/node_modules docs/.next
 
 test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
 	$(MOCHA) -r ts-node/register $(TEST_FILES)
 
-artifact: build pack
+artifact: build pack docs
 	./bin/pack-artifact.sh
 	mkdir -p artifacts/python
-	mv $(PYTHON_SDIST) $(PYTHON_WHEEL) artifacts/python/
+	cp $(PYTHON_SDIST) $(PYTHON_WHEEL) artifacts/python/
 	mkdir -p artifacts/npm
-	mv mozilla-nimbus-shared-$(VERSION).tgz artifacts/npm/
+	cp mozilla-nimbus-shared-$(VERSION).tgz artifacts/npm/
+	cp -r docs/out artifacts/docs
 
 lint: $(NPM_INSTALL_STAMP) build
 	$(ESLINT) .
 
 pack: $(NPM_PACK_FILE) $(PYTHON_PACK_FILE)
+
+docs: $(DOCS_BUILT_STAMP)
 
 # Commands that make files. None of these should depend on phony targets
 
@@ -70,12 +78,13 @@ $(PYTHON_INSTALL_STAMP): python/pyproject.toml
 	@touch $(PYTHON_INSTALL_STAMP)
 
 $(TSC_STAMP): $(GENERATED_TS) $(TS_SRC) $(TYPES) $(NPM_INSTALL_STAMP) tsconfig.json
-	@mkdir -p $(@D)
 	$(TSC)
+	@mkdir -p $(@D)
 	@touch $@
 
 $(SCHEMA_STAMP): $(TYPES) $(NPM_INSTALL_STAMP) bin/build-schemas.ts
 	$(TS_NODE) ./bin/build-schemas.ts
+	@mkdir -p $(@D)
 	@touch $@
 
 src/_generated/typeGuardHelpers.ts: $(NPM_INSTALL_STAMP) $(SCHEMA_STAMP) bin/generate-type-guards.ts
@@ -95,3 +104,13 @@ $(PYTHON_SDIST): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(PYTHON_INSTAL
 
 $(PYTHON_WHEEL): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(PYTHON_INSTALL_STAMP)
 	cd python; poetry build --format wheel
+
+$(DOCS_NPM_INSTALL_STAMP): docs/package.json docs/package-lock.json
+	cd docs; npm ci
+	@mkdir -p $(@D)
+	@touch $@
+
+$(DOCS_BUILT_STAMP): $(DOCS_NPM_INSTALL_STAMP) docs/next.config.js $(DOC_SOURCES)
+	cd docs; npm run build
+	@mkdir -p $(@D)
+	@touch $@

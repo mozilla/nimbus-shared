@@ -1,2 +1,4 @@
 dist/
 schemas/
+docs/out/
+artifacts/
