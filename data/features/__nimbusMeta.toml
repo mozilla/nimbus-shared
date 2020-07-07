@@ -1,0 +1,2 @@
+type = "features/FeatureInterface"
+useFilenameForSlug = true
