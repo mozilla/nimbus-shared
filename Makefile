@@ -39,7 +39,8 @@ install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP)
 build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED)
 
 clean:
-	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED)
+	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED) \
+		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated
 
 test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
 	$(MOCHA) -r ts-node/register $(TEST_FILES)
