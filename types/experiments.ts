@@ -30,8 +30,8 @@ export interface Experiment {
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
-  /** A list of features relevant to the experiment analysis */
-  features: Array<Feature>;
+  /** A list of feature slugs relevant to the experiment analysis */
+  features: Array<string>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
   /**
@@ -49,10 +49,6 @@ export interface Experiment {
   /** The slug of the reference branch */
   referenceBranch: string | null;
 }
-
-// TODO - Needs to be generated based on Features to be added to the /data directory
-// probably like keyof typeof Features
-type Feature = string;
 
 interface BucketConfig {
   /**
@@ -89,4 +85,3 @@ interface Branch {
   /** The variant payload. TODO: This will be more strictly validated. */
   value: {[key: string]: any} | null;
 }
-

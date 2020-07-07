@@ -1,4 +1,4 @@
-export interface FeatureInterface {
+export interface Feature {
   /** Should match the filename of the feature definition */
   slug: string;
 

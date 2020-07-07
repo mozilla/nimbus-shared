@@ -1,2 +1,2 @@
-type = "features/FeatureInterface"
+type = "features/Feature"
 useFilenameForSlug = true
