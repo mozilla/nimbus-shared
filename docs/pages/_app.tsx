@@ -1,10 +1,10 @@
 import React from "react";
-import Link from "next/link";
 import { AppProps } from "next/app";
 import "prismjs/themes/prism.css";
 import cn from "classnames";
 
 import "../global_style.scss";
+import Link from "../components/PrefixLink";
 
 type NavItem = NavPageLink | NavHeading;
 
@@ -40,7 +40,12 @@ const DocsApp: React.FunctionComponent<AppProps> = ({ Component, pageProps, rout
         <div className="header-wrapper">
           <Link href="/">
             <a className="header">
-              <img src="/logo.svg" className="logo" />
+              <img
+                src={`${process.env.SITE_PREFIX}/logo.svg`}
+                className="logo"
+                width="40"
+                height="40"
+              />
               <h1>Project Nimbus Documentation</h1>
             </a>
           </Link>

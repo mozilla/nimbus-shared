@@ -9,9 +9,15 @@ const mdxConfig = withMDX({
   },
 });
 
+const sitePrefix = process.env.SITE_PREFIX || "";
+
 const nextConfig = mdxConfig({
   pageExtensions: ["js", "jsx", "md", "mdx", "tsx", "ts"],
   exportPathMap: async (defaultPathMap) => defaultPathMap,
+  assetPrefix: sitePrefix,
+  env: {
+    SITE_PREFIX: sitePrefix,
+  },
 });
 
 module.exports = nextConfig;

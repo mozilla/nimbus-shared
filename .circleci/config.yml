@@ -26,6 +26,10 @@ jobs:
           command: make lint
 
       - run:
+          name: Build docs
+          command: SITE_PREFIX=/0/artifacts/docs make docs
+
+      - run:
           name: Preparing artifacts
           command: make artifact
 
