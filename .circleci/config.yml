@@ -36,7 +36,41 @@ jobs:
       - store_artifacts:
           path: ./artifacts
 
+  docs-publish:
+    docker:
+      - image: circleci/python:3.8-node
+
+    steps:
+      - checkout
+
+      - node/install-packages:
+          override-ci-command: make install
+
+      - run:
+          name: Build docs
+          command: |
+            SITE_PREFIX="/${CIRCLE_PROJECT_REPONAME}" make docs
+            # disable Jekyll builds
+            touch docs/out/.nojekyll
+
+      - add_ssh_keys:
+          fingerprints:
+            - "b4:9c:52:c8:7e:a5:20:8a:ed:54:74:b4:0e:77:ed:e7"
+
+      - run:
+          name: Deploy docs to gh-pages
+          command: |
+            # Set up credentials
+            git config user.email "ci-build@nimbus.mozilla.org"
+            git config user.name "ci-build"
+            cd docs
+            npm run publish
+
 workflows:
   build-and-test:
     jobs:
       - build-and-test
+      - docs-publish:
+          filters:
+            branches:
+              only: master
