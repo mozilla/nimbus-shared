@@ -8,7 +8,7 @@ const audiences :  {[id: string] : Audience } = {
     desktop_telemetry: "STARTS_WITH(environment.settings.locale, 'en') AND normalized_channel = 'release'"
   },
   us_only: {
-    name: "US users (en)",
+    name: "US users (en; release)",
     description: "All users in the US with an en-* locale using the release channel.",
     targeting: "localeLanguageCode == 'en' && region == 'US' && browserSettings.update.channel == 'release'",
     desktop_telemetry: "STARTS_WITH(environment.settings.locale, 'en') AND normalized_country_code = 'US' AND normalized_channel = 'release'"
