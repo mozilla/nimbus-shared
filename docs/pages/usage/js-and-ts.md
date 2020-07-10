@@ -8,13 +8,17 @@ includes the original type definitions and helpers for TypeScript usage, such as
 ## JavaScript
 
 ```js
-import { schemas } from "@mozilla/nimbus-shared";
-schemas.normandy.ConsoleLogArguments;
-// {"$schema": "http://json-schema.org/draft-07/schema#", ...}
+import nimbus from "@mozilla/nimbus-shared";
 ```
 
 JSON Schemas can be accessed in `nimbus.schemas`. Each schema group is an object under this export,
 and the schemas are identified by their type name.
+
+```js
+import { schemas } from "@mozilla/nimbus-shared";
+schemas.normandy.ConsoleLogArguments;
+// {"$schema": "http://json-schema.org/draft-07/schema#", ...}
+```
 
 Helper functions to validate objects against those schemas can be found in in the `typeGuards`
 package export.
@@ -36,6 +40,14 @@ typeGuards.normandy_checkConsoleLogArguments({ message: "It works!" });
  *   errors: []
  * }
  */
+```
+
+Shared data can be accessed by importing `data` from the package:
+
+```js
+import { data } from "@mozilla/nimbus-shared";
+console.log(data.Audiences);
+// { all_english: { ... }, us_only: { ... }, ... }
 ```
 
 ## TypeScript

@@ -7,6 +7,4 @@ automatically converted to JSON Schema. Any data that needs to be re-used by mul
 be stored here to be shared.
 
 For more information on the data and schemas included here, how to use them, and how to add to them,
-see the documentation at
-
-https://mozilla.github.io/nimbus-shared
+see the documentation at https://mozilla.github.io/nimbus-shared

@@ -5,7 +5,9 @@ from pathlib import Path
 
 import jsonschema
 
+
 _schema_cache = {}
+_data_cache = None
 
 
 def check_schema(schema_name: str, instance: any) -> bool:
@@ -25,3 +27,11 @@ def check_schema(schema_name: str, instance: any) -> bool:
     # Will throw if there is a problem
     jsonschema.validate(instance, schema)
     return True
+
+
+def get_data() -> dict:
+    """Load all the Nimbus data"""
+    if not _data_cache:
+        data_text = pkgutil.get_data("mozilla_nimbus_shared", "data.json")
+        _data_cache = json.loads(schema_text)
+    return _data_cache
