@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.0.5
+
+### Library Changes
+
+- Data is now included, type checked, and translated into native formats in Node and Python
+  packages. ([#43](https://github.com/mozilla/nimbus-shared/pull/43))
+
 ## Version 0.0.4
 
 ### Content Changes
@@ -8,11 +15,6 @@
   ([#44](https://github.com/mozilla/nimbus-shared/pull/44))
 - Add Audience schema and data definitions ([#45](https://github.com/mozilla/nimbus-shared/pull/45))
 - Add Features schema and data definitions ([#55](https://github.com/mozilla/nimbus-shared/pull/55))
-
-### Library Changes
-
-- Data is now included, type checked, and translated into native formats in Node and Python
-  packages. ([#43](https://github.com/mozilla/nimbus-shared/pull/43))
 
 ### Minor Changes
 
