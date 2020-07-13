@@ -7,6 +7,7 @@ MOCHA := ./node_modules/.bin/mocha
 ESLINT := ./node_modules/.bin/eslint
 TSC := ./node_modules/.bin/tsc
 TS_NODE := ./node_modules/.bin/ts-node-script
+PRETTIER := ./node_modules/.bin/prettier
 
 TYPES := $(shell find ./types -name '*.ts')
 DATA_SOURCES := $(shell find ./data)
@@ -62,6 +63,13 @@ artifact: build pack docs
 
 lint: $(NPM_INSTALL_STAMP) build
 	$(ESLINT) .
+	$(TSC) --noEmit --project tsconfig.json
+	$(PRETTIER) --check .
+
+lint-fix:
+	$(ESLINT) --fix .
+	$(TSC) --noEmit --project tsconfig.json
+	$(PRETTIER) --write .
 
 pack: $(NPM_PACK_FILE) $(PYTHON_PACK_FILE)
 

@@ -1,0 +1,11 @@
+.timestamps
+*.egg-info
+*.tgz
+artifacts/
+dist/
+docs/out/
+node_modules/
+python/
+schemas/
+src/_generated
+docs/.next/
