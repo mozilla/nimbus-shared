@@ -33,6 +33,11 @@ const DocsApp: React.FunctionComponent<AppProps> = ({
     { title: "JavaScript and TypeScript", href: "/usage/js-and-ts" },
     { title: "Python", href: "/usage/python" },
     { title: "Other environments", href: "/usage/other" },
+
+    { type: "heading", title: "Contents" },
+    { title: "Schemas", href: "/schemas" },
+    { title: "Data", href: "/data" },
+
     { title: "Working on this library", type: "heading" },
     { title: "Setup", href: "/dev/setup" },
     { title: "Schemas", href: "/dev/schemas" },
