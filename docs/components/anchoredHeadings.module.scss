@@ -1,0 +1,19 @@
+.anchoredHeading {
+  position: relative;
+  left: 32px;
+}
+.anchor {
+  margin-left: 8px;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.pullLeft {
+    margin-left: 0;
+    float: left;
+    position: absolute;
+    left: -32px;
+  }
+}

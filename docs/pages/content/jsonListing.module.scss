@@ -1,0 +1,15 @@
+.jsonListing {
+  margin-top: 6px;
+
+  .group {
+    margin-left: 12px;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: scroll;
+    background-color: #f5f2f0;
+    padding: 1em;
+    margin: 0.5em 0;
+  }
+}
