@@ -17,6 +17,7 @@
     },
     "startDate": "2020-06-17T23:20:47.230Z",
     "endDate": null,
+    "proposedDuration": 28,
     "proposedEnrollment": 7,
     "referenceBranch": "control",
     "features": [],

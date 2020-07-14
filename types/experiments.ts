@@ -44,6 +44,8 @@ export interface Experiment {
    * @format date-time
    */
   endDate: string | null;
+  /** Duration of the experiment from the start date in days */
+  proposedDuration: number;
   /** Duration of enrollment from the start date in days */
   proposedEnrollment: number;
   /** The slug of the reference branch */

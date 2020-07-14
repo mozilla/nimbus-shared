@@ -20,6 +20,8 @@ const presets :  {[id: string] : Preset<ExperimentDesign> } = {
     name: "A/A Experiment",
     description: "A design for diagnostic testing of targeting or enrollment. Fixed to 1% of the population.",
     preset: {
+      proposedDuration: 28,
+      proposedEnrollment: 7,
       branches: [
         {slug: "control", ratio: 1, value: null},
         {slug: "treatment", ratio: 1, value: null}
