@@ -1,3 +1,9 @@
+export enum FirefoxChannel {
+  Nightly = "Nightly",
+  Beta = "Beta",
+  Release = "Release",
+}
+
 export interface Audience {
     name: string;
     description: string;
@@ -9,4 +15,5 @@ export interface Audience {
      * not for targeting.
      */
     desktop_telemetry?: string;
+    firefox_channel: FirefoxChannel;
   }
