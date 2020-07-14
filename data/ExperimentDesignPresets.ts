@@ -26,6 +26,7 @@ const presets :  {[id: string] : Preset<ExperimentDesign> } = {
       ],
       bucketConfig: {
         randomizationUnit: "normandy_id",
+        count: 100,
         total: 10000
       }
     }
