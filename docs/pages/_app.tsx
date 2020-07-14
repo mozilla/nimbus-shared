@@ -35,8 +35,8 @@ const DocsApp: React.FunctionComponent<AppProps> = ({
     { title: "Other environments", href: "/usage/other" },
 
     { type: "heading", title: "Contents" },
-    { title: "Schemas", href: "/schemas" },
-    { title: "Data", href: "/data" },
+    { title: "Schemas", href: "/content/schemas" },
+    { title: "Data", href: "/content/data" },
 
     { title: "Working on this library", type: "heading" },
     { title: "Setup", href: "/dev/setup" },
