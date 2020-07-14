@@ -66,6 +66,28 @@ jobs:
             cd docs
             npm run publish
 
+  packages-publish:
+    docker:
+      - image: circleci/python3.8-node
+
+    steps:
+      - checkout
+
+      - node/install-packages:
+          override-ci-command: make install
+
+      - run:
+          name: NPM Authentication
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+
+      - run:
+          name: Publish
+          command: |
+            make pack
+            npm publish
+            cd python
+            poetry publish --username __token__ --password "${PYPI_TOKEN}"
+
 workflows:
   build-and-test:
     jobs:
@@ -74,3 +96,12 @@ workflows:
           filters:
             branches:
               only: main
+      - packages-publish:
+          requires:
+            - build-and-test
+            - docs-publish
+          filters:
+            branches:
+              only: main
+            tags:
+              only: /v.*/
