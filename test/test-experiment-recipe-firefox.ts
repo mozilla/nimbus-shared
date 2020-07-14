@@ -20,6 +20,7 @@ const TEST_EXPERIMENT = {
     },
     "startDate": "2020-07-01T11:04:42z",
     "endDate": null,
+    "proposedDuration": 28,
     "proposedEnrollment": 7,
     "referenceBranch": "control",
     "features": [],
