@@ -11,7 +11,7 @@ const SchemasPage: React.FunctionComponent = () => {
       <h1>Schema Groups</h1>
 
       <p>
-        This is the schemas exported by nimbus-shared. The source of these schemas is Typescript on{" "}
+        This is the schemas exported by nimbus-shared. The source of these schemas is Typescript {" "}
         <a href={githubUrl}>on Github</a>.
       </p>
 
