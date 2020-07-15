@@ -57,7 +57,7 @@ interface BucketConfig {
    * The randomization unit. Note that client_id is not yet implemented.
    * @default "normandy_id"
    */
-  randomizationUnit: "client_id" | "normandy_id";
+  randomizationUnit: "client_id" | "normandy_id" | "userId";
   /** Additional inputs to the hashing function */
   namespace: string;
   /**  Index of start of the range of buckets */
@@ -86,27 +86,4 @@ interface Branch {
   group?: Array<"cfr" | "aboutwelcome">;
   /** The variant payload. TODO: This will be more strictly validated. */
   value: { [key: string]: unknown } | null;
-}
-
-/**
- * Preset types
- * */
-
-// A union of all available experiment designs; right now there is only one.
-export type ExperimentDesign = EmptyAAExperiment;
-
-/**
- * An empty experiment that can target a maximum of 1% of the population
- */
-export interface EmptyAAExperiment extends Experiment {
-  branches: Array<EmptyBranch>;
-  bucketConfig: AABucketConfig;
-}
-
-interface AABucketConfig extends BucketConfig {
-  total: 10000;
-}
-
-interface EmptyBranch extends Branch {
-  value: null;
 }
