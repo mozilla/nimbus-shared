@@ -2,7 +2,7 @@
   --color-theme-blue: #2980b9;
   --color-theme-purple: #9b59b6;
 
-  --color-page-bg: #efefef;
+  --color-page-bg: #fff;
   --color-bg-light: #fcfcfc;
   --color-bg-dark: #343131;
   --color-bg-header: var(--color-theme-purple);
@@ -21,6 +21,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  background: var(--color-bg-light);
+  color: var(--color-text-on-light);
 }
 
 a:link,
@@ -42,27 +45,23 @@ a:visited {
 
 .wrapper {
   display: grid;
-  grid-template-columns: 0 minmax(150px, 300px) minmax(600px, 900px) 1fr;
+  grid-template-columns: minmax(150px, 300px) minmax(600px, 900px) 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "left-margin header header right-margin"
-    "left-margin nav    main   right-margin";
+    "header header header"
+    "nav main right-margin";
   min-height: 100vh;
 }
 
 .header-wrapper {
+  grid-area: header;
   background: var(--color-bg-header);
-  grid-row: 1;
-  grid-column: 1 / 5;
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: subgrid;
+  padding: calc(var(--cell-padding) / 2);
 
   .header {
-    grid-area: header;
-    padding: calc(var(--cell-padding) / 2);
     display: flex;
     align-items: center;
+    justify-content: left;
   }
 
   h1 {
@@ -79,19 +78,10 @@ a:visited {
   }
 }
 
-.body-wrapper {
-  background: var(--color-bg-light);
-  color: var(--color-text-on-light);
-  grid-row: 2;
-  grid-column: 2 / 4;
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-template-rows: subgrid;
-}
-
 main {
   grid-area: main;
   padding: var(--cell-padding);
+  overflow: hidden;
 
   p {
     line-height: 1.6em;

@@ -70,7 +70,7 @@ const DocsApp: React.FunctionComponent<AppProps> = ({
             </a>
           </Link>
         </div>
-        <div className="body-wrapper">
+
           <nav className="site-nav">
             <ul>
               {navItems.map((item, idx) => {
@@ -97,7 +97,6 @@ const DocsApp: React.FunctionComponent<AppProps> = ({
           <main>
             <Component {...pageProps} />
           </main>
-        </div>
       </div>
     </MDXProvider>
   );
