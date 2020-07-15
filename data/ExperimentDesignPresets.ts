@@ -25,7 +25,7 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
       filter_expression:
         "env.version|versionCompare('{minFirefoxVersion}') >= 0 && {audienceFilterExpression}",
       targeting:
-        "[{randomizationUnit}, {bucketNamespace}]|bucketSample({bucketStart}, {bucketCount}, {bucketTotal}) && {audienceTargeting}",
+        '[{randomizationUnit}, "{bucketNamespace}"]|bucketSample({bucketStart}, {bucketCount}, {bucketTotal}) && {audienceTargeting}',
       arguments: {
         proposedDuration: 28,
         proposedEnrollment: 7,
