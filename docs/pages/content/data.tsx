@@ -12,7 +12,7 @@ const DataPage: React.FunctionComponent = () => {
 
       <p>
         This is the data exported by nimbus-shared. The source of this data is{" "}
-        <a href={githubUrl}>on Github</a>.
+        <a href={githubUrl}>on GitHub</a>.
       </p>
 
       {Object.entries(data).map(([groupName, groupData]) => (
