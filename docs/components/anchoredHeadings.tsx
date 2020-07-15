@@ -59,12 +59,12 @@ const AnchoredHeading: React.FunctionComponent<HeadingProps> = ({
     <>
       <Anchor id={anchorId} pull="left"></Anchor>
       {children}
-    </>
+    </>,
   );
 };
 
 function _makeSpecificHeader(
-  level: HeadingProps["headingLevel"]
+  level: HeadingProps["headingLevel"],
 ): React.FunctionComponent<Omit<HeadingProps, "headingLevel">> {
   const rv = ({ children, ...extra }) => (
     <AnchoredHeading headingLevel={level} {...extra}>

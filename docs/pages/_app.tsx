@@ -22,11 +22,7 @@ interface NavHeading {
 }
 
 // export default
-const DocsApp: React.FunctionComponent<AppProps> = ({
-  Component,
-  pageProps,
-  router,
-}) => {
+const DocsApp: React.FunctionComponent<AppProps> = ({ Component, pageProps, router }) => {
   const navItems: Array<NavItem> = [
     { title: "Home", href: "/" },
     { type: "heading", title: "Using this library" },
@@ -71,32 +67,32 @@ const DocsApp: React.FunctionComponent<AppProps> = ({
           </Link>
         </div>
 
-          <nav className="site-nav">
-            <ul>
-              {navItems.map((item, idx) => {
-                if (item.type == "heading") {
-                  return <h2 key={idx}>{item.title}</h2>;
-                } else {
-                  return (
-                    <Link href={item.href} key={idx}>
-                      <li>
-                        <a
-                          className={cn({
-                            "current-page": router.pathname == item.href,
-                          })}
-                        >
-                          {item.title}
-                        </a>
-                      </li>
-                    </Link>
-                  );
-                }
-              })}
-            </ul>
-          </nav>
-          <main>
-            <Component {...pageProps} />
-          </main>
+        <nav className="site-nav">
+          <ul>
+            {navItems.map((item, idx) => {
+              if (item.type == "heading") {
+                return <h2 key={idx}>{item.title}</h2>;
+              } else {
+                return (
+                  <Link href={item.href} key={idx}>
+                    <li>
+                      <a
+                        className={cn({
+                          "current-page": router.pathname == item.href,
+                        })}
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  </Link>
+                );
+              }
+            })}
+          </ul>
+        </nav>
+        <main>
+          <Component {...pageProps} />
+        </main>
       </div>
     </MDXProvider>
   );
