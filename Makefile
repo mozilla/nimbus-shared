@@ -127,7 +127,7 @@ $(DOCS_NPM_INSTALL_STAMP): docs/package.json docs/package-lock.json
 	@mkdir -p $(@D)
 	@touch $@
 
-$(DOCS_BUILT_STAMP): $(DOCS_NPM_INSTALL_STAMP) docs/next.config.js $(DOC_SOURCES)
+$(DOCS_BUILT_STAMP): $(DOCS_NPM_INSTALL_STAMP) docs/next.config.js $(DOC_SOURCES) $(TSC_STAMP)
 	cd docs; npm run build
 	@mkdir -p $(@D)
 	@touch $@
