@@ -23,9 +23,9 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
       "A design for diagnostic testing of targeting or enrollment. Fixed to 1% of the population.",
     preset: {
       filter_expression:
-        "env.version|versionCompare('{minFirefoxVersion}') >= 0 && {audience.filter_expression}",
+        "env.version|versionCompare('{minFirefoxVersion}') >= 0 && {audience_filter_expression}",
       targeting:
-        "[{randomizationUnit}, {bucketNamespace}]|bucketSample({bucketStart}, {bucketCount}, {totalBuckets}) && {audience.targeting}",
+        "[{randomizationUnit}, {bucketNamespace}]|bucketSample({bucketStart}, {bucketCount}, {bucketTotal}) && {audience_targeting}",
       arguments: {
         proposedDuration: 28,
         proposedEnrollment: 7,
