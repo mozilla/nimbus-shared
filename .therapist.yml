@@ -1,0 +1,47 @@
+actions:
+  eslint:
+    description: eslint
+    run: ./node_modules/.bin/eslint --color {files}
+    fix: ./node_modules/.bin/eslint --color --fix {files}
+    include:
+      - "*.js"
+      - "*.jsx"
+      - "*.ts"
+      - "*.tsx"
+
+  typescript:
+    description: tsc-type-checking
+    run: ./node_modules/.bin/tsc --noEmit --project tsconfig.json
+    include:
+      - "*.ts"
+      - "*.tsx"
+
+  prettier:
+    description: Prettier code formatting
+    run: ./node_modules/.bin/prettier --check {files}
+    fix: ./node_modules/.bin/prettier --write {files}
+    include:
+      - "*.js"
+      - "*.jsx"
+      - "*.ts"
+      - "*.tsx"
+      - "*.css"
+      - "*.scss"
+
+shortcuts:
+  lint:
+    flags:
+      - include-unstaged
+      - include-untracked
+
+  "lint:all":
+    extends: lint
+    flags: use-tracked-files
+
+  fix:
+    extends: lint
+    flags: fix
+
+  "fix:all":
+    extends: fix
+    flags: use-tracked-files

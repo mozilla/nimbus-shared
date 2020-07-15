@@ -11,8 +11,8 @@ const SchemasPage: React.FunctionComponent = () => {
       <h1>Schema Groups</h1>
 
       <p>
-        This is the schemas exported by nimbus-shared. The source of these
-        schemas is Typescript on <a href={githubUrl}>on Github</a>.
+        This is the schemas exported by nimbus-shared. The source of these schemas is Typescript on{" "}
+        <a href={githubUrl}>on Github</a>.
       </p>
 
       {Object.entries(schemas).map(([groupName, groupSchemas]) => (
@@ -22,9 +22,7 @@ const SchemasPage: React.FunctionComponent = () => {
             <>
               <H3 anchor={`${groupName}-${schemaName}`}>{schemaName}</H3>
               <pre>
-                <code>
-                  {JSON.stringify(schema.definitions[schemaName], null, 4)}
-                </code>
+                <code>{JSON.stringify(schema.definitions[schemaName], null, 4)}</code>
               </pre>
             </>
           ))}

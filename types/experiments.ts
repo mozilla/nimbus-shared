@@ -104,9 +104,9 @@ export interface EmptyAAExperiment extends Experiment {
 }
 
 interface AABucketConfig extends BucketConfig {
-  total: 10000
+  total: 10000;
 }
 
 interface EmptyBranch extends Branch {
-  value: null
+  value: null;
 }

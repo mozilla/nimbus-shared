@@ -6,11 +6,35 @@ other systems.
 Common tasks are defined as Make targets:
 
 ```shell
-make install  # Install dependencies with NPM
-make lint     # Run static analysis
-make build    # Build output files
-make test     # Test
+make install    # Install dependencies with NPM
+make lint       # Run static analysis
+make lint-fix   # Run static analysis, and fix any auto-fixable problems
+make build      # Build output files
+make test       # Test
 ```
+
+## Pre-commit Hook
+
+Code is required to match all the lint checks, including ESLint and Prettier. You can run the
+linters directly with `make lint` and `make lint-fix`. To better integrate these tools though,
+github is provided via [`Therapist`](https://therapist.readthedocs.io/en/latest/overview.html).
+
+To install Therapist use [pipx](https://pipxproject.github.io/pipx/), or your preferred Python
+program manager. Then install Therapist's Git hooks into this repo. You have the option of having
+Therapist automatically fix problems for you, or only showing that there are problems.
+
+```shell
+# Install Therapist globally
+pipx install therapist
+
+# Set up the Therapist Git hooks
+therapist install
+# OR
+therapist install --fix
+```
+
+It is recommended to also set up your editor to
+[run Prettier automatically](https://prettier.io/docs/en/editors.html).
 
 ## Dependencies
 

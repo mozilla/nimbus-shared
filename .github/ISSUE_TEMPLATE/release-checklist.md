@@ -2,14 +2,14 @@
 name: Release checklist
 about: The checklist for making a new release
 title: Release VERSION
-labels: ''
-assignees: ''
-
+labels: ""
+assignees: ""
 ---
 
-Welcome Release Captain!  ⛵️
+Welcome Release Captain! ⛵️
 
-Before you start, you'll need to make sure you have credentials to make a new release of the NPM and PyPI packages.
+Before you start, you'll need to make sure you have credentials to make a new release of the NPM and
+PyPI packages.
 
 - [ ] Assign this issue to yourself
 - [ ] Check the [VERSION Milestone](LINK TO MILESTONE)
@@ -25,6 +25,7 @@ Before you start, you'll need to make sure you have credentials to make a new re
 - [ ] `make pack`
 - [ ] `npm publish`
 - [ ] `cd python; poetry publish`
-- [ ] In #project-nimbus on Slack, write: `@here Version VERSION of nimbus-shared has been released on NPM and PyPI`
+- [ ] In #project-nimbus on Slack, write:
+      `@here Version VERSION of nimbus-shared has been released on NPM and PyPI`
 - [ ] Create milestone (if needed) and a release issue for vNEXT_VERSION
 - [ ] Close this issue and the milestone

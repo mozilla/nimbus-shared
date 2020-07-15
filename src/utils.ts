@@ -24,7 +24,7 @@ interface WalkDirEntry extends Dirent {
  */
 export async function* walk(
   dir: string,
-  opts: WalkOptions = { includeDirs: "exclude" }
+  opts: WalkOptions = { includeDirs: "exclude" },
 ): AsyncGenerator<WalkDirEntry, void> {
   for await (const entry of await fs.opendir(dir)) {
     const rv = entry as WalkDirEntry;
