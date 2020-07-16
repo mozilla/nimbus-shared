@@ -18,7 +18,7 @@ interface CFRButton {
         };
       }
     | FluentId;
-  action: SpecialMessagingAction;
+  action: SpecialMessageActionSchemas;
 }
 
 interface SimpleCFRContent {
@@ -57,7 +57,7 @@ interface StandardMessageRecipe {
   /** A JEXL expression representing targeting information */
   targeting?: string;
 
-  trigger?: TriggerAction;
+  trigger?: TriggerActionSchemas;
 
   /** If more than one message is valid, the message with the higher priority will be shown  */
   priority?: number;
@@ -89,10 +89,10 @@ interface StandardMessageRecipe {
 export interface SimpleCFRMessage extends StandardMessageRecipe {
   template: "cfr_doorhanger";
   // Triggers are required for CFR, not optional
-  trigger: TriggerAction;
+  trigger: TriggerActionSchemas;
 }
 
-type TriggerAction =
+export type TriggerActionSchemas =
   | OpenUrl
   | OpenArticleUrl
   | OpenBookmarkedUrl
@@ -140,10 +140,12 @@ interface NewSavedLogin {
 /** Happens every time Firefox blocks the loading of a page script/asset/resource that matches the one of the tracking behaviours specifid through params. See https://searchfox.org/mozilla-central/rev/8ccea36c4fb09412609fb738c722830d7098602b/uriloader/base/nsIWebProgressListener.idl#336 */
 interface ContentBlocking {
   id: "contentBlocking";
-  params: Array<number>;
+  // number param for social/protection CFRs, string param for content blocking
+  // milestone
+  params: Array<number> | Array<string>;
 }
 
-type SpecialMessagingAction =
+export type SpecialMessageActionSchemas =
   | DisableSTPDoorhangers
   | HighlightFeature
   | InstallAddonFromURL
@@ -158,7 +160,9 @@ type SpecialMessagingAction =
   | PinCurrentTab
   | ShowFirefoxAccounts
   | ShowMigrationWizard
-  | Minimize;
+  | Minimize
+  | AcceptDoH
+  | DisableDoH;
 
 /** Disables all STP doorhangers. */
 interface DisableSTPDoorhangers {
@@ -220,7 +224,7 @@ interface OpenPreferencesPage {
     /** Section of about:preferences, e.g. "privacy-reports" */
     category: string;
     /** Add a queryparam for metrics */
-    entrypoint: string;
+    entrypoint?: string;
   };
   type: "OPEN_PREFERENCES_PAGE";
 }
@@ -277,4 +281,14 @@ interface ShowMigrationWizard {
 /** Minimize the CFR doorhanger back into the URLbar */
 interface Minimize {
   type: "CANCEL";
+}
+
+/** Accept DOH doorhanger notification */
+interface AcceptDoH {
+  type: "ACCEPT_DOH";
+}
+
+/** Dismiss DOH doorhanger notification */
+interface DisableDoH {
+  type: "DISABLE_DOH";
 }
