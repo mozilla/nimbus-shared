@@ -92,7 +92,7 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test:
-          filter:
+          filters:
             tags:
               only: /.*/
       - docs-publish:
