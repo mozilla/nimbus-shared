@@ -91,17 +91,22 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - build-and-test
+      - build-and-test:
+          filters:
+            tags:
+              only: /.*/
       - docs-publish:
           filters:
             branches:
               only: main
+            tags:
+              only: /.*/
       - packages-publish:
           requires:
             - build-and-test
             - docs-publish
           filters:
             branches:
-              only: main
+              ignore: /.*/
             tags:
               only: /v.*/
