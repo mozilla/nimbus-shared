@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 0.0.6
+
+### Content Changes
+
+- Add count to AA preset ([#69](https://github.com/mozilla/nimbus-shared/pull/69))
+- Add Proposed duration to Experiment ([#68](https://github.com/mozilla/nimbus-shared/pull/68))
+- Add Firefox channel to audiences ([#60](https://github.com/mozilla/nimbus-shared/pull/60))
+- Add filter_expression and targeting to AA preset fixes
+  ([#73](https://github.com/mozilla/nimbus-shared/pull/73))
+- Compatibility of messaging schema with Mozilla-Central
+
+### Library Changes
+
+- Show schemas and data in docs ([#70](https://github.com/mozilla/nimbus-shared/pull/70))
+- Add heading links to docs ([#70](https://github.com/mozilla/nimbus-shared/pull/70))
+- Docs are compatible with more browsers ([#78](https://github.com/mozilla/nimbus-shared/pull/78))
+
+### Minor changes
+
+- Format with Prettier ([#67](https://github.com/mozilla/nimbus-shared/pull/67))
+- Automatic publishing of the library ([#82](https://github.com/mozilla/nimbus-shared/pull/82),
+  [#84](https://github.com/mozilla/nimbus-shared/pull/84))
+
 ## Version 0.0.5
 
 ### Library Changes
