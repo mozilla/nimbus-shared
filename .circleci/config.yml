@@ -106,5 +106,7 @@ workflows:
             - build-and-test
             - docs-publish
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only: /v.*/
