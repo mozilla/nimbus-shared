@@ -68,7 +68,7 @@ jobs:
 
   packages-publish:
     docker:
-      - image: circleci/python3.8-node
+      - image: circleci/python:3.8-node
 
     steps:
       - checkout
