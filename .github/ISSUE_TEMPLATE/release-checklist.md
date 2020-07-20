@@ -8,8 +8,8 @@ assignees: ""
 
 Welcome Release Captain! ⛵️
 
-Note to release captains: while filing this issue, replace ALL_CAPS words with their appropriate
-values.
+<!-- Note to release captains: while filing this issue, replace ALL_CAPS words with their appropriate
+values and then delete this instruction. -->
 
 - [ ] Assign this issue to yourself.
 - [ ] Check the [VERSION Milestone](LINK_TO_MILESTONE)
@@ -26,7 +26,7 @@ values.
   - `npm version major` - Breaking changes to library features, schemas, or data.
 - [ ] Use the commands `git push; git push --tags` to push your changes to GitHub.
 - [ ] Wait for the CI job to publish the new version.
-  - https://app.circleci.com/pipelines/github/mozilla/nimbus-shared?branch=main
+  - https://app.circleci.com/pipelines/github/mozilla/nimbus-shared
 - [ ] In #project-nimbus on Slack, write:
       `@here Version VERSION of nimbus-shared has been released on NPM and PyPI`.
 - [ ] Create a milestone, and a release issue for vNEXT_VERSION with the [release issue template][].
