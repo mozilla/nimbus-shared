@@ -8,6 +8,7 @@ ESLINT := ./node_modules/.bin/eslint
 TSC := ./node_modules/.bin/tsc
 TS_NODE := ./node_modules/.bin/ts-node-script
 PRETTIER := ./node_modules/.bin/prettier
+PYTEST := poetry run pytest
 
 TYPES := $(shell find ./types -name '*.ts')
 DATA_SOURCES := $(shell find ./data)
@@ -23,7 +24,8 @@ GENERATED_TS := ./src/_generated/typeGuardHelpers.ts ./src/_generated/schemas.ts
 GENERATED_PYTHON := ./python/pyproject.toml
 GENERATED_DATA := ./dist/data.json
 GENERATED := $(GENERATED_TS) $(GENERATED_PYTHON) $(GENERATED_DATA)
-TEST_FILES := $(shell find ./test -name 'test-*')
+JS_TEST_FILES := $(shell find ./test -name 'test-*')
+PY_TEST_FILES = python/mozilla_nimbus_shared/test.py
 
 TIMESTAMP_DIR := ./.timestamps
 TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
@@ -48,10 +50,11 @@ build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_CODE) $(GENERATED_DATA)
 clean:
 	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED) \
 		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated \
-		docs/out docs/node_modules docs/.next
+		docs/out docs/node_modules docs/.next $(shell cd python; poetry env info -p)
 
-test: build $(NPM_INSTALL_STAMP) $(TEST_FILES)
-	$(MOCHA) -r ts-node/register $(TEST_FILES)
+test: build $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(JS_TEST_FILES) $(PY_TEST_FILES)
+	$(MOCHA) -r ts-node/register $(JS_TEST_FILES)
+	cd python; $(PYTEST) mozilla_nimbus_shared/test.py
 
 artifact: build pack docs
 	./bin/pack-artifact.sh

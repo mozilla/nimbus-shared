@@ -31,7 +31,8 @@ def check_schema(schema_name: str, instance: any) -> bool:
 
 def get_data() -> dict:
     """Load all the Nimbus data"""
+    global _data_cache
     if not _data_cache:
         data_text = pkgutil.get_data("mozilla_nimbus_shared", "data.json")
-        _data_cache = json.loads(schema_text)
+        _data_cache = json.loads(data_text)
     return _data_cache
