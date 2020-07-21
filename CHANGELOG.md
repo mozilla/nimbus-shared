@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.0.7
+
+### Libary Changes
+
+- Fix a bug preventing data from being accessible in Python
+  ([#91](https://github.com/mozilla/nimbus-shared/pull/91))
+
 ## Version 0.0.6
 
 ### Content Changes
