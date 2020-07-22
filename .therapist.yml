@@ -28,6 +28,13 @@ actions:
       - "*.css"
       - "*.scss"
 
+  black:
+    description: Black code formatting
+    run: ./bin/format-python.sh --check {files}
+    fix: ./bin/format-python.sh {files}
+    include:
+      - "*.py"
+
 shortcuts:
   lint:
     flags:

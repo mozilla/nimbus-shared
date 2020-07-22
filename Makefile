@@ -65,14 +65,16 @@ artifact: build pack docs
 	cp -r docs/out artifacts/docs
 
 lint: $(NPM_INSTALL_STAMP) build
-	$(ESLINT) .
-	$(TSC) --noEmit --project tsconfig.json
-	$(PRETTIER) --check .
+	# $(ESLINT) .
+	# $(TSC) --noEmit --project tsconfig.json
+	# $(PRETTIER) --check .
+	cd python; poetry run black --check $(shell find python/ -path 'python/mozilla_nimbus_shared/*.py' -printf '%P\n')
 
 lint-fix:
 	$(ESLINT) --fix .
 	$(TSC) --noEmit --project tsconfig.json
 	$(PRETTIER) --write .
+	cd python; poetry run black $(shell find python/ -path 'python/mozilla_nimbus_shared/*.py' -printf '%P\n')
 
 pack: $(NPM_PACK_FILE) $(PYTHON_PACK_FILE)
 
