@@ -8,3 +8,4 @@ src/_generated
 python/poetry.lock
 python/pyproject.toml
 *.egg-info
+python/README.md

@@ -50,7 +50,7 @@ build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_CODE) $(GENERATED_DATA)
 clean:
 	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED) \
 		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated \
-		docs/out docs/node_modules docs/.next $(shell cd python; poetry env info -p)
+		docs/out docs/node_modules docs/.next $(shell cd python; poetry env info -p) python/README.md
 
 test: build $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(JS_TEST_FILES) $(PY_TEST_FILES)
 	$(MOCHA) -r ts-node/register $(JS_TEST_FILES)
@@ -116,7 +116,7 @@ src/_generated/data.ts: $(NPM_INSTALL_STAMP) $(GENERATED_DATA) bin/generate-data
 $(NPM_PACK_FILE): package.json $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_DATA) $(GENERATED_TS)
 	npm pack
 
-python/pyproject.toml: python/pyproject.toml.template bin/generate-pyproject-toml.ts $(NPM_INSTALL_STAMP)
+python/pyproject.toml: python/pyproject.toml.template bin/generate-pyproject-toml.ts $(NPM_INSTALL_STAMP) python/README.md
 	$(TS_NODE) ./bin/generate-pyproject-toml.ts
 
 $(PYTHON_SDIST): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(GENERATED_DATA) $(GENERATED_PYTHON) $(PYTHON_INSTALL_STAMP)
@@ -134,3 +134,6 @@ $(DOCS_BUILT_STAMP): $(DOCS_NPM_INSTALL_STAMP) docs/next.config.js $(DOC_SOURCES
 	cd docs; npm run build
 	@mkdir -p $(@D)
 	@touch $@
+
+python/README.md: README.md
+	cp README.md $@
