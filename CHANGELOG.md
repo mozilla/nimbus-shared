@@ -1,8 +1,13 @@
 # Changelog
 
+## Version 0.0.8
+
+### Library Changes
+- Changed audiences to allow a variable firefox_release ([#98](https://github.com/mozilla/nimbus-shared/issues/98))
+
 ## Version 0.0.7
 
-### Libary Changes
+### Library Changes
 
 - Fix a bug preventing data from being accessible in Python
   ([#91](https://github.com/mozilla/nimbus-shared/pull/91))
