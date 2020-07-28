@@ -3,7 +3,9 @@
 ## Version 0.0.8
 
 ### Library Changes
-- Changed audiences to allow a variable firefox_release ([#98](https://github.com/mozilla/nimbus-shared/issues/98))
+
+- Changed audiences to allow a variable firefox_release
+  ([#98](https://github.com/mozilla/nimbus-shared/issues/98))
 
 ## Version 0.0.7
 
