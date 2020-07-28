@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.0.9
+
+### Library Changes
+
+- Templated string for slug in audiences
+  ([#102](https://github.com/mozilla/nimbus-shared/issues/102))
+
 ## Version 0.0.8
 
 ### Library Changes
