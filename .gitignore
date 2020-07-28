@@ -9,3 +9,4 @@ python/poetry.lock
 python/pyproject.toml
 *.egg-info
 python/README.md
+.vscode
