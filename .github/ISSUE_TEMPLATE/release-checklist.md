@@ -12,6 +12,9 @@ Welcome Release Captain! ⛵️
 values and then delete this instruction. -->
 
 - [ ] Assign this issue to yourself.
+- [ ] Set up your workspace as descriped
+      [in the docs](https://mozilla.github.io/nimbus-shared/dev/setup) including the pre-commit
+      hook.
 - [ ] Check the [VERSION Milestone](LINK_TO_MILESTONE)
   - Any still open issues (except this one) should be merged or moved to a future milestone.
 - [ ] Checkout and update the `main` branch locally.
