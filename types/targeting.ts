@@ -9,5 +9,4 @@ export interface Audience {
    * not for targeting.
    */
   desktop_telemetry?: string;
-  firefox_channel: "Nightly" | "Beta" | "Release";
 }
