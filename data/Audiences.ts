@@ -21,7 +21,7 @@ const audiences: { [id: string]: Audience } = {
     description:
       "First start-up users (e.g. for about:welcome) with an en-* locale using the release channel.",
     targeting:
-      "localeLanguageCode == 'en' && (isFirstStartup || currentExperiment.slug in activeExperiments) && browserSettings.update.channel == '{firefox_channel}'",
+      "localeLanguageCode == 'en' && (isFirstStartup || '{slug}' in activeExperiments) && browserSettings.update.channel == '{firefox_channel}'",
     desktop_telemetry:
       "STARTS_WITH(environment.settings.locale, 'en') AND payload.info.profile_subsession_counter = 1",
   },
