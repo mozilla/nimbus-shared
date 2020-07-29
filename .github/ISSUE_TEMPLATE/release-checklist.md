@@ -12,7 +12,7 @@ Welcome Release Captain! ⛵️
 values and then delete this instruction. -->
 
 - [ ] Assign this issue to yourself.
-- [ ] Set up your workspace as descriped
+- [ ] Set up your workspace as described
       [in the docs](https://mozilla.github.io/nimbus-shared/dev/setup) including the pre-commit
       hook.
 - [ ] Check the [VERSION Milestone](LINK_TO_MILESTONE)
