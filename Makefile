@@ -64,17 +64,17 @@ artifact: build pack docs
 	cp mozilla-nimbus-shared-$(VERSION).tgz artifacts/npm/
 	cp -r docs/out artifacts/docs
 
-lint: $(NPM_INSTALL_STAMP) build
-	# $(ESLINT) .
-	# $(TSC) --noEmit --project tsconfig.json
-	# $(PRETTIER) --check .
-	cd python; poetry run black --check $(shell find python/ -path 'python/mozilla_nimbus_shared/*.py' -printf '%P\n')
+lint: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) build
+	$(ESLINT) .
+	$(TSC) --noEmit --project tsconfig.json
+	$(PRETTIER) --check .
+	cd python; poetry run black --check .
 
 lint-fix:
 	$(ESLINT) --fix .
 	$(TSC) --noEmit --project tsconfig.json
 	$(PRETTIER) --write .
-	cd python; poetry run black $(shell find python/ -path 'python/mozilla_nimbus_shared/*.py' -printf '%P\n')
+	cd python; poetry run black .
 
 pack: $(NPM_PACK_FILE) $(PYTHON_PACK_FILE)
 
