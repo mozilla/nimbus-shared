@@ -57,7 +57,7 @@ interface BucketConfig {
    * The randomization unit. Note that client_id is not yet implemented.
    * @default "normandy_id"
    */
-  randomizationUnit: "client_id" | "normandy_id" | "userId";
+  randomizationUnit: "client_id" | "normandy_id";
   /** Additional inputs to the hashing function */
   namespace: string;
   /**  Index of start of the range of buckets */
