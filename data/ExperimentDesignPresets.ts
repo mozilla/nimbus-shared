@@ -33,7 +33,7 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
           { slug: "treatment", ratio: 1, value: null },
         ],
         bucketConfig: {
-          randomizationUnit: "userId",
+          randomizationUnit: "normandy_id",
           count: 100,
           total: 10000,
         },
