@@ -4,7 +4,6 @@ import mozilla_nimbus_shared
 
 
 class TestCheckSchema:
-
     def test_schema_check_passes(self):
         data = {"message": "test"}
         assert mozilla_nimbus_shared.check_schema("normandy/ConsoleLogArguments", data)
