@@ -270,6 +270,13 @@ interface ShowFirefoxAccounts {
   data: {
     /** Adds entrypoint={your value} to the FXA URL */
     entrypoint: string;
+    /** Adds extra parameters to the FXA URL using URLSearchParams.append
+     * e.g. {foo: "bar"} would result in <FXA_url>?foo=bar
+     *
+     * @default {}
+     *
+     */
+    extraParams?: { [key: string]: string };
   };
 }
 
