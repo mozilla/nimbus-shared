@@ -27,7 +27,8 @@ values and then delete this instruction. -->
   - `npm version patch` - Bug fixes, doc updates, and other small changes.
   - `npm version minor` - Backwards compatible changes to library features, schemas, or data.
   - `npm version major` - Breaking changes to library features, schemas, or data.
-- [ ] Use the commands `git push; git push --tags` to push your changes to GitHub.
+- [ ] Use the commands `git push UPSTREAM_REMOTE main; git push UPSTREAM_REMOTE main --tags` to push
+      your changes to GitHub.
 - [ ] Wait for the CI job to publish the new version.
   - https://app.circleci.com/pipelines/github/mozilla/nimbus-shared
 - [ ] In #project-nimbus on Slack, write:
