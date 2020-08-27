@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.1.0
+
+### Minor Changes
+
+- Added platforms field to Experiment type
+  ([#113](https://github.com/mozilla/nimbus-shared/issues/113))
+- Removed userId from randomization unit choices
+  ([#110](https://github.com/mozilla/nimbus-shared/issues/110))
+
 ## Version 0.0.9
 
 ### Library Changes
