@@ -8,6 +8,7 @@ const TEST_EXPERIMENT = {
     "(env.version >= '76.' && env.version < '77.' && env.channel == 'release' && !(env.telemetry.main.environment.profile.creationDate < ('2020-05-13'|date / 1000 / 60 / 60 / 24))) || (locale == 'en-US' && [userId, \"aboutwelcome-pull-factor-reinforcement-76-release\"]|bucketSample(0, 2000, 10000) && (!('trailhead.firstrun.didSeeAboutWelcome'|preferenceValue) || 'bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77' in activeExperiments))",
   arguments: {
     slug: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
+    platform: "firefox-desktop",
     userFacingName: "About:Welcome Pull Factor Reinforcement",
     userFacingDescription:
       "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
