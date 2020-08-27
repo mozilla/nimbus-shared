@@ -10,3 +10,4 @@ python/pyproject.toml
 *.egg-info
 python/README.md
 .vscode
+__pycache__
