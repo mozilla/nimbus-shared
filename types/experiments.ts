@@ -50,6 +50,8 @@ export interface Experiment {
   proposedEnrollment: number;
   /** The slug of the reference branch */
   referenceBranch: string | null;
+  /** The platform for the experiment */
+  platform: "fenix" | "firefox-desktop";
 }
 
 interface BucketConfig {
