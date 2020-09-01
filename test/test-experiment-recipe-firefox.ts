@@ -44,7 +44,7 @@ const TEST_EXPERIMENT = {
           featureId: "cfr",
           enabled: true,
           value: null,
-        }
+        },
       },
     ],
   },

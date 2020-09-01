@@ -30,7 +30,11 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
         proposedEnrollment: 7,
         branches: [
           { slug: "control", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
-          { slug: "treatment", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
+          {
+            slug: "treatment",
+            ratio: 1,
+            feature: { featureId: "cfr", enabled: true, value: null },
+          },
         ],
         bucketConfig: {
           randomizationUnit: "normandy_id",
