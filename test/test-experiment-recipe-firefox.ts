@@ -31,12 +31,20 @@ const TEST_EXPERIMENT = {
       {
         slug: "control",
         ratio: 1,
-        value: {},
+        feature: {
+          featureId: "cfr",
+          enabled: true,
+          value: null,
+        },
       },
       {
         slug: "treatment-variation-b",
         ratio: 1,
-        value: {},
+        feature: {
+          featureId: "cfr",
+          enabled: true,
+          value: null,
+        }
       },
     ],
   },

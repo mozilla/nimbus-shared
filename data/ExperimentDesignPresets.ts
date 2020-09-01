@@ -29,8 +29,8 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
         proposedDuration: 28,
         proposedEnrollment: 7,
         branches: [
-          { slug: "control", ratio: 1, value: null },
-          { slug: "treatment", ratio: 1, value: null },
+          { slug: "control", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
+          { slug: "treatment", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
         ],
         bucketConfig: {
           randomizationUnit: "normandy_id",
