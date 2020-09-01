@@ -75,6 +75,7 @@ interface BucketConfig {
 interface FeatureConfig {
   featureId: "cfr" | "aboutwelcome";
   enabled: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: { [key: string]: any } | null;
 }
 
