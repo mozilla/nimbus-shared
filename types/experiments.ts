@@ -5,11 +5,9 @@
 export interface ExperimentRecipe {
   /** A unique identifier for the Recipe */
   id: string;
-  /** JEXL expression defined in an Audience */
-  filter_expression: string;
   /**
    * JEXL expression using messaging system environment
-   * @deprecated */
+   */
   targeting?: string;
   /** Is the experiment enabled? */
   enabled: boolean;
