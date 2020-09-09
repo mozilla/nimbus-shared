@@ -70,6 +70,13 @@ interface BucketConfig {
   total: number;
 }
 
+interface FeatureConfig {
+  featureId: "cfr" | "aboutwelcome";
+  enabled: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: { [key: string]: any } | null;
+}
+
 interface Branch {
   /** Identifier for the branch */
   slug: string;
@@ -79,11 +86,5 @@ interface Branch {
    * @default 1
    */
   ratio: number;
-  /**
-   * Used to indicate a type of branch value
-   * @deprecated
-   */
-  group?: Array<"cfr" | "aboutwelcome">;
-  /** The variant payload. TODO: This will be more strictly validated. */
-  value: { [key: string]: unknown } | null;
+  feature: FeatureConfig;
 }
