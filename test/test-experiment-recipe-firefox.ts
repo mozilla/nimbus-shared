@@ -6,7 +6,7 @@ const TEST_EXPERIMENT = {
   enabled: true,
   arguments: {
     slug: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-    platform: "firefox-desktop",
+    application: "firefox-desktop",
     userFacingName: "About:Welcome Pull Factor Reinforcement",
     userFacingDescription:
       "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
@@ -19,12 +19,11 @@ const TEST_EXPERIMENT = {
       count: 2000,
       total: 10000,
     },
-    startDate: "2020-07-01T11:04:42z",
+    startDate: null,
     endDate: null,
-    proposedDuration: 28,
     proposedEnrollment: 7,
     referenceBranch: "control",
-    features: [],
+    probeSets: [],
     branches: [
       {
         slug: "control",

@@ -28,28 +28,28 @@ export interface Experiment {
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
-  /** A list of feature slugs relevant to the experiment analysis */
-  features: Array<string>;
+  /** A list of probe set slugs relevant to the experiment analysis */
+  probeSets: Array<string>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
   /**
    * Actual publish date of the experiment
    * @format date-time
    */
-  startDate: string;
+  startDate: string | null;
   /**
    * Actual end date of the experiment
    * @format date-time
    */
   endDate: string | null;
   /** Duration of the experiment from the start date in days */
-  proposedDuration: number;
+  proposedDuration?: number;
   /** Duration of enrollment from the start date in days */
   proposedEnrollment: number;
   /** The slug of the reference branch */
   referenceBranch: string | null;
-  /** The platform for the experiment */
-  platform?: "fenix" | "firefox-desktop";
+  /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experimentst */
+  application?: "fenix" | "firefox-desktop";
 }
 
 interface BucketConfig {
@@ -71,7 +71,7 @@ interface BucketConfig {
 }
 
 interface FeatureConfig {
-  featureId: "cfr" | "aboutwelcome";
+  featureId: string;
   enabled: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: { [key: string]: any } | null;
@@ -86,5 +86,5 @@ interface Branch {
    * @default 1
    */
   ratio: number;
-  feature: FeatureConfig;
+  feature?: FeatureConfig;
 }
