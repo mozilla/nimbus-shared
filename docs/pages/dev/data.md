@@ -11,7 +11,7 @@ JSON and native formats for the exported package.
 
 TOML and JSON files are checked against a schema that can be declared in one of two ways. The first
 option is to add a key `__nimbusMeta.type` to the data object, which must be the path to one of the
-schemas (ie `experiments/ExperimentRecipe`). This metadata will not be included in the exported
+schemas (ie `experiments/NimbusExperiment`). This metadata will not be included in the exported
 version of the data. Alternatively a file `__nimbusMeta.toml` can be added next to the file that
 contains a TOML object with a key `type` with the same kind of schema path.
 

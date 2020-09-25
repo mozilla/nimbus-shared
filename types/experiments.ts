@@ -1,63 +1,52 @@
 /**
- * The experiment definition accessible to Firefox via Remote Settings.
- * It is compatible with ExperimentManager.
+ * The experiment definition accessible to applications via Remote Settings.
  */
-export interface ExperimentRecipe {
-  /** A unique identifier for the Recipe */
-  id: string;
-  /**
-   * JEXL expression using messaging system environment
-   */
-  targeting?: string;
-  /** Is the experiment enabled? */
-  enabled: boolean;
-  /** Experiment definition */
-  arguments: Experiment;
-}
-
-export interface Experiment {
+export interface NimbusExperiment {
   /** Unique identifier for the experiment */
   slug: string;
   /** Publically-accesible name of the experiment */
   userFacingName: string;
   /** Short public description of the experiment */
   userFacingDescription: string;
-  /** Is the experiment currently live in production? i.e., published to remote settings? */
-  active: boolean;
   /** Are we continuing to enroll new users into the experiment? */
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
-  /** A list of feature slugs relevant to the experiment analysis */
-  features: Array<string>;
+  /** A list of probe set slugs relevant to the experiment analysis */
+  probeSets: Array<string>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
+  /**
+   * JEXL expression using messaging system environment
+   */
+  targeting?: string;
   /**
    * Actual publish date of the experiment
    * @format date-time
    */
-  startDate: string;
+  startDate: string | null;
   /**
    * Actual end date of the experiment
    * @format date-time
    */
   endDate: string | null;
   /** Duration of the experiment from the start date in days */
-  proposedDuration: number;
+  proposedDuration?: number;
   /** Duration of enrollment from the start date in days */
   proposedEnrollment: number;
   /** The slug of the reference branch */
   referenceBranch: string | null;
-  /** The platform for the experiment */
-  platform?: "fenix" | "firefox-desktop";
+  /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experimentst */
+  application: string;
+  /** Which channels should the application match? */
+  channels: Array<string>;
 }
 
 interface BucketConfig {
   /**
-   * The randomization unit. Note that client_id is not yet implemented.
-   * @default "normandy_id"
+   * The randomization unit.
    */
-  randomizationUnit: "client_id" | "normandy_id";
+  randomizationUnit: string;
   /** Additional inputs to the hashing function */
   namespace: string;
   /**  Index of start of the range of buckets */
@@ -71,7 +60,7 @@ interface BucketConfig {
 }
 
 interface FeatureConfig {
-  featureId: "cfr" | "aboutwelcome";
+  featureId: string;
   enabled: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: { [key: string]: any } | null;
@@ -86,5 +75,5 @@ interface Branch {
    * @default 1
    */
   ratio: number;
-  feature: FeatureConfig;
+  feature?: FeatureConfig;
 }

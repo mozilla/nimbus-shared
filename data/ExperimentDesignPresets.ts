@@ -1,4 +1,4 @@
-import { ExperimentRecipe } from "../types/experiments";
+import { NimbusExperiment } from "../types/experiments";
 
 // Utility type to being able to specify partials of nested objects
 type RecursivePartial<T> = {
@@ -16,7 +16,7 @@ interface Preset<T> {
   preset: RecursivePartial<T>;
 }
 
-const presets: { [id: string]: Preset<ExperimentRecipe> } = {
+const presets: { [id: string]: Preset<NimbusExperiment> } = {
   empty_aa: {
     name: "A/A Experiment",
     description:
@@ -24,22 +24,20 @@ const presets: { [id: string]: Preset<ExperimentRecipe> } = {
     preset: {
       targeting:
         '[{randomizationUnit}, "{bucketNamespace}"]|bucketSample({bucketStart}, {bucketCount}, {bucketTotal}) && {audienceTargeting}',
-      arguments: {
-        proposedDuration: 28,
-        proposedEnrollment: 7,
-        branches: [
-          { slug: "control", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
-          {
-            slug: "treatment",
-            ratio: 1,
-            feature: { featureId: "cfr", enabled: true, value: null },
-          },
-        ],
-        bucketConfig: {
-          randomizationUnit: "normandy_id",
-          count: 100,
-          total: 10000,
+      proposedDuration: 28,
+      proposedEnrollment: 7,
+      branches: [
+        { slug: "control", ratio: 1, feature: { featureId: "cfr", enabled: true, value: null } },
+        {
+          slug: "treatment",
+          ratio: 1,
+          feature: { featureId: "cfr", enabled: true, value: null },
         },
+      ],
+      bucketConfig: {
+        randomizationUnit: "normandy_id",
+        count: 100,
+        total: 10000,
       },
     },
   },

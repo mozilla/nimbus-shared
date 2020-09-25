@@ -1,37 +1,33 @@
 {
-  "id": "ABOUTWELCOME-PULL-FACTOR-REINFORCEMENT-76-RELEASE",
-  "enabled": true,
-  "arguments": {
-    "slug": "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-    "platform": "firefox-desktop",
-    "userFacingName": "About:Welcome Pull Factor Reinforcement",
-    "userFacingDescription": "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
-    "isEnrollmentPaused": true,
-    "active": true,
-    "bucketConfig": {
-      "randomizationUnit": "normandy_id",
-      "namespace": "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-      "start": 0,
-      "count": 2000,
-      "total": 10000
+  "slug": "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
+  "application": "firefox-desktop",
+  "channels": ["nightly"],
+  "userFacingName": "About:Welcome Pull Factor Reinforcement",
+  "userFacingDescription": "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
+  "isEnrollmentPaused": true,
+  "bucketConfig": {
+    "randomizationUnit": "normandy_id",
+    "namespace": "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
+    "start": 0,
+    "count": 2000,
+    "total": 10000
+  },
+  "startDate": "2020-06-17T23:20:47.230Z",
+  "endDate": null,
+  "proposedDuration": 28,
+  "proposedEnrollment": 7,
+  "referenceBranch": "control",
+  "probeSets": [],
+  "branches": [
+    {
+      "slug": "control",
+      "ratio": 1,
+      "feature": { "featureId": "cfr", "enabled": true, "value": null }
     },
-    "startDate": "2020-06-17T23:20:47.230Z",
-    "endDate": null,
-    "proposedDuration": 28,
-    "proposedEnrollment": 7,
-    "referenceBranch": "control",
-    "features": [],
-    "branches": [
-      {
-        "slug": "control",
-        "ratio": 1,
-        "feature": { "featureId": "cfr", "enabled": true, "value": null }
-      },
-      {
-        "slug": "treatment-variation-b",
-        "ratio": 1,
-        "feature": { "featureId": "cfr", "enabled": true, "value": null }
-      }
-    ]
-  }
+    {
+      "slug": "treatment-variation-b",
+      "ratio": 1,
+      "feature": { "featureId": "cfr", "enabled": true, "value": null }
+    }
+  ]
 }
