@@ -1,21 +1,7 @@
 /**
- * The experiment definition accessible to Firefox via Remote Settings.
- * It is compatible with ExperimentManager.
+ * The experiment definition accessible to applications via Remote Settings.
  */
-export interface ExperimentRecipe {
-  /** A unique identifier for the Recipe */
-  id: string;
-  /**
-   * JEXL expression using messaging system environment
-   */
-  targeting?: string;
-  /** Is the experiment enabled? */
-  enabled: boolean;
-  /** Experiment definition */
-  arguments: Experiment;
-}
-
-export interface Experiment {
+export interface NimbusExperiment {
   /** Unique identifier for the experiment */
   slug: string;
   /** Publically-accesible name of the experiment */
@@ -32,6 +18,10 @@ export interface Experiment {
   probeSets: Array<string>;
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
+  /**
+   * JEXL expression using messaging system environment
+   */
+  targeting?: string;
   /**
    * Actual publish date of the experiment
    * @format date-time

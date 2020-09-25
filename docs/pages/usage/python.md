@@ -24,7 +24,7 @@ print(data["Audiences"])
 # {"all_english": { ... }, "us_only": { ... }, ... }
 
 # returns True
-check_schema(data["experiment-recipe-samples"]["pull-factor"], "experiments/ExperimentRecipe")
+check_schema(data["experiment-recipe-samples"]["pull-factor"], "experiments/NimbusExperiment")
 ```
 
 > Note that you should not need to validate that the data in the library matches the expected
