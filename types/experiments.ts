@@ -8,8 +8,6 @@ export interface NimbusExperiment {
   userFacingName: string;
   /** Short public description of the experiment */
   userFacingDescription: string;
-  /** Is the experiment currently live in production? i.e., published to remote settings? */
-  active: boolean;
   /** Are we continuing to enroll new users into the experiment? */
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
@@ -39,15 +37,16 @@ export interface NimbusExperiment {
   /** The slug of the reference branch */
   referenceBranch: string | null;
   /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experimentst */
-  application?: "fenix" | "firefox-desktop";
+  application: string;
+  /** Which channels should the application match? */
+  channels: Array<string>;
 }
 
 interface BucketConfig {
   /**
-   * The randomization unit. Note that client_id is not yet implemented.
-   * @default "normandy_id"
+   * The randomization unit.
    */
-  randomizationUnit: "client_id" | "normandy_id";
+  randomizationUnit: string;
   /** Additional inputs to the hashing function */
   namespace: string;
   /**  Index of start of the range of buckets */

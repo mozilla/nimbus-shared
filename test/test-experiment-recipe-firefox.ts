@@ -4,11 +4,11 @@ import { assert } from "chai";
 const TEST_EXPERIMENT = {
   slug: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
   application: "firefox-desktop",
+  channels: ["nightly"],
   userFacingName: "About:Welcome Pull Factor Reinforcement",
   userFacingDescription:
     "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
   isEnrollmentPaused: true,
-  active: true,
   bucketConfig: {
     randomizationUnit: "normandy_id",
     namespace: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
