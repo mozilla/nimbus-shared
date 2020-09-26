@@ -36,7 +36,7 @@ export interface NimbusExperiment {
   proposedEnrollment: number;
   /** The slug of the reference branch */
   referenceBranch: string | null;
-  /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experimentst */
+  /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experiments */
   application: string;
 }
 
