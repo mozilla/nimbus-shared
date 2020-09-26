@@ -38,8 +38,6 @@ export interface NimbusExperiment {
   referenceBranch: string | null;
   /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experimentst */
   application: string;
-  /** Which channels should the application match? */
-  channels: Array<string>;
 }
 
 interface BucketConfig {
