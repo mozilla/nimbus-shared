@@ -4,11 +4,11 @@
 export interface NimbusExperiment {
   /** Unique identifier for the experiment */
   slug: string;
-  /** Publically-accesible name of the experiment */
+  /** Public name of the experiment displayed on "about:studies" */
   userFacingName: string;
-  /** Short public description of the experiment */
+  /** Short public description of the experiment displayed on on "about:studies" */
   userFacingDescription: string;
-  /** Are we continuing to enroll new users into the experiment? */
+  /** Should we enroll new users into the experiment? */
   isEnrollmentPaused: boolean;
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
@@ -21,18 +21,21 @@ export interface NimbusExperiment {
    */
   targeting?: string;
   /**
-   * Actual publish date of the experiment
+   * Actual publish date of the experiment. Note that this value is expected to be null
+   * in Remote Settings.
    * @format date-time
    */
   startDate: string | null;
   /**
-   * Actual end date of the experiment
+   * Actual end date of the experiment. Note that this value is expected to be null
+   * in Remote Settings.
    * @format date-time
    */
   endDate: string | null;
   /** Duration of the experiment from the start date in days */
   proposedDuration?: number;
-  /** Duration of enrollment from the start date in days */
+  /** Duration of enrollment from the start date in days
+   */
   proposedEnrollment: number;
   /** The slug of the reference branch */
   referenceBranch: string | null;
