@@ -2,6 +2,7 @@ import { typeGuards } from "..";
 import { assert } from "chai";
 
 const TEST_EXPERIMENT = {
+  id: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
   slug: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
   application: "firefox-desktop",
   userFacingName: "About:Welcome Pull Factor Reinforcement",
