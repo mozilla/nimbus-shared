@@ -4,6 +4,11 @@
  * 2. Jetstream via the Experimenter API
  */
 export interface NimbusExperiment {
+  /**
+   * Version of the NimbusExperiment schema this experiment refers to
+   */
+  schemaVersion: string;
+
   /** Unique identifier for the experiment */
   slug: string;
 
