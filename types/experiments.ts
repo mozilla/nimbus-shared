@@ -60,13 +60,14 @@ export interface NimbusExperiment {
   /**
    * Duration of the experiment from the start date in days.
    * Note that this property is only used during the analysis phase (not by the SDK)
+   * @asType integer
    */
   proposedDuration?: number;
 
   /**
    * This represents the number of days that we expect to enroll new users.
    * Note that this property is only used during the analysis phase (not by the SDK)
-   *
+   * @asType integer
    */
   proposedEnrollment: number;
 
@@ -89,14 +90,21 @@ interface BucketConfig {
   /** Additional inputs to the hashing function */
   namespace: string;
 
-  /**  Index of start of the range of buckets */
+  /**
+   * Index of start of the range of buckets
+   * @asType integer
+   * */
   start: number;
 
-  /**  Number of buckets to check */
+  /**
+   * Number of buckets to check
+   * @asType integer
+   * */
   count: number;
 
   /**
-   * Total number of buckets
+   * Total number of buckets. You can assume this will always be 10000.
+   * @asType integer
    * @default 10000  */
   total: number;
 }
@@ -119,6 +127,7 @@ interface Branch {
   /**
    * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
    * branch A would get 25% of the population)
+   * @asType integer
    * @default 1
    */
   ratio: number;
