@@ -22,7 +22,10 @@ export interface NimbusExperiment {
   /** Short public description of the experiment displayed on on "about:studies" */
   userFacingDescription: string;
 
-  /** Should we enroll new users into the experiment? */
+  /**
+   * When this property is set to true, the the SDK should not enroll new users
+   * into the experiment that have not already been enrolled.
+   */
   isEnrollmentPaused: boolean;
 
   /** Bucketing configuration */
@@ -56,16 +59,18 @@ export interface NimbusExperiment {
 
   /**
    * Duration of the experiment from the start date in days.
-   * Note that this value is expected to be null in Remote Settings.
-   * in Remote Settings. */
+   * Note that this property is only used during the analysis phase (not by the SDK)
+   */
   proposedDuration?: number;
 
   /**
-   * Duration of enrollment from the start date in days
+   * This represents the number of days that we expect to enroll new users.
+   * Note that this property is only used during the analysis phase (not by the SDK)
+   *
    */
   proposedEnrollment: number;
 
-  /** The slug of the reference branch */
+  /** The slug of the reference branch (that is, which branch we consider "control") */
   referenceBranch: string | null;
 
   /**
