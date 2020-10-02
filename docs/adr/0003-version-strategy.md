@@ -111,3 +111,5 @@ See Capabilities Proposal in[1]
 ## Links
 
 - [1][versioning for nimbus proposal](https://docs.google.com/document/d/1dmO94BjFtdSzsN9z9tuRrc-QIUKC9DLQdk-66f9V3Dg/edit#)
+- [Proposed release process for Nimbus](https://docs.google.com/document/d/1gI2jFBAq8fDWFeL8xCSfA7_nnJj5jR4pDaao4rZpk0I/edit#)
+- [Understanding how Nimbus SDK interacts with the Nimbus schema](https://docs.google.com/document/d/1_9X6ozvGXNqbd8e5xIoF845nb3bHExLsD8fbeFSP7DA/edit)
