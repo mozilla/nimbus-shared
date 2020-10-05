@@ -17,6 +17,8 @@ a process for publishing changes.
 
 ## Decision Outcome
 
+### Format and Language
+
 We decided to use [JSON Schema Draft-07](https://tools.ietf.org/html/draft-handrews-json-schema-01)
 for cross-platform validation of the experiment schema since validators are available in many
 languages, including Python, Rust, and JS.
@@ -46,9 +48,16 @@ or [PyPI](https://pypi.org/project/mozilla-nimbus-shared/).
 
 ## Other Options considered
 
+### Format and Language (v.s. JSON Schema v7 generated from Typescript)
+
 - Write JSON schema directly (Hard to read/write)
 - Use JSON schema compatible with MC's
   [JsonSchemaValidator](https://searchfox.org/mozilla-central/rev/222e4f64b769413ac1a1991d2397b13a0acb5d9d/toolkit/components/utils/JsonSchemaValidator.jsm)
   (Missing a lot of features like anyOf, non-standard)
+
+### Publishing changes across the system (v.s. nimbus shared)
+
+- SDK is the source of truth (SDK may have breaking changes that do not necessitate a schema change,
+  so they must be versioned separately)
 - Use an HTTP endpoint for the accessing schema (requires creating custom server-side infra for
   versioning)
