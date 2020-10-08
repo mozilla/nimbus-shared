@@ -55,4 +55,12 @@ describe("experiment schemas", () => {
     assert.equal(result.ok, false, "validation should fail");
     assert.propertyVal(result.errors[0], "message", 'should match format "date-time"');
   });
+  it("should fail on a non-integer value for a number", async () => {
+    const result = typeGuards.experiments_checkNimbusExperiment({
+      ...TEST_EXPERIMENT,
+      proposedEnrollment: 7.1,
+    });
+    assert.equal(result.ok, false, "validation should fail");
+    assert.propertyVal(result.errors[0], "message", "should be integer");
+  });
 });
