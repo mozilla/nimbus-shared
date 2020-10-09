@@ -7,6 +7,8 @@ src/_generated
 *.tgz
 python/poetry.lock
 python/pyproject.toml
+python/mozilla_nimbus_shared/data.json
+python/mozilla_nimbus_shared/schemas/
 *.egg-info
 python/README.md
 .vscode
