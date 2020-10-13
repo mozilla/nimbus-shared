@@ -35,6 +35,7 @@ PYTHON_INSTALL_STAMP := $(TIMESTAMP_DIR)/poetry-install
 DATA_STAMP := $(TIMESTAMP_DIR)/data
 DOCS_NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/docs-npm-install
 DOCS_BUILT_STAMP := $(TIMESTAMP_DIR)/docs-built
+POETRY_INSTALL := curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - --version 1.0.10
 
 DOC_SOURCES := $(shell find docs/pages -type f) $(shell find docs/public -type f) docs/global_style.scss
 
@@ -44,6 +45,9 @@ DOC_SOURCES := $(shell find docs/pages -type f) $(shell find docs/public -type f
 default: build
 
 install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(DOCS_NPM_INSTALL_STAMP)
+	$(POETRY_INSTALL)
+	sudo ln -sf $$HOME/.poetry/bin/poetry /usr/local/bin/poetry
+	poetry --version
 
 build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_CODE) $(GENERATED_DATA)
 
