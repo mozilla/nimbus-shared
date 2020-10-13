@@ -23,6 +23,7 @@ PYTHON_PACK_FILE := $(PYTHON_SDIST) $(PYTHON_WHEEL)
 GENERATED_TS := ./src/_generated/typeGuardHelpers.ts ./src/_generated/schemas.ts ./src/_generated/data.ts
 GENERATED_PYTHON := ./python/pyproject.toml
 GENERATED_DATA := ./dist/data.json
+GENERATED_DATA_PYTHON := ./python/$(PYTHON_PKGNAME)/data.json
 GENERATED := $(GENERATED_TS) $(GENERATED_PYTHON) $(GENERATED_DATA)
 JS_TEST_FILES := $(shell find ./test -name 'test-*')
 PY_TEST_FILES = python/mozilla_nimbus_shared/test.py
@@ -31,6 +32,7 @@ TIMESTAMP_DIR := ./.timestamps
 TSC_STAMP := $(TIMESTAMP_DIR)/tsc-last-run
 NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/npm-install
 SCHEMA_STAMP := $(TIMESTAMP_DIR)/schemas
+PYTHON_SCHEMAS := ./python/$(PYTHON_PKGNAME)/schemas
 PYTHON_INSTALL_STAMP := $(TIMESTAMP_DIR)/poetry-install
 DATA_STAMP := $(TIMESTAMP_DIR)/data
 DOCS_NPM_INSTALL_STAMP := $(TIMESTAMP_DIR)/docs-npm-install
@@ -45,12 +47,13 @@ default: build
 
 install: $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(DOCS_NPM_INSTALL_STAMP)
 
-build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_CODE) $(GENERATED_DATA)
+build: $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_CODE) $(GENERATED_DATA) $(PYTHON_SCHEMAS) $(GENERATED_DATA_PYTHON)
 
 clean:
 	rm -rf dist schemas $(TSC_STAMP) $(NPM_INSTALL_STAMP) node_modules $(TIMESTAMP_DIR) $(GENERATED) \
 		artifacts python/dist python/mozilla_nimbus_shared.egg-info python/poetry.lock src/_generated \
-		docs/out docs/node_modules docs/.next $(shell cd python; poetry env info -p) python/README.md
+		docs/out docs/node_modules docs/.next $(shell cd python; poetry env info -p) python/README.md \
+		$(GENERATED_DATA_PYTHON) $(PYTHON_SCHEMAS)
 
 test: build $(NPM_INSTALL_STAMP) $(PYTHON_INSTALL_STAMP) $(JS_TEST_FILES) $(PY_TEST_FILES)
 	$(MOCHA) -r ts-node/register $(JS_TEST_FILES)
@@ -115,13 +118,19 @@ src/_generated/schemas.ts: $(NPM_INSTALL_STAMP) $(SCHEMA_STAMP) bin/generate-sch
 src/_generated/data.ts: $(NPM_INSTALL_STAMP) $(GENERATED_DATA) bin/generate-data-code.ts
 	$(TS_NODE) ./bin/generate-data-code.ts
 
+$(GENERATED_DATA_PYTHON): $(GENERATED_DATA)
+	cp $(GENERATED_DATA) $(GENERATED_DATA_PYTHON)
+
+$(PYTHON_SCHEMAS): $(SCHEMA_STAMP)
+	cp -R ./schemas $(PYTHON_SCHEMAS)
+
 $(NPM_PACK_FILE): package.json $(TSC_STAMP) $(SCHEMA_STAMP) $(GENERATED_DATA) $(GENERATED_TS)
 	npm pack
 
 python/pyproject.toml: python/pyproject.toml.template bin/generate-pyproject-toml.ts $(NPM_INSTALL_STAMP) python/README.md
 	$(TS_NODE) ./bin/generate-pyproject-toml.ts
 
-$(PYTHON_SDIST): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(GENERATED_DATA) $(GENERATED_PYTHON) $(PYTHON_INSTALL_STAMP)
+$(PYTHON_SDIST): python/pyproject.toml $(PY_SRC) $(SCHEMA_STAMP) $(GENERATED_DATA) $(GENERATED_DATA_PYTHON) $(GENERATED_PYTHON) $(PYTHON_SCHEMAS) $(PYTHON_INSTALL_STAMP)
 	cd python; poetry build --format sdist
 
 $(PYTHON_WHEEL): $(PYTHON_SDIST)
