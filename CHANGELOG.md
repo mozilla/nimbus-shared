@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.0.0
+
+### Major Changes
+
+- New schema format that corresponds to a per-record `schemaVersion`
+
 ## Version 0.1.0
 
 ### Minor Changes
