@@ -1,47 +1,6 @@
 import { typeGuards } from "..";
 import { assert } from "chai";
-
-const TEST_EXPERIMENT = {
-  id: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-  slug: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-  application: "firefox-desktop",
-  userFacingName: "About:Welcome Pull Factor Reinforcement",
-  userFacingDescription:
-    "4 branch experiment different variants of about:welcome with a goal of testing new experiment framework and get insights on whether reinforcing pull-factors improves retention. Test deployment of multiple branches using new experiment framework",
-  isEnrollmentPaused: true,
-  bucketConfig: {
-    randomizationUnit: "normandy_id",
-    namespace: "bug-1637316-message-aboutwelcome-pull-factor-reinforcement-76-rel-release-76-77",
-    start: 0,
-    count: 2000,
-    total: 10000,
-  },
-  startDate: null,
-  endDate: null,
-  proposedEnrollment: 7,
-  referenceBranch: "control",
-  probeSets: [],
-  branches: [
-    {
-      slug: "control",
-      ratio: 1,
-      feature: {
-        featureId: "cfr",
-        enabled: true,
-        value: null,
-      },
-    },
-    {
-      slug: "treatment-variation-b",
-      ratio: 1,
-      feature: {
-        featureId: "cfr",
-        enabled: true,
-        value: null,
-      },
-    },
-  ],
-};
+import TEST_EXPERIMENT from "../data/experiment-recipe-samples/pull-factor.json";
 
 describe("experiment schemas", () => {
   it("should validate an existing onboarding experiment", async () => {
