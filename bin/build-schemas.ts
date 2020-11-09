@@ -15,6 +15,7 @@ async function main() {
   const config: tsj.Config = {
     tsconfig: "./tsconfig.json",
     encodeRefs: true,
+    additionalProperties: true,
   };
 
   await fs.mkdir("./schemas", { recursive: true });
