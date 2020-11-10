@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.1.0
+
+### Minor Changes
+
+- Allow `additionalProperties` on all schemas to support non-breaking minor changes.
+
 ## Version 1.0.0
 
 ### Major Changes
