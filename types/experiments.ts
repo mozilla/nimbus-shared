@@ -21,6 +21,9 @@ export interface NimbusExperiment {
   /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experiments */
   application: string;
 
+  /** A specific channel of an application such as Nightly, Beta, or Release */
+  channel: string;
+
   /** Public name of the experiment displayed on "about:studies" */
   userFacingName: string;
 
