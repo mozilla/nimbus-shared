@@ -3,6 +3,7 @@
   "id": "mobile-a-a-example",
   "slug": "mobile-a-a-example",
   "application": "reference-browser",
+  "channel": "nightly",
   "userFacingName": "Mobile A/A Example",
   "userFacingDescription": "An A/A Test to validate the Rust SDK",
   "isEnrollmentPaused": false,
