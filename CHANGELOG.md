@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.2.0
+
+### Minor Changes
+
+- Add `channel` for jetstream to use during the analysis phase (no impact to SDK consumers)
+
 ## Version 1.1.0
 
 ### Minor Changes
