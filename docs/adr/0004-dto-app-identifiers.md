@@ -13,8 +13,8 @@ How should we present this information to each consumer?
 
 ### The model + Experimenter
 
-As per
-the [ER model](https://mana.mozilla.org/wiki/pages/viewpage.action?spaceKey=FJT&title=Nimbus+Engineering#NimbusEngineering-EntityRelationshipModel),
+As per the
+[ER model](https://mana.mozilla.org/wiki/pages/viewpage.action?spaceKey=FJT&title=Nimbus+Engineering#NimbusEngineering-EntityRelationshipModel),
 an **application** is a specific product such as “Firefox Desktop”, “Fenix” that supports Nimbus
 experiments. It has **channels**, such as “nightly” or “release”, which map to application bundle
 ids for mobile and
@@ -51,8 +51,8 @@ Experimenter uses **channel** to determine:
     browserSettings.update.channel == "beta"
 
 **In the DTO,** we previously mapped application constants to **application** but as of
-[\#4239](https://github.com/mozilla/experimenter/pull/4239) we are sending channel constants
-for mobile in the application field.
+[\#4239](https://github.com/mozilla/experimenter/pull/4239) we are sending channel constants for
+mobile in the application field.
 
 ### X-Man
 
@@ -63,8 +63,8 @@ experiments in the desktop remote settings collection might be relevant, and the
 ### Rust SDK
 
 The SDK uses **application** property in the DTO for targeting and the
-[SDK expects](https://github.com/mozilla/experimenter/issues/4235) the application field to
-exactly match the app store bundle identifier of the implementing app.
+[SDK expects](https://github.com/mozilla/experimenter/issues/4235) the application field to exactly
+match the app store bundle identifier of the implementing app.
 
 ### Jetstream
 
