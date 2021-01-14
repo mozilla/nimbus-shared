@@ -18,10 +18,21 @@ export interface NimbusExperiment {
    */
   id: string;
 
-  /** A specific product such as Firefox Desktop or Fenix that supports Nimbus experiments */
-  application: string;
+  /** A slug identifying the targeted product for this experiment.
+   * It should be a lowercase_with_underscores name that is short and unambiguous and it should
+   * match the app_name found in https://probeinfo.telemetry.mozilla.org/glean/repositories.
+   * Examples are "fenix" or "firefox_desktop".
+   */
+  app_name: string;
 
-  /** A specific channel of an application such as Nightly, Beta, or Release */
+  /** The platform identifier for the targeted app.
+   * The app's identifier exactly as it appears in the relevant app store listing
+   * (for relevant platforms) or in the app's Glean initialization call
+   * (for other platforms). Examples are "org.mozilla.firefox_beta" or "firefox-desktop".
+   */
+  app_id: string;
+
+  /** A specific channel of an application such as "nightly", "beta", or "release" */
   channel: string;
 
   /** Public name of the experiment displayed on "about:studies" */
