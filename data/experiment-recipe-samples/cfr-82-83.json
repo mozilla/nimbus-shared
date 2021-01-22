@@ -1,9 +1,7 @@
 {
   "id": "bug-1671620-message-homepage-remediation-search-value-props-exper-release-82-83",
   "schemaVersion": "1.0.0",
-  "appName": "firefox_desktop",
   "application": "firefox_desktop",
-  "appId": "firefox-desktop",
   "channel": "nightly",
   "probeSets": [],
   "startDate": null,

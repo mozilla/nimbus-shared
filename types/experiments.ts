@@ -58,6 +58,10 @@ export interface NimbusExperiment {
   /** A list of probe set slugs relevant to the experiment analysis */
   probeSets: Array<string>;
 
+  /** A list of featureIds the experiment contains configurations for.
+   */
+  featureIds?: Array<string>;
+
   /** Branch configuration for the experiment */
   branches: Array<Branch>;
 
