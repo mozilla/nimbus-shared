@@ -23,14 +23,19 @@ export interface NimbusExperiment {
    * match the app_name found in https://probeinfo.telemetry.mozilla.org/glean/repositories.
    * Examples are "fenix" or "firefox_desktop".
    */
-  app_name: string;
+  appName?: string;
+
+  /**
+   * DEPRECATED by appName
+   */
+  application: string;
 
   /** The platform identifier for the targeted app.
    * The app's identifier exactly as it appears in the relevant app store listing
    * (for relevant platforms) or in the app's Glean initialization call
    * (for other platforms). Examples are "org.mozilla.firefox_beta" or "firefox-desktop".
    */
-  app_id: string;
+  appId?: string;
 
   /** A specific channel of an application such as "nightly", "beta", or "release" */
   channel: string;
