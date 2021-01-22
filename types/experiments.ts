@@ -20,7 +20,7 @@ export interface NimbusExperiment {
 
   /** A slug identifying the targeted product for this experiment.
    * It should be a lowercase_with_underscores name that is short and unambiguous and it should
-   * match the appName found in https://probeinfo.telemetry.mozilla.org/glean/repositories.
+   * match the app_name found in https://probeinfo.telemetry.mozilla.org/glean/repositories.
    * Examples are "fenix" or "firefox_desktop".
    */
   appName?: string;

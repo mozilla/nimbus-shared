@@ -1,4 +1,6 @@
-Status: accepted Deciders: @tdsmith, @travis79, @k88hudson, @jaredlockhart Date: 2021-01-12
+- Status: accepted
+- Deciders: @tdsmith, @travis79, @k88hudson, @jaredlockhart
+- Date: 2021-01-12
 
 # Context and problem statement
 
@@ -78,8 +80,8 @@ know:
   apps has a unique bundle identifier.
 
 The data pipeline does not currently maintain a mapping of application family, release channel, and
-bundle ID anywhere. One partial solution is a mapping from (legacy telemetry appName, normalized_os)
-to a product name and canonical name in the
+bundle ID anywhere. One partial solution is a mapping from (legacy telemetry app_name,
+normalized_os) to a product name and canonical name in the
 [product_info UDF](https://github.com/mozilla/bigquery-etl/tree/master/sql/mozfun/norm/product_info),
 which has a notion of product. The
 [probe scraper repository list](https://probeinfo.telemetry.mozilla.org/glean/repositories)
