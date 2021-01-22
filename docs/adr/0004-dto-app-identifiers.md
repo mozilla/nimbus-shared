@@ -1,6 +1,4 @@
-Status: accepted  
-Deciders: @tdsmith, @travis79, @k88hudson, @jaredlockhart  
-Date: 2021-01-12
+Status: accepted Deciders: @tdsmith, @travis79, @k88hudson, @jaredlockhart Date: 2021-01-12
 
 # Context and problem statement
 
@@ -80,8 +78,8 @@ know:
   apps has a unique bundle identifier.
 
 The data pipeline does not currently maintain a mapping of application family, release channel, and
-bundle ID anywhere. One partial solution is a mapping from (legacy telemetry app_name,
-normalized_os) to a product name and canonical name in the
+bundle ID anywhere. One partial solution is a mapping from (legacy telemetry appName, normalized_os)
+to a product name and canonical name in the
 [product_info UDF](https://github.com/mozilla/bigquery-etl/tree/master/sql/mozfun/norm/product_info),
 which has a notion of product. The
 [probe scraper repository list](https://probeinfo.telemetry.mozilla.org/glean/repositories)
@@ -114,11 +112,11 @@ Jeff Klukas has
 to introduce new values to the Glean probe-scraper API that represent the concepts that we care
 about.
 
-To align, we would remove “application” and “family” from the DTO and introduce two new keys:
+To align, we would remove “application” from the DTO and introduce two new keys:
 
-- **app_name** is the same as “family” in 1a, e.g. “fenix”, “firefox_desktop”
+- **appName** is the same as “family” in 1a, e.g. “fenix”, “firefox_desktop”
 
-- **app_id** is the same as “application” in 1a, e.g. “org.mozilla.firefox.”
+- **appId** is the same as “application” in 1a, e.g. “org.mozilla.firefox.”
 
 - **channel** is like “release,” “beta,” etc (even on mobile)
 
