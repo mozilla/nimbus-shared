@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 1.3.0
+
+### Minor Changes
+
+- Add `featureIds` at the top level to support the SDK filtering experiments by `featureId` more
+  easily.
+- Add `app_id` and `app_name` at the top level for automated analysis and for filtering in the
+  nimbus-sdk
+- Deprecated `application`
+
 ## Version 1.2.0
 
 ### Minor Changes
