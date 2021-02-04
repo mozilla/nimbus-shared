@@ -17,6 +17,7 @@
     "count": 5000,
     "total": 10000
   },
+  "targeting": null,
   "startDate": null,
   "endDate": null,
   "proposedEnrollment": 7,
