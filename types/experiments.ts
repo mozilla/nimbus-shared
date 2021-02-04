@@ -69,7 +69,7 @@ export interface NimbusExperiment {
    * JEXL expression used to filter experiments based on locale, geo, etc.
    */
 
-  targeting?: string;
+  targeting?: string | null;
 
   /**
    * Actual publish date of the experiment
