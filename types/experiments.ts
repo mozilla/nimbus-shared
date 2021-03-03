@@ -62,7 +62,7 @@ export interface NimbusExperiment {
   probeSets: Array<string>;
 
   /** A list of outcomes relevant to the experiment analysis. */
-  outcomes: Array<Outcome>;
+  outcomes?: Array<Outcome>;
 
   /** A list of featureIds the experiment contains configurations for.
    */
