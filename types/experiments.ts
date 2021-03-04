@@ -55,8 +55,14 @@ export interface NimbusExperiment {
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
 
-  /** A list of probe set slugs relevant to the experiment analysis */
+  /** A list of probe set slugs relevant to the experiment analysis
+   * Deprecated and should always be an empty list as of v1.4.
+   * Will be removed in the next major version.
+   */
   probeSets: Array<string>;
+
+  /** A list of outcomes relevant to the experiment analysis. */
+  outcomes?: Array<Outcome>;
 
   /** A list of featureIds the experiment contains configurations for.
    */
@@ -161,4 +167,12 @@ interface Branch {
   ratio: number;
 
   feature?: FeatureConfig;
+}
+
+interface Outcome {
+  /** Identifier for the outcome */
+  slug: string;
+
+  /** e.g. "primary" or "secondary" */
+  priority: string;
 }
