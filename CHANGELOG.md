@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.4.0
+
+### Minor Changes
+
+- Add `outcomes` key to the Experiment DTO.
+- Deprecated `probeSets`.
+
 ## Version 1.3.0
 
 ### Minor Changes
