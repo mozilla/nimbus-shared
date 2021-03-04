@@ -39,6 +39,7 @@ const DocsApp: React.FunctionComponent<AppProps> = ({ Component, pageProps, rout
     { title: "Schemas", href: "/dev/schemas" },
     { title: "Data", href: "/dev/data" },
     { title: "Writing Docs", href: "/dev/docs" },
+    { title: "Deploying", href: "/dev/deployments" },
   ];
 
   const components = {
