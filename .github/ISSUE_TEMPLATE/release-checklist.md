@@ -34,6 +34,9 @@ values and then delete this instruction. -->
 - [ ] In #project-nimbus on Slack, write:
       `@here Version VERSION of nimbus-shared has been released on NPM and PyPI`.
 - [ ] Create a milestone, and a release issue for vNEXT_VERSION with the [release issue template][].
+- [ ] Update the
+      [DTO documentation](https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=130920248) with
+      the new version and any schema changes.
 - [ ] Close this issue and the milestone.
 
 [release issue template]:
