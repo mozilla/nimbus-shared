@@ -151,7 +151,7 @@ interface FeatureConfig {
   enabled: boolean;
 
   /** Optional extra params for the feature (this should be validated against a schema) */
-  value: { [key: string]: unknown } | null;
+  value: { [key: string]: unknown };
 }
 
 interface Branch {
@@ -166,7 +166,7 @@ interface Branch {
    */
   ratio: number;
 
-  feature?: FeatureConfig;
+  feature: FeatureConfig;
 }
 
 interface Outcome {

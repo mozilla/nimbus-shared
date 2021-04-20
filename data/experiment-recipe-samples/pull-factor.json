@@ -27,12 +27,12 @@
     {
       "slug": "control",
       "ratio": 1,
-      "feature": { "featureId": "cfr", "enabled": true, "value": null }
+      "feature": { "featureId": "cfr", "enabled": true, "value": {} }
     },
     {
       "slug": "treatment-variation-b",
       "ratio": 1,
-      "feature": { "featureId": "cfr", "enabled": true, "value": null }
+      "feature": { "featureId": "cfr", "enabled": true, "value": {} }
     }
   ]
 }
