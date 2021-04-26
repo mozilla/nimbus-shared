@@ -30,7 +30,7 @@
       "feature": {
         "featureId": "bookmarkId",
         "enabled": true,
-        "value": null
+        "value": {}
       }
     },
     {
@@ -39,7 +39,7 @@
       "feature": {
         "featureId": "bookmarkId",
         "enabled": true,
-        "value": null
+        "value": {}
       }
     }
   ]
