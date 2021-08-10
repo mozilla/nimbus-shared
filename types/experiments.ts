@@ -23,19 +23,14 @@ export interface NimbusExperiment {
    * match the app_name found in https://probeinfo.telemetry.mozilla.org/glean/repositories.
    * Examples are "fenix" or "firefox_desktop".
    */
-  appName?: string;
-
-  /**
-   * DEPRECATED by appName
-   */
-  application: string;
+  appName: string;
 
   /** The platform identifier for the targeted app.
    * The app's identifier exactly as it appears in the relevant app store listing
    * (for relevant platforms) or in the app's Glean initialization call
    * (for other platforms). Examples are "org.mozilla.firefox_beta" or "firefox-desktop".
    */
-  appId?: string;
+  appId: string;
 
   /** A specific channel of an application such as "nightly", "beta", or "release" */
   channel: string;
@@ -55,12 +50,6 @@ export interface NimbusExperiment {
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
 
-  /** A list of probe set slugs relevant to the experiment analysis
-   * Deprecated and should always be an empty list as of v1.4.
-   * Will be removed in the next major version.
-   */
-  probeSets: Array<string>;
-
   /** A list of outcomes relevant to the experiment analysis. */
   outcomes?: Array<Outcome>;
 
@@ -69,7 +58,7 @@ export interface NimbusExperiment {
   featureIds?: Array<string>;
 
   /** Branch configuration for the experiment */
-  branches: Array<Branch>;
+  branches: Array<Branch | SingleFeatureBranch>;
 
   /**
    * JEXL expression used to filter experiments based on locale, geo, etc.
@@ -80,14 +69,14 @@ export interface NimbusExperiment {
   /**
    * Actual publish date of the experiment
    * Note that this value is expected to be null in Remote Settings.
-   * @format date-time
+   * @format date
    */
   startDate: string | null;
 
   /**
    * Actual end date of the experiment.
    * Note that this value is expected to be null in Remote Settings.
-   * @format date-time
+   * @format date
    */
   endDate: string | null;
 
@@ -148,10 +137,25 @@ interface FeatureConfig {
   featureId: string;
 
   /** This can be used to turn the whole feature on/off */
-  enabled: boolean;
+  enabled?: boolean;
 
   /** Optional extra params for the feature (this should be validated against a schema) */
   value: { [key: string]: unknown };
+}
+
+interface SingleFeatureBranch {
+  /** Identifier for the branch */
+  slug: string;
+
+  /**
+   * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
+   * branch A would get 25% of the population)
+   * @asType integer
+   * @default 1
+   */
+  ratio: number;
+
+  feature: FeatureConfig;
 }
 
 interface Branch {
@@ -166,7 +170,7 @@ interface Branch {
    */
   ratio: number;
 
-  feature: FeatureConfig;
+  features: Array<FeatureConfig>;
 }
 
 interface Outcome {
