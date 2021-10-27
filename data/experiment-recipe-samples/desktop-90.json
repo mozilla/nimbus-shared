@@ -67,9 +67,7 @@
   },
   "channel": "release",
   "endDate": null,
-  "featureIds": [
-    "privatebrowsing"
-  ],
+  "featureIds": ["privatebrowsing"],
   "id": "firefox-vpn-test-1629",
   "isEnrollmentPaused": true,
   "outcomes": [],

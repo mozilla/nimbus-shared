@@ -156,13 +156,13 @@ interface Branch {
   ratio: number;
 
   /**
-  * Firefox Desktop <95
-  */
+   * Firefox Desktop <95
+   */
   feature: FeatureConfig;
 
   /**
-  * Firefox Desktop >=95
-  */
+   * Firefox Desktop >=95
+   */
   features?: Array<FeatureConfig>;
 }
 

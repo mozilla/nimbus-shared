@@ -59,10 +59,7 @@
   "probeSets": [],
   "startDate": null,
   "targeting": "version|versionCompare('95.!') >= 0 && 'app.shield.optoutstudies.enabled'|preferenceValue",
-  "featureIds": [
-    "privatebrowsing",
-    "aboutwelcome"
-  ],
+  "featureIds": ["privatebrowsing", "aboutwelcome"],
   "application": "firefox-desktop",
   "bucketConfig": {
     "count": 5000,

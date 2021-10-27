@@ -9,12 +9,14 @@
           "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
         }
       },
-      "features": [{
-        "featureId": "privatebrowsing",
-        "value": {
-          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
+      "features": [
+        {
+          "featureId": "privatebrowsing",
+          "value": {
+            "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
+          }
         }
-      }],
+      ],
       "ratio": 1,
       "slug": "control"
     },
@@ -25,21 +27,23 @@
           "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
         }
       },
-      "features": [{
-        "featureId": "privatebrowsing",
-        "value": {
-          "infoBody": "Firefox clears your search and browsing history when you close all private windows, but this doesn't make you anonymous.",
-          "infoLinkText": "Learn more",
-          "infoTitle": "You’re in a private window",
-          "infoTitleEnabled": true,
-          "promoHeader": "Hide your activity and location, everywhere you browse",
-          "promoLinkText": "Stay private with Mozilla VPN",
-          "promoLinkType": "button",
-          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=var1",
-          "promoSectionStyle": "bottom",
-          "promoTitleEnabled": false
+      "features": [
+        {
+          "featureId": "privatebrowsing",
+          "value": {
+            "infoBody": "Firefox clears your search and browsing history when you close all private windows, but this doesn't make you anonymous.",
+            "infoLinkText": "Learn more",
+            "infoTitle": "You’re in a private window",
+            "infoTitleEnabled": true,
+            "promoHeader": "Hide your activity and location, everywhere you browse",
+            "promoLinkText": "Stay private with Mozilla VPN",
+            "promoLinkType": "button",
+            "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=var1",
+            "promoSectionStyle": "bottom",
+            "promoTitleEnabled": false
+          }
         }
-      }],
+      ],
       "ratio": 1,
       "slug": "var1"
     },
@@ -50,23 +54,25 @@
           "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
         }
       },
-      "features": [{
-        "featureId": "privatebrowsing",
-        "value": {
-          "infoBody": "Private window: Firefox clears your search and browsing history when you close all private windows. This doesn’t make you anonymous.",
-          "infoLinkText": "Learn more",
-          "infoTitle": "You’re in a private window",
-          "infoTitleEnabled": false,
-          "promoHeader": "Get privacy protection everywhere you browse",
-          "promoImageLarge": "chrome://browser/content/assets/moz-vpn.svg",
-          "promoLinkText": "Stay private with Mozilla VPN",
-          "promoLinkType": "button",
-          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=var2",
-          "promoSectionStyle": "below-search",
-          "promoTitle": "Hide browsing activity and location with Mozilla’s VPN. One tap creates a secure connection, even on public Wi-FI.",
-          "promoTitleEnabled": true
+      "features": [
+        {
+          "featureId": "privatebrowsing",
+          "value": {
+            "infoBody": "Private window: Firefox clears your search and browsing history when you close all private windows. This doesn’t make you anonymous.",
+            "infoLinkText": "Learn more",
+            "infoTitle": "You’re in a private window",
+            "infoTitleEnabled": false,
+            "promoHeader": "Get privacy protection everywhere you browse",
+            "promoImageLarge": "chrome://browser/content/assets/moz-vpn.svg",
+            "promoLinkText": "Stay private with Mozilla VPN",
+            "promoLinkType": "button",
+            "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=var2",
+            "promoSectionStyle": "below-search",
+            "promoTitle": "Hide browsing activity and location with Mozilla’s VPN. One tap creates a secure connection, even on public Wi-FI.",
+            "promoTitleEnabled": true
+          }
         }
-      }],
+      ],
       "ratio": 1,
       "slug": "var2"
     }
@@ -80,9 +86,7 @@
   },
   "channel": "release",
   "endDate": null,
-  "featureIds": [
-    "privatebrowsing"
-  ],
+  "featureIds": ["privatebrowsing"],
   "id": "firefox-vpn-test-1629",
   "isEnrollmentPaused": true,
   "outcomes": [],
