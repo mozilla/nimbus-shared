@@ -3,6 +3,12 @@
   "appName": "firefox_desktop",
   "branches": [
     {
+      "feature": {
+        "featureId": "privatebrowsing",
+        "value": {
+          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
+        }
+      },
       "features": [{
         "featureId": "privatebrowsing",
         "value": {
@@ -13,6 +19,12 @@
       "slug": "control"
     },
     {
+      "feature": {
+        "featureId": "privatebrowsing",
+        "value": {
+          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
+        }
+      },
       "features": [{
         "featureId": "privatebrowsing",
         "value": {
@@ -32,6 +44,12 @@
       "slug": "var1"
     },
     {
+      "feature": {
+        "featureId": "privatebrowsing",
+        "value": {
+          "promoLinkUrl": "https://vpn.mozilla.org/?utm_campaign=private-browsing-vpn-link&entrypoint_experiment=firefox-vpn-test-1629&entrypoint_variation=control"
+        }
+      },
       "features": [{
         "featureId": "privatebrowsing",
         "value": {

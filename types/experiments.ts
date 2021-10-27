@@ -58,7 +58,7 @@ export interface NimbusExperiment {
   featureIds?: Array<string>;
 
   /** Branch configuration for the experiment */
-  branches: Array<Branch | SingleFeatureBranch>;
+  branches: Array<Branch>;
 
   /**
    * JEXL expression used to filter experiments based on locale, geo, etc.
@@ -156,14 +156,14 @@ interface Branch {
   ratio: number;
 
   /**
-   * Legacy support
-   */
+  * Firefox Desktop <95
+  */
   feature: FeatureConfig;
-  
+
   /**
-   * Firefox Desktop 95+
-   */
-  features: Array<FeatureConfig>;
+  * Firefox Desktop >=95
+  */
+  features?: Array<FeatureConfig>;
 }
 
 interface Outcome {
