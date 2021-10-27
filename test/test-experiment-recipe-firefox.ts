@@ -1,7 +1,6 @@
 import { typeGuards } from "..";
 import { assert } from "chai";
-import TEST_EXPERIMENT from "../data/experiment-recipe-samples/pull-factor.json";
-import TEST_82_83 from "../data/experiment-recipe-samples/cfr-82-83.json";
+import TEST_EXPERIMENT from "../data/experiment-recipe-samples/desktop-90.json";
 
 describe("experiment schemas", () => {
   it("should validate an existing onboarding experiment", async () => {
@@ -13,7 +12,7 @@ describe("experiment schemas", () => {
       startDate: "foo",
     });
     assert.equal(result.ok, false, "validation should fail");
-    assert.propertyVal(result.errors[0], "message", 'should match format "date-time"');
+    assert.propertyVal(result.errors[0], "message", 'should match format "date"');
   });
   it("should fail on a non-integer value for a number", async () => {
     const result = typeGuards.experiments_checkNimbusExperiment({
@@ -22,8 +21,5 @@ describe("experiment schemas", () => {
     });
     assert.equal(result.ok, false, "validation should fail");
     assert.propertyVal(result.errors[0], "message", "should be integer");
-  });
-  it("should validate an existing 82-83 experiment with arguments", async () => {
-    typeGuards.experiments_checkNimbusExperiment(TEST_82_83);
   });
 });
