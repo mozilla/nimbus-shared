@@ -143,21 +143,6 @@ interface FeatureConfig {
   value: { [key: string]: unknown };
 }
 
-interface SingleFeatureBranch {
-  /** Identifier for the branch */
-  slug: string;
-
-  /**
-   * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
-   * branch A would get 25% of the population)
-   * @asType integer
-   * @default 1
-   */
-  ratio: number;
-
-  feature: FeatureConfig;
-}
-
 interface Branch {
   /** Identifier for the branch */
   slug: string;
@@ -170,6 +155,14 @@ interface Branch {
    */
   ratio: number;
 
+  /**
+   * Legacy support
+   */
+  feature: FeatureConfig;
+  
+  /**
+   * Firefox Desktop 95+
+   */
   features: Array<FeatureConfig>;
 }
 
