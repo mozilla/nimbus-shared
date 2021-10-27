@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 1.6.1
+
+### Minor Changes
+
+- Prettier formatting
+
+## Version 1.6.0
+
+### Minor Changes
+
+- Support multifeature
+
 ## Version 1.5.0
 
 ### Minor Changes
