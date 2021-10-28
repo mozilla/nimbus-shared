@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.6.2
+
+### Minor Changes
+
+- Updating package.json 
+
 ## Version 1.6.1
 
 ### Minor Changes
