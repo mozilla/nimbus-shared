@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Updating package.json 
+- Updating package.json
 
 ## Version 1.6.1
 
