@@ -1,7 +1,7 @@
 ---
 name: Schema Change Checklist
 about: The checklist for making a schema change
-title: Schema Change: <changes>
+title: Schema Change for <changes>
 labels: ""
 assignees: ""
 ---
