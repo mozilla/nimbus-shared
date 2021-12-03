@@ -58,7 +58,10 @@ export interface NimbusExperiment {
   featureIds?: Array<string>;
 
   /** Branch configuration for the experiment */
-  branches: Array<Branch>;
+  branches:
+    | Array<SingleFeatureBranch>
+    | Array<MultiFeatureDesktopBranch>
+    | Array<MultiFeatureMobileBranch>;
 
   /**
    * JEXL expression used to filter experiments based on locale, geo, etc.
@@ -143,7 +146,13 @@ interface FeatureConfig {
   value: { [key: string]: unknown };
 }
 
-interface Branch {
+interface SingleFeatureBranch {
+  /**
+   * Firefox Desktop <95
+   * Firefox Android <96
+   * Firefox iOS <39
+   */
+
   /** Identifier for the branch */
   slug: string;
 
@@ -156,14 +165,64 @@ interface Branch {
   ratio: number;
 
   /**
-   * Firefox Desktop <95
+   * A single feature configuration
    */
   feature: FeatureConfig;
+}
 
+interface MultiFeatureDesktopBranch {
   /**
    * Firefox Desktop >=95
    */
-  features?: Array<FeatureConfig>;
+
+  /** Identifier for the branch */
+  slug: string;
+
+  /**
+   * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
+   * branch A would get 25% of the population)
+   * @asType integer
+   * @default 1
+   */
+  ratio: number;
+
+  /**
+   * The feature key must be provided with valid values to prevent crashes if the DTO
+   * is encountered by Desktop clients earlier than version 95.
+   */
+  feature: {
+    featureId: "unused-feature-id-for-legacy-support";
+    enabled: false;
+    value: Record<string, unknown>;
+  };
+
+  /**
+   * An array of feature configurations
+   */
+  features: Array<FeatureConfig>;
+}
+
+interface MultiFeatureMobileBranch {
+  /**
+   * Firefox Android >=96
+   * Firefox iOS >=39
+   */
+
+  /** Identifier for the branch */
+  slug: string;
+
+  /**
+   * Relative ratio of population for the branch (e.g. if branch A=1 and branch B=3,
+   * branch A would get 25% of the population)
+   * @asType integer
+   * @default 1
+   */
+  ratio: number;
+
+  /**
+   * An array of feature configurations
+   */
+  features: Array<FeatureConfig>;
 }
 
 interface Outcome {
