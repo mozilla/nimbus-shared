@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.7.0
+
+### Major Changes
+
+- Multifeature support in Desktop and Mobile including Legacy Desktop
+
 ## Version 1.6.2
 
 ### Minor Changes
