@@ -154,9 +154,6 @@ interface FeatureConfig {
   /** The identifier for the feature flag */
   featureId: string;
 
-  /** This can be used to turn the whole feature on/off */
-  enabled?: boolean;
-
   /** Optional extra params for the feature (this should be validated against a schema) */
   value: { [key: string]: unknown };
 }
