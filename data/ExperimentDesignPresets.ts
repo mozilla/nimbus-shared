@@ -27,11 +27,11 @@ const presets: { [id: string]: Preset<NimbusExperiment> } = {
       proposedDuration: 28,
       proposedEnrollment: 7,
       branches: [
-        { slug: "control", ratio: 1, feature: { featureId: "cfr", enabled: true, value: {} } },
+        { slug: "control", ratio: 1, feature: { featureId: "cfr", value: {} } },
         {
           slug: "treatment",
           ratio: 1,
-          feature: { featureId: "cfr", enabled: true, value: {} },
+          feature: { featureId: "cfr", value: {} },
         },
       ],
       bucketConfig: {

@@ -1,6 +1,13 @@
 import { typeGuards } from "..";
 import { assert } from "chai";
-import TEST_EXPERIMENT from "../data/experiment-recipe-samples/desktop-90.json";
+import TEST_LEGACY_EXPERIMENT from "../data/experiment-recipe-samples/desktop-90.json";
+import TEST_EXPERIMENT from "../data/experiment-recipe-samples/desktop-98.json";
+
+describe("experiment schemas legacy", () => {
+  it("should validate an existing onboarding experiment", async () => {
+    typeGuards.experiments_assertNimbusExperiment(TEST_LEGACY_EXPERIMENT);
+  });
+});
 
 describe("experiment schemas", () => {
   it("should validate an existing onboarding experiment", async () => {
