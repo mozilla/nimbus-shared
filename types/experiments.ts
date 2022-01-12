@@ -47,6 +47,14 @@ export interface NimbusExperiment {
    */
   isEnrollmentPaused: boolean;
 
+  /**
+   * When this property is set to true, treat this experiment as a rollout.
+   * Rollouts are currently handled as single-branch experiments separated
+   * from the bucketing namespace for normal experiments.
+   * See also: https://mozilla-hub.atlassian.net/browse/SDK-405
+   */
+  isRollout?: boolean;
+
   /** Bucketing configuration */
   bucketConfig: BucketConfig;
 
