@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.8.0
+
+### Major Changes
+
+- Add `isRollout` boolean property to Experiment type [#183](https://github.com/mozilla/nimbus-shared/issues/183)
+
 ## Version 1.7.0
 
 ### Major Changes
