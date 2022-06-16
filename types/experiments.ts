@@ -85,6 +85,13 @@ export interface NimbusExperiment {
   startDate: string | null;
 
   /**
+   * Actual enrollment end date of the experiment.
+   * Note that this value is expected to be null in Remote Settings.
+   * @format date
+   */
+  enrollmentEndDate?: string | null;
+
+  /**
    * Actual end date of the experiment.
    * Note that this value is expected to be null in Remote Settings.
    * @format date
