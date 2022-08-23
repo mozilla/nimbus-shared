@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.9.0
+
+### Major Changes
+
+- Removed `Experiment.filter_expression`
+  [#208](https://github.com/mozilla/nimbus-shared/issues/208).
+- Removed `ExperimentFeature.enabled` [#184](https://github.com/mozilla/nimbus-shared/issues/184).
+- Removed Firefox Messaging System types [#206](https://github.com/mozilla/nimbus-shared/pull/206).
+
 ## Version 1.8.0
 
 ### Major Changes
