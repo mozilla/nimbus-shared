@@ -114,12 +114,6 @@ export interface NimbusExperiment {
 
   /** The slug of the reference branch (that is, which branch we consider "control") */
   referenceBranch: string | null;
-
-  /**
-   * This is NOT used by Nimbus, but has special functionality in Remote Settings.
-   * See https://remote-settings.readthedocs.io/en/latest/target-filters.html#how
-   */
-  filter_expression?: string;
 }
 
 interface BucketConfig {
