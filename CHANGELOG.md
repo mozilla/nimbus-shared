@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.10.0
+
+### Major Changes
+
+- Added `Experiment.featureValidationOptOut`
+  [#213](https://github.com/mozilla/nimbus-shared/pull/213).
+
 ## Version 1.9.0
 
 ### Major Changes
