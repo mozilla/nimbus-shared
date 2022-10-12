@@ -2,6 +2,7 @@ import { typeGuards } from "..";
 import { assert } from "chai";
 import TEST_LEGACY_EXPERIMENT from "../data/experiment-recipe-samples/desktop-90.json";
 import TEST_EXPERIMENT from "../data/experiment-recipe-samples/desktop-98.json";
+import TEST_EXPERIMENT_FEATURE_VALIDATION_OPT_OUT from "../data/experiment-recipe-samples/desktop-107-featureValidationOptOut.json";
 
 describe("experiment schemas legacy", () => {
   it("should validate an existing onboarding experiment", async () => {
@@ -36,5 +37,11 @@ describe("experiment schemas", () => {
     });
     assert.equal(result.ok, false, "validation should fail");
     assert.propertyVal(result.errors[0], "message", "should be integer");
+  });
+});
+
+describe("featureValidationOptOut", () => {
+  it("is supported", async () => {
+    typeGuards.experiments_assertNimbusExperiment(TEST_EXPERIMENT_FEATURE_VALIDATION_OPT_OUT);
   });
 });

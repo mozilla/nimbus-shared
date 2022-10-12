@@ -114,6 +114,9 @@ export interface NimbusExperiment {
 
   /** The slug of the reference branch (that is, which branch we consider "control") */
   referenceBranch: string | null;
+
+  /** Opt out of feature schema validation. Only supported on desktop. */
+  featureValidationOptOut?: boolean;
 }
 
 interface BucketConfig {
