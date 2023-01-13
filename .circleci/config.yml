@@ -55,7 +55,7 @@ jobs:
 
       - add_ssh_keys:
           fingerprints:
-            - "b4:9c:52:c8:7e:a5:20:8a:ed:54:74:b4:0e:77:ed:e7"
+            - "c3:70:e7:fe:ee:b2:18:a5:66:65:cb:0d:43:37:c6:ae"
 
       - run:
           name: Deploy docs to gh-pages
