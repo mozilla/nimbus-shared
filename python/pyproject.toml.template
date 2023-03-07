@@ -11,11 +11,11 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-jsonschema = "^3.2"
+python = "^3.7"
+jsonschema = "^4.17.3"
 
 [tool.poetry.dev-dependencies]
-black = "^19.10b0"
+black = "^23.1"
 pytest = "^5.4.3"
 
 [build-system]
