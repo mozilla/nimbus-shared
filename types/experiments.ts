@@ -117,6 +117,18 @@ export interface NimbusExperiment {
 
   /** Opt out of feature schema validation. Only supported on desktop. */
   featureValidationOptOut?: boolean;
+
+  /**
+   * Per-locale localization substitutions.
+   *
+   * The top level key is the locale (e.g., "en-US" or "fr"). Each entry is a
+   * mapping of string IDs to their localized equivalents.
+   *
+   * Only supported on desktop.
+   */
+  localizations?: {
+    [locale: string]: Record<string, string>;
+  };
 }
 
 interface BucketConfig {
