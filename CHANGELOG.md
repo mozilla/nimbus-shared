@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.0.0
+
+### Major Changes
+
+- Python 3.7+ is now required.
+  [#234](https://github.com/mozilla/nimbus-shared/pull/234).
+- jsonschema dependency updated to 4.17.3+
+  [#234](https://github.com/mozilla/nimbus-shared/pull/234).
+- Added localization field to Nimbus Experiment schema
+  [#232](https://github.com/mozilla/nimbus-shared/pull/232).
+
 ## Version 1.10.0
 
 ### Major Changes
