@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.0.1
+
+- Schemas for the Python package are now packaged in the correct location.
+  [#237](https://github.com/mozilla/nimbus-shared/pull/237)
+
 ## Version 2.0.0
 
 ### Major Changes
