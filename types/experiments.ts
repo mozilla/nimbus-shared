@@ -128,7 +128,7 @@ export interface NimbusExperiment {
    */
   localizations?: {
     [locale: string]: Record<string, string>;
-  };
+  } | null;
 }
 
 interface BucketConfig {
