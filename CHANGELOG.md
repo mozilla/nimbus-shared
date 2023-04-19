@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.1.0
+
+- Make localizations field nullable. [#241](https://github.com/mozilla/nimbus-shared/pull/241)
+
 ## Version 2.0.1
 
 - Schemas for the Python package are now packaged in the correct location.
