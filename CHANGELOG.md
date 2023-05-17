@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 2.2.0
+
+- Constrain l10n string ids [#243](https://github.com/mozilla/nimbus-shared/pull/243)
+- Add locales field. [#245](https://github.com/mozilla/nimbus-shared/pull/245)
+
 ## Version 2.1.0
 
 - Make localizations field nullable. [#241](https://github.com/mozilla/nimbus-shared/pull/241)
