@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.3.0
+
+- Remove l10n string id validation [#248](https://github.com/mozilla/nimbus-shared/pull/248)
+
 ## Version 2.2.1
 
 - Make sure to run `make pack` before `npm publish`
