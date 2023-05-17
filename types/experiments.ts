@@ -125,10 +125,9 @@ export interface NimbusExperiment {
    * mapping of string IDs to their localized equivalents.
    *
    * Only supported on desktop.
-   *
    */
   localizations?: {
-    [locale: string]: Record<L10nStringID, string>;
+    [locale: string]: Record<string, string>;
   } | null;
 
   /**
@@ -139,14 +138,6 @@ export interface NimbusExperiment {
    */
   locales?: string[];
 }
-
-/**
- * A string ID.
- *
- * @pattern ^[A-Za-z0-9\-]+$
- * @minLength 9
- */
-type L10nStringID = string;
 
 interface BucketConfig {
   /**
