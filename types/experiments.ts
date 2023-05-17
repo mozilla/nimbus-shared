@@ -129,6 +129,14 @@ export interface NimbusExperiment {
   localizations?: {
     [locale: string]: Record<string, string>;
   } | null;
+
+  /**
+   * The list of locale codes (e.g., "en-US" or "fr") that this experiment is
+   * targeting.
+   *
+   * If null, all locales are targeted.
+   */
+  locales?: string[];
 }
 
 interface BucketConfig {
