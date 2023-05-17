@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.2.1
+
+- Make sure to run `make pack` before `npm publish`
+
 ## Version 2.2.0
 
 - Constrain l10n string ids [#243](https://github.com/mozilla/nimbus-shared/pull/243)
