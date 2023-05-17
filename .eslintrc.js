@@ -13,7 +13,6 @@ module.exports = {
   },
   root: true,
   rules: {
-    "@typescript-eslint/array-type": ["error", { default: "generic" }],
     "react/prop-types": ["off"],
     "@typescript-eslint/no-unused-vars": [
       "error",
