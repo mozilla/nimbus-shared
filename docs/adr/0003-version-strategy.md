@@ -33,7 +33,7 @@ preserving the flexibility to update the Nimbus Experiment Schema when necessary
 
 ## Decision Outcome
 
-[TBD]
+Option A was chosen and each record contains the version of the schema used to validate it.
 
 ## Recommendation
 
