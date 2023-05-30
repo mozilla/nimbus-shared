@@ -136,7 +136,7 @@ export interface NimbusExperiment {
    *
    * If null, all locales are targeted.
    */
-  locales?: string[];
+  locales?: string[] | null;
 }
 
 interface BucketConfig {
