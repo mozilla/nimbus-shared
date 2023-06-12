@@ -1,5 +1,9 @@
 # Changelog
 
+# Verison 2.4.0
+
+- Allow locales to be null [#251](https://github.com/mozilla/nimbus-shared/pull/251)
+
 ## Version 2.3.0
 
 - Remove l10n string id validation [#248](https://github.com/mozilla/nimbus-shared/pull/248)
