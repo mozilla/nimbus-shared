@@ -137,6 +137,15 @@ export interface NimbusExperiment {
    * If null, all locales are targeted.
    */
   locales?: string[] | null;
+
+  /**
+   * The date that this experiment was first published to Remote Settings.
+   * Note that this value is expected to be present in Remote Settings.
+   *
+   * If null, it has not yet been published.
+   * @format date-time
+   */
+  publishedDate: string | null;
 }
 
 interface BucketConfig {

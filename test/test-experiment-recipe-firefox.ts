@@ -59,3 +59,22 @@ describe("locales field", () => {
     typeGuards.experiments_assertNimbusExperiment(TEST_EXPERIMENT_LOCALES);
   });
 });
+
+describe("publishedDate", () => {
+  it("should succeed on an ISO date", async () => {
+    const result = typeGuards.experiments_checkNimbusExperiment({
+      ...TEST_EXPERIMENT,
+      publishedDate: "2023-11-22T12:38:50Z",
+    });
+    assert.equal(result.ok, true, "validation should pass");
+  });
+
+  it("should fail on a non-ISO date", async () => {
+    const result = typeGuards.experiments_checkNimbusExperiment({
+      ...TEST_EXPERIMENT,
+      publishedDate: "foo",
+    });
+    assert.equal(result.ok, false, "validation should fail");
+    assert.propertyVal(result.errors[0], "message", 'should match format "date-time"');
+  });
+});
