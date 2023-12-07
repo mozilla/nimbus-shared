@@ -145,7 +145,7 @@ export interface NimbusExperiment {
    * If null, it has not yet been published.
    * @format date-time
    */
-  publishedDate: string | null;
+  publishedDate?: string | null;
 }
 
 interface BucketConfig {
