@@ -1,6 +1,10 @@
 # Changelog
 
-# Verison 2.4.0
+# Version 2.5.1
+
+- Add `publishedDate` to experiments type [#258](https://github.com/mozilla/nimbus-shared/pull/258),[#261](https://github.com/mozilla/nimbus-shared/pull/261)
+
+# Version 2.4.0
 
 - Allow locales to be null [#251](https://github.com/mozilla/nimbus-shared/pull/251)
 
