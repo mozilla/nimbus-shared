@@ -1,8 +1,9 @@
 # Changelog
 
-# Version 2.5.1
+# Version 2.5.2
 
-- Add `publishedDate` to experiments type [#258](https://github.com/mozilla/nimbus-shared/pull/258),[#261](https://github.com/mozilla/nimbus-shared/pull/261)
+- Add `publishedDate` to experiments type [#258](https://github.com/mozilla/nimbus-shared/pull/258),
+  [#261](https://github.com/mozilla/nimbus-shared/pull/261)
 
 # Version 2.4.0
 
